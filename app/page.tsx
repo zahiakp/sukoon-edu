@@ -4,6 +4,7 @@ import Hero from '@/components/home/hero'
 import Impact from "@/components/home/impact";
 import Footer from "@/components/home/Footer";
 import Plans from "@/components/home/Plans";
+import SDGs from "@/components/home/SDGs";
 export default function Home() {
   return (
     
@@ -12,6 +13,7 @@ export default function Home() {
     <Hero/>
     <Impact/>
     <Plans/>
+    <SDGs/>
     <Footer/>
 </div>
   );
