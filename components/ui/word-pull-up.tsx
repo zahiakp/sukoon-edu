@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 interface WordPullUpProps {
   words: string;
+  show?:string;
   delayMultiple?: number;
   wrapperFramerProps?: Variants;
   framerProps?: Variants;
@@ -13,7 +14,7 @@ interface WordPullUpProps {
 }
 
 export default function WordPullUp({
-  words,
+  words,show,
   wrapperFramerProps = {
     hidden: { opacity: 0 },
     show: {
@@ -33,7 +34,7 @@ export default function WordPullUp({
     <motion.h1
       variants={wrapperFramerProps}
       initial="hidden"
-      animate="show"
+      animate={show?"show":"hidden"}
       className={cn(
         "font-display text-center text-4xl font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
         className,
@@ -43,9 +44,9 @@ export default function WordPullUp({
         <motion.span
           key={i}
           variants={framerProps}
-          style={{ display: "inline-block", paddingRight: "8px" }}
+          style={{ display: "inline-block", paddingRight: "19px" }}
         >
-          {word === "" ? <span>&nbsp;</span> : word}
+          {word === " " ? <span>&nbsp;</span> : word}
         </motion.span>
       ))}
     </motion.h1>
