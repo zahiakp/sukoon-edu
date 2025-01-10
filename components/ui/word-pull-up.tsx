@@ -34,20 +34,20 @@ export default function WordPullUp({
     <motion.h1
       variants={wrapperFramerProps}
       initial="hidden"
-      animate={show?"show":"hidden"}
+      animate={show !== undefined ? show : "show"}
       className={cn(
-        "font-display text-center text-4xl font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
-        className,
+      "font-display text-center text-4xl font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
+      className,
       )}
     >
       {words.split(" ").map((word, i) => (
-        <motion.span
-          key={i}
-          variants={framerProps}
-          style={{ display: "inline-block", paddingRight: "19px" }}
-        >
-          {word === " " ? <span>&nbsp;</span> : word}
-        </motion.span>
+      <motion.span
+      key={i}
+      variants={framerProps}
+      style={{ display: "inline-block", paddingRight: "19px" }}
+      >
+      {word === " " ? <span>&nbsp;</span> : word}
+      </motion.span>
       ))}
     </motion.h1>
   );

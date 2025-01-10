@@ -6,10 +6,15 @@ import { Twirl as Hamburger } from "hamburger-react";
 import Link from "next/link";
 import classNames from "classnames";
 import { IoIosArrowDown, IoIosArrowDropdownCircle, IoMdArrowForward } from "react-icons/io";
+import { AiFillInstagram } from "react-icons/ai";
+import { RiWhatsappFill } from "react-icons/ri";
+import { TiSocialFacebook } from "react-icons/ti";
+import { FaXTwitter } from "react-icons/fa6";
 
 function Nav({ active }: any) {
   const [isOpen, setOpen] = useState(false);
   const [drop,setDrop] = useState<any>(false)
+  const [hidden,setHidden] = useState<any>()
   const [mobileDrop, setMobileDrop] = useState<number | null>(null);
   const NAV_ITEMS = [
     { label: "Feel Sukoon", path: "" ,items:[
@@ -40,7 +45,16 @@ function Nav({ active }: any) {
   //   }
   // }, []);
   console.log(drop);
-  
+  useEffect(()=>{
+    let hidden;
+    if(drop !== NAV_ITEMS[drop - 1]){
+      setTimeout(()=>{
+       hidden = 'opacity-0'
+       setHidden(hidden)
+    },3000)
+    }
+    
+  },[])
   return (
     <div className="w-full px-10 bg-white sticky top-0 z-10">
       <div className="w-full max-w-[1200px] h-[90px] md:h-[100px] flex items-center justify-between mx-auto">
@@ -66,10 +80,10 @@ function Nav({ active }: any) {
                 <ul
                 className={`${
                   drop == i + 1
-                  ? "translate-y-3 opacity-100"
-                  : "opacity-0 -translate-y-[65px]"
-                } overflow-hidden cursor-pointer min-w-40 pt-5 border-t-0 mx-auto absolute top-full left-[50%] -translate-x-[50%] rounded-xl duration-300 flex flex-col items-center bg-white border border-zinc-200`}
-                >
+                  ? "max-h-96 "
+                  : `max-h-0 ${hidden}`
+                } overflow-hidden cursor-pointer transition-[max-height] min-w-40 pt-7 border-t-0 mx-auto absolute top-full left-[50%] -translate-x-[50%] rounded-xl duration-300 flex flex-col items-center bg-white border border-zinc-200`}
+                                >
                 {item?.items?.map((it: any, ii: number) => (
                   <li
                   key={ii}
@@ -88,21 +102,21 @@ function Nav({ active }: any) {
           </button>
         </div>
         <div className="md:hidden">
-        <Hamburger toggled={isOpen} toggle={setOpen} color="#179900"/>
+        <Hamburger toggled={isOpen} toggle={setOpen} color="#179900" size={27} rounded/>
         </div>{/* <IoMenuOutline className="md:hidden text-4xl text-lime-600"/> */}
       </div>
-      {isOpen && (
+      {
         <section
           data-aos="fade-down"
-          className={`z-[5] md:hidden bg-lime-100 fixed top-[90px] w-full py-5 h-full overflow-y-scroll`}
+          className={`z-[5] md:hidden bg-lime-100 fixed top-[90px] ${isOpen ? 'max-w-[1000px]':"max-w-0"} right-0 transition-[max-width] duration-300 w-full py-5 h-[90vh] flex flex-col justify-between overflow-y-scroll`}
         >
-
+<div>
         {NAV_ITEMS.map((item, index) => (
                 <div key={index} className="w-full">
                   <div
                   onClick={() => setDrop(drop === index+1 ? null : index+1)}
                   className={
-                    "hover:font-bold hover:translate-x-1 w-full justify-between box-border p-3 px-10 pr-20 hover:bg-lime-200 duration-300 font-bold text-lime-600 flex items-center border-b border-lime-100"
+                    "hover:font-bold hover:translate-x-1 w-full justify-between box-border p-3 px-10 pr-20 hover:bg-lime-200/70 duration-300 font-bold text-lime-600 flex items-center border-b border-lime-100"
                   }
                   >
                   <p className="text-xl text-lime-700 flex items-center gap-4 ">
@@ -113,16 +127,24 @@ function Nav({ active }: any) {
                   {item?.items && (
                   <ul className={`bg-lime-200 overflow-hidden transition-[max-height] duration-500 ease-in-out ${drop === index+1 ? 'max-h-96' : 'max-h-0'}`}>
                     {item.items.map((subItem, subIndex) => (
-                    <li key={subIndex} className="p-3 px-14 text-lime-700 border-b border-lime-100">
-                      {subItem.label}
+                    <li key={subIndex} className="p-3 px-14 text-lime-700 gap-3 flex items-center border-b hover:bg-lime-300/60 border-lime-100">
+                      <span>-</span>{subItem.label}
                     </li>
                     ))}
                   </ul>
                   )}
                 </div>
             ))}
+            <button className=" p-3 px-6 my-5 ml-10 rounded-xl text-white bg-lime-600 flex items-center gap-2 text-base">
+            <FaHeart /> Donate
+          </button></div>
+            <div className="py-3 mb-3 border-t flex gap-2 border-lime-500 mx-10">
+              {[<AiFillInstagram/>,<RiWhatsappFill />,<TiSocialFacebook />,<FaXTwitter />].map((icon:any)=>(
+                      <p className="p-2 bg-lime-200 text-lime-700 rounded-lg text-xl">{icon}</p>
+              ))}
+            </div>
         </section>
-      )}
+      }
     </div>
   );
 }
