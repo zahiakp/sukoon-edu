@@ -8,16 +8,32 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import StyledButton from "../StyledButton";
 
 function Hero() {
-  const [show,setShow] = useState(false)
-  useEffect(() => {
-    if(!show){
-setShow(true);
-    }
-  }, []);
+  const [show,setShow] = useState(true)
 const SLIDES = [
-  {title:"Where knowledge meets the heart of the village.",image:"HP4A5440.jpg",dis:""},
-  {title:"Stories that shape lives.",image:"banner.jpg",dis:""},
+  {title:"Stories that shape lives.",image:"HP4A5440.jpg",phoneImg:'HP4A5440.jpg',dis:""},
+  {title:"Where knowledge meets the heart of the village.",image:"banner.jpg",phoneImg:'img1_potrait.jpg',dis:""},
 ]
+console.log("Show state:", show);
+useEffect(() => {
+  setTimeout(() => {
+    setShow(true);
+  }, 500); 
+}, []);
+
+const [screenRatio, setScreenRatio] = useState('web');
+
+useEffect(() => {
+  const updateScreenRatio = () => {
+    setScreenRatio(window.innerWidth <= 640 ? 'phone' : 'web');
+  };
+
+  updateScreenRatio();
+  window.addEventListener('resize', updateScreenRatio);
+
+  return () => {
+    window.removeEventListener('resize', updateScreenRatio);
+  };
+}, []);
 
   return (
     <div className="overflow-hidden h-[650px]">
@@ -25,14 +41,16 @@ const SLIDES = [
 <Swiper
   id="swiper"
   modules={[Autoplay]}
-  onSwiper={(swiper) => console.log(swiper)}
+  onInit={(swiper) => {
+    setShow(true);
+  }}
   onSlideChange={() => {
     setShow(false);
   }}
   onSlideChangeTransitionEnd={() => {
     setShow(true);
   }}
-  onReachEnd={() => { setShow(false); }}
+  // onReachEnd={() => { setShow(false); }}
   breakpoints={{
     640: {
       slidesPerView: 1,
@@ -55,15 +73,12 @@ const SLIDES = [
       <div
         className={`w-[100%] h-[650px] bg-gradient-to-br from-[#7ed56f]/80 to-[#28b485]/80 bg-cover bg-center flex items-center justify-start px-[10%]`}
         style={{
-          backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)), url(/image/${slide.image})`,
+          backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)), url(/image/${screenRatio=='phone' ? slide.phoneImg : slide.image})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
-        <p className="text-8xl w-full md:w-2/3 leading-[80px] text-white font-light Grotesque-font group">
-          <WordPullUp words={slide.title} className="text-6xl leading-[55px] md:text-8xl md:leading-[80px] md:text-left font-normal" show={show ? 'show' : ""} />
-        </p>
-        <p></p>
+          <WordPullUp words={slide.title} className="text-6xl w-full md:w-2/4 text-white Grotesque-font group leading-[55px] md:text-8xl md:leading-[80px] md:text-left font-normal" show={show ? 'show' : "hidden"} />
       </div>
     </SwiperSlide>
   ))}

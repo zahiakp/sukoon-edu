@@ -30,7 +30,7 @@ function Plans() {
           {ITEMS.map((item: any, i: number) => (
             <div
               key={i}
-              className="relative border z-[5] border-b-sky-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
+              className="relative border z-[1] border-b-sky-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
             >
               {" "}
               <p className="text-xl p-3 px-5 text-center">Plan</p>

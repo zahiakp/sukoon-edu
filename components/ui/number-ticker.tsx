@@ -49,10 +49,14 @@ export default function NumberTicker({
   return (
     <span
       className={cn(
-        "inline-block tabular-nums text-black dark:text-white tracking-wider",
-        className,
+      "inline-block tabular-nums text-black dark:text-white tracking-wider",
+      className,
       )}
       ref={ref}
-    />
+      style={{ minWidth: `${[...value.toString()].length}ch` }}
+    >
+      <span className="opacity-0 w-fit">{value}</span>
+    </span>
+
   );
 }
