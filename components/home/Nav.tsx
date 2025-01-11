@@ -106,8 +106,7 @@ function Nav({ active }: any) {
       </div>
       {
         <section
-          data-aos="fade-down"
-          className={`z-[5] md:hidden bg-lime-100 fixed top-[90px] ${isOpen ? 'max-w-[1000px]':"max-w-0"} right-0 transition-[max-width] duration-300 w-full py-5 h-[90vh] flex flex-col justify-start overflow-y-scroll`}
+          className={`z-[5] md:hidden bg-lime-100 fixed top-[90px] ${isOpen ? 'max-w-[1000px]':"max-w-0"} right-0 transition-[max-width] duration-300 w-full py-5 h-[100vh] flex flex-col justify-start overflow-y-scroll`}
         >
 <div>
         {NAV_ITEMS.map((item, index) => (

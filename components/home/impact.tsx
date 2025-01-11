@@ -27,7 +27,7 @@ function Impact() {
           ))}
         </div>
       </div>
-      <img src="/image/Logo strock.png" alt="" className="absolute rotate-12  -top-64 left-[10%] h-[400px] opacity-10"/>
+      <img src="/image/Logo strock.png" alt="" className="absolute rotate-12 hidden md:block -top-64 left-[10%] h-[400px] opacity-10"/>
     </div>
   );
 }
