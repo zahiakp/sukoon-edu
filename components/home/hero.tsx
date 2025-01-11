@@ -1,9 +1,10 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import WordPullUp from "../ui/word-pull-up";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
+import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from "swiper/react";
 import StyledButton from "../StyledButton";
 
@@ -36,13 +37,19 @@ useEffect(() => {
     window.removeEventListener('resize', updateScreenRatio);
   };
 }, []);
-
+const pagination = {
+  clickable: true,
+  renderBullet: function (index:any, className:any) {
+    return '<span class="' + className + '">' + (index + 1) + '</span>';
+  },
+};
   return (
     <div className="overflow-hidden h-[650px]">
  
 <Swiper
+  className="w-full"
   id="swiper"
-  modules={[Autoplay]}
+  modules={[Autoplay,Pagination]}
   onInit={(swiper) => {
     setShow(true);
   }}
@@ -52,7 +59,7 @@ useEffect(() => {
   onSlideChangeTransitionEnd={() => {
     setShow(true);
   }}
-  // onReachEnd={() => { setShow(false); }}
+  pagination={true}
   breakpoints={{
     640: {
       slidesPerView: 1,
@@ -68,7 +75,6 @@ useEffect(() => {
     delay: 5000,
     disableOnInteraction: false,
   }}
-  className="w-full"
 >
   {SLIDES.map((slide: any, i: number) => (
     <SwiperSlide key={i}>

@@ -2,13 +2,16 @@ import React from "react";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { FiGlobe } from "react-icons/fi";
+import { HiOutlineMail } from "react-icons/hi";
+import { IoMdArrowForward, IoMdCall } from "react-icons/io";
 import { RiWhatsappFill } from "react-icons/ri";
 
 function Footer() {
   return (
     <section className="py-10 bg-gray-50 sm:pt-16 lg:pt-24">
-      <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-        <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
+      <div className=" mx-auto sm:px-6 px-7 lg:px-10 max-w-7xl">
+        <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-5 gap-y-7 gap-x-7">
           <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
             <div className="flex items-center gap-2">
               <img src="/svg/sukoon-logo.svg" alt="" className="h-[55px]" />
@@ -35,10 +38,11 @@ function Footer() {
                     <a
                       href="#"
                       title=""
-                      className="flex text-base text-black transition-all duration-200 hover:text-primary hover:font-semibold focus:text-primary"
+                      className="flex text-base group items-center hover:translate-x-0 -translate-x-2 gap-2 text-black transition-all duration-200 hover:text-primary hover:font-semibold focus:text-primary"
                     >
                       {" "}
-                      {item}{" "}
+                      <span className="group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 duration-300 text-lime-600 opacity-0"><IoMdArrowForward />
+                      </span>{item}{" "}
                     </a>
                   </li>
                 )
@@ -48,57 +52,18 @@ function Footer() {
 
           <div>
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
-              Help
+            CONTACT
             </p>
-
-            <ul className="mt-6 space-y-4">
-              <li>
-                <a
-                  href="#"
-                  title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-primary hover:font-semibold focus:text-primary"
-                >
-                  {" "}
-                  Customer Support{" "}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#"
-                  title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-primary hover:font-semibold focus:text-primary"
-                >
-                  {" "}
-                  Delivery Details{" "}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#"
-                  title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-primary hover:font-semibold focus:text-primary"
-                >
-                  {" "}
-                  Terms & Conditions{" "}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#"
-                  title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-primary hover:font-semibold focus:text-primary"
-                >
-                  {" "}
-                  Privacy Policy{" "}
-                </a>
-              </li>
-            </ul>
+            <p className="mt-5">Sukoon Edu Foundation, New Delhi, India</p>
+            <a href="" className="flex items-center gap-2 mt-2"><HiOutlineMail className="text-lime-600"/>
+            <p>connect@mysukoon.in</p></a>
+            <a href="" className="flex items-center gap-2 mt-2"><IoMdCall className="text-lime-600"/>
+            <p>+91- 9645900096</p></a>
+            <a href="" className="flex items-center gap-2 mt-2"><FiGlobe className="text-lime-600"/>
+            <p>www.mysukoon.in</p></a>
           </div>
 
-          <div className="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
+          <div className="col-span-2 md:col-span-1 lg:col-span-1 lg:pl-8">
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
               Subscribe to newsletter
             </p>
@@ -130,9 +95,9 @@ function Footer() {
 
         <hr className="mt-16 mb-10 border-cyan-400/60" />
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center md:justify-between">
           <p className="text-sm text-center text-gray-600">
-            Sukoon edu villa © Copyright 2024.
+          © 2025 Sukoon Edu Foundation
             <a
               href="https://ziqx.in"
               className="text-violet-600 cursor-pointer"

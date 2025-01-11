@@ -23,7 +23,7 @@ function About() {
             Village, a sanctuary for harmony and learning nestled in Andhaka,
             Haryana.
           </p>
-          <a href="" className="flex items-center gap-3 text-lime-600 mt-3">Know More <IoMdArrowForward />
+          <a href="/donate" className="flex items-center gap-3 text-lime-600 mt-3">Yes! I want to help<IoMdArrowForward />
           </a>
         </div>
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
