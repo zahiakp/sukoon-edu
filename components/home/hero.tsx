@@ -11,7 +11,9 @@ function Hero() {
   const [show,setShow] = useState(true)
 const SLIDES = [
   {title:"Where knowledge meets the heart of the village.",image:"banner.jpg",phoneImg:'img1_potrait.jpg',dis:""},
+  {title:"Where knowledge meets the heart of the village.",image:"11.jpg",phoneImg:'11.jpg',dis:""},
   {title:"Stories that shape lives.",image:"HP4A5440.jpg",phoneImg:'HP4A5440.jpg',dis:""},
+  {title:"Stories that shape lives.",image:"20241230_155133test3.jpg",phoneImg:'20241230_155133test3.jpg',dis:""},
 ]
 console.log("Show state:", show);
 useEffect(() => {

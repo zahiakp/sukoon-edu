@@ -18,8 +18,8 @@ function Nav({ active }: any) {
   const [mobileDrop, setMobileDrop] = useState<number | null>(null);
   const NAV_ITEMS = [
     { label: "Feel Sukoon", path: "" ,items:[
-      {label:"Stories",path:""},
       {label:"About us",path:""},
+      {label:"Stories",path:""},
       {label:"Diary",path:""},
     ]},
     { label: "Our Projects", path: "",items:[
@@ -96,7 +96,7 @@ function Nav({ active }: any) {
               </li>
             ))}
             </ul>
-          <a href="/donate" className=" p-2 px-5 rounded-xl text-white bg-lime-600 flex items-center gap-2 text-base">
+          <a href="/donate" className=" p-2 px-5 rounded-xl text-white bg-lime-500 flex items-center gap-2 text-base">
             <FaHeart /> Donate
           </a>
         </div>
@@ -134,7 +134,7 @@ function Nav({ active }: any) {
                   )}
                 </div>
             ))}
-            <a href="/donate" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white bg-lime-600 flex items-center gap-2 text-base">
+            <a href="/donate" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white bg-lime-500 flex items-center gap-2 text-base">
             <FaHeart /> Donate
           </a></div>
             <div className="py-3 mt-3 border-t flex gap-2 border-lime-500 mx-10">

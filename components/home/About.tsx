@@ -6,8 +6,8 @@ function About() {
   return (
     <div className="bg-white relative group pt-10">
       <div className="w-full max-w-[1200px] mx-auto py-10 flex flex-col md:flex-row gap-10 md:gap-20 items-center justify-center">
-        <div className="w-[300px] h-[300px] relative bg-white shadow-xl border border-lime-400 p-10 rounded-[60px]">
-          <img src="/svg/Logo.svg" alt=""/>
+        <div className="w-[300px] h-[300px] relative bg-white shadow-xl border border-lime-400 overflow-hidden rounded-[60px]">
+          <img src="/image/IMG_1830test.JPG" alt="" className="h-full w-full object-cover"/>
           {/* <div className="w-20 h-20 bg-lime-300/50 shadow-xl absolute top-5 -right-5 rounded-2xl backdrop-blur-lg"></div> */}
           </div>
         <div className="max-w-[80%] md:max-w-[50%]">

@@ -48,7 +48,8 @@ function Plans() {
           ))}
         </div>
       </div>
-      <img src="/image/Sukoon Front View Without Sky.png" className='h-[500px] md:w-full w-auto object-cover absolute bottom-0' alt="" />
+      <img data-aos="fade-up"
+     data-aos-anchor-placement="top-bottom" src="/image/Sukoon Front View Without Sky.png" className='h-[500px] md:w-full w-auto object-cover absolute bottom-0' alt="" />
     </div>
   );
 }
