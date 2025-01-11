@@ -15,9 +15,11 @@ function Footer() {
             </div>
 
             <p className="text-sm leading-relaxed text-zinc-500 mt-4">
-              Welcome to the official portal of Skoon edu. Lorem ipsum dolor sit
-              amet consectetur, adipisicing elit. Blanditiis, sed. Harum rerum
-              vitae quo possimus corrupti eos enim assumenda ad veritatis ea
+              Sukoon Edu Foundation is a non-profit dedicated to providing
+              quality education to underprivileged children. We empower
+              communities through innovative learning initiatives, believing
+              education is key to sustainable development. Our mission centers
+              on the Sukoon Edu Village in Andhaka, Haryana.
             </p>
           </div>
 
@@ -27,7 +29,7 @@ function Footer() {
             </p>
 
             <ul className="mt-6 space-y-4">
-              {["Events", "News", "testimonials", "About Us", "Support us"].map(
+              {["Feel Sukoon","Our Projects","Life atSukoon", "Stories","Join us","Connect us",].map(
                 (item: string, index: number) => (
                   <li key={index}>
                     <a

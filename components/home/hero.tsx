@@ -10,8 +10,8 @@ import StyledButton from "../StyledButton";
 function Hero() {
   const [show,setShow] = useState(true)
 const SLIDES = [
-  {title:"Stories that shape lives.",image:"HP4A5440.jpg",phoneImg:'HP4A5440.jpg',dis:""},
   {title:"Where knowledge meets the heart of the village.",image:"banner.jpg",phoneImg:'img1_potrait.jpg',dis:""},
+  {title:"Stories that shape lives.",image:"HP4A5440.jpg",phoneImg:'HP4A5440.jpg',dis:""},
 ]
 console.log("Show state:", show);
 useEffect(() => {

@@ -11,22 +11,26 @@ function Impact() {
     { icon: "", count: "3000", dis: "Students" },
   ];
   return (
-    <div className="bg-lime-100 py-8 relative overflow-hidden group">
+    <div className="bg-lime-50 py-14 relative group" style={{backgroundImage:'linear-gradient(to top, rgba(53, 87, 0,0.7), rgba(0,0,0,0.3)),url(/image/20241230_155133test3.jpg)',
+      backgroundPosition:"center",
+      backgroundSize:"cover",
+  }}>
       <div className="w-full max-w-[1200px] mx-auto p-10 flex flex-col items-center">
-        <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-800 font-semibold">
+        <h6 className="Grotesque-font text-5xl md:text-6xl text-white font-semibold">
         <StyledButton text="Vision 2030"/>
         </h6>
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
           {ITEMS.map((item: any, i: number) => (
-            <div key={i} className="relative overflow-hidden pb-9 px-5 md:px-10 py-5 pt-2 bg-gradient-to-br from-lime-200 to-lime-300 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl">
-              <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-5xl md:text-7xl font-semibold text-lime-800"><NumberTicker value={item.count} className="text-lime-800"/></p>
-              <p>{item.dis}</p>
-              <p className="text-lime-600 absolute left-0 bottom-0">///////////////////////////////////////////////////////////////////////////////////////</p>
+            <div key={i} className="relative overflow-hidden pb-9 px-5 backdrop-blur-lg md:px-10 py-5 pt-2 bg-gradient-to-br from-lime-500/20 to-lime-600/20 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl">
+              <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-5xl md:text-7xl font-semibold text-lime-200"><NumberTicker value={item.count} className="text-lime-200"/></p>
+              <p className="text-zinc-200">{item.dis}</p>
+              <p className="text-lime-300/30 absolute left-0 bottom-0">///////////////////////////////////////////////////////////////////////////////////////</p>
+              <p className="text-lime-300/60 duration-500 overflow-hidden max-w-0 group-hover/box:max-w-96 absolute left-0 bottom-0">///////////////////////////////////////////////////////////////////////////////////////</p>
             </div>
           ))}
         </div>
       </div>
-      <img src="/image/Logo strock.png" alt="" className="absolute rotate-12  -top-56 left-[10%] h-[400px] opacity-20"/>
+      <img src="/image/Logo strock.png" alt="" className="absolute rotate-12  -top-64 left-[10%] h-[400px] opacity-10"/>
     </div>
   );
 }
