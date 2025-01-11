@@ -18,18 +18,17 @@ function Nav({ active }: any) {
   const [mobileDrop, setMobileDrop] = useState<number | null>(null);
   const NAV_ITEMS = [
     { label: "Feel Sukoon", path: "" ,items:[
-      {label:"Our Story",path:""},
+      {label:"Stories",path:""},
       {label:"About us",path:""},
       {label:"Diary",path:""},
     ]},
     { label: "Our Projects", path: "",items:[
-      {label:"Edu Village",path:""},
+      {label:"Residential Campus",path:""},
       {label:"Village School",path:""},
-      {label:"Learning Centers",path:""},
-      {label:"Travel with Sukoon",path:""},
+      {label:"Learning Centers",path:""},
+      {label:"Milan",path:""},
     ] },
     { label: "Life at Sukoon", path: "" },
-    { label: "Stories", path: "" },
     { label: "Join us", path: "" },
     { label: "Connect us", path: "" },
   ];
@@ -58,7 +57,7 @@ function Nav({ active }: any) {
   return (
     <div className="w-full px-10 bg-white sticky top-0 z-10">
       <div className="w-full max-w-[1200px] h-[90px] md:h-[100px] flex items-center justify-between mx-auto">
-        <img src="/svg/sukoon-logo.svg" alt="" className="h-[40px] md:h-[50px]" />
+        <a href="/"><img src="/svg/sukoon-logo.svg" alt="" className="h-[40px] md:h-[50px]" /></a>
         <div className="items-center gap-10 hidden md:flex">
             <ul className="flex items-center justify-center gap-10 text-[16px]">
             {NAV_ITEMS.map((item: any, i: number) => (
@@ -97,9 +96,9 @@ function Nav({ active }: any) {
               </li>
             ))}
             </ul>
-          <button className=" p-2 px-5 rounded-xl text-white bg-lime-600 flex items-center gap-2 text-base">
+          <a href="/donate" className=" p-2 px-5 rounded-xl text-white bg-lime-600 flex items-center gap-2 text-base">
             <FaHeart /> Donate
-          </button>
+          </a>
         </div>
         <div className="md:hidden">
         <Hamburger toggled={isOpen} toggle={setOpen} color="#179900" size={27} rounded/>
@@ -108,7 +107,7 @@ function Nav({ active }: any) {
       {
         <section
           data-aos="fade-down"
-          className={`z-[5] md:hidden bg-lime-100 fixed top-[90px] ${isOpen ? 'max-w-[1000px]':"max-w-0"} right-0 transition-[max-width] duration-300 w-full py-5 h-[90vh] flex flex-col justify-between overflow-y-scroll`}
+          className={`z-[5] md:hidden bg-lime-100 fixed top-[90px] ${isOpen ? 'max-w-[1000px]':"max-w-0"} right-0 transition-[max-width] duration-300 w-full py-5 h-[90vh] flex flex-col justify-start overflow-y-scroll`}
         >
 <div>
         {NAV_ITEMS.map((item, index) => (
@@ -135,12 +134,12 @@ function Nav({ active }: any) {
                   )}
                 </div>
             ))}
-            <button className=" p-3 px-6 my-5 ml-10 rounded-xl text-white bg-lime-600 flex items-center gap-2 text-base">
+            <a href="/donate" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white bg-lime-600 flex items-center gap-2 text-base">
             <FaHeart /> Donate
-          </button></div>
-            <div className="py-3 mb-3 border-t flex gap-2 border-lime-500 mx-10">
-              {[<AiFillInstagram/>,<RiWhatsappFill />,<TiSocialFacebook />,<FaXTwitter />].map((icon:any)=>(
-                      <p className="p-2 bg-lime-200 text-lime-700 rounded-lg text-xl">{icon}</p>
+          </a></div>
+            <div className="py-3 mt-3 border-t flex gap-2 border-lime-500 mx-10">
+              {[{icon:<AiFillInstagram/>,link:'https://www.instagram.com/mysukoon.in?igsh=ejhubHRlMGJ6dmZo'},{icon:<RiWhatsappFill />,lnik:''},{icon:<TiSocialFacebook />,lnik:''},{icon:<FaXTwitter />,lnik:''}].map((icon:any)=>(
+                      <a target="_blank" href={icon.link} className="p-2 bg-lime-200 text-lime-700 rounded-lg text-xl">{icon.icon}</a>
               ))}
             </div>
         </section>
