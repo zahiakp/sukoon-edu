@@ -3,6 +3,7 @@ import React from "react";
 import NumberTicker from "../ui/number-ticker";
 import { RiArrowRightLine } from "react-icons/ri";
 import StyledButton from "../StyledButton";
+import GooglePayButton from '@google-pay/button-react';
 
 function Plans() {
   const ITEMS = [
@@ -15,7 +16,7 @@ function Plans() {
   ];
   return (
     <div className=" py-8 relative overflow-hidden group bg-blue-50 pb-72">
-      <div className="w-full max-w-[1200px] mx-auto p-10 flex flex-col items-center">
+      <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col items-center">
         <h6 className="Grotesque-font text-5xl md:text-6xl text-sky-800 font-semibold">
         <StyledButton text="Let’s Build Sukoon"/> 
         </h6>
@@ -47,6 +48,9 @@ function Plans() {
             </div>
           ))}
         </div>
+       
+
+
       </div>
       <img data-aos="fade-up" src="/image/Sukoon Front View Without Sky.png" className='h-[500px] md:w-full w-auto object-cover absolute bottom-0' alt="" />
     </div>

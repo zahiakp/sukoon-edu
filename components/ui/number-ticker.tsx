@@ -54,9 +54,7 @@ export default function NumberTicker({
       )}
       ref={ref}
       style={{ minWidth: `${[...value.toString()].length}ch` }}
-    >
-      <span className="opacity-0 w-fit">{value}</span>
-    </span>
+    />
 
   );
 }

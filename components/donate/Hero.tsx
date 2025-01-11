@@ -8,8 +8,8 @@ function Hero() {
         backgroundSize:"cover",
     }}>
       <div className='p-20 px-[15%] flex flex-col h-full items-start justify-end text-white'>
-        <h1 className='text-6xl md:text-7xl font-bold font Grotesque-font text-lime-200'>Let’s Build Sukoon</h1>
-        <p className='text-zinc-300 text-left flex gap-2 text-[15px] mt-4 w-[80%]'>Sukoon Residential School provides a high-quality education for
+        <h1 className='text-5xl md:text-7xl font-bold font Grotesque-font text-lime-200'>Let’s Build Sukoon</h1>
+        <p className='text-zinc-300 text-left hidden md:flex gap-2 text-[12px] md:text-[15px] mt-4 w-[80%]'>Sukoon Residential School provides a high-quality education for
           students in Grades from Nursery to 12 in a structured residential
           setting. Focused on academic excellence, character development, and
           moral studies, the campus equips students with the skills to tackle

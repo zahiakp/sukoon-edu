@@ -18,7 +18,7 @@ function Nav({ active }: any) {
   const [mobileDrop, setMobileDrop] = useState<number | null>(null);
   const NAV_ITEMS = [
     { label: "Feel Sukoon", path: "" ,items:[
-      {label:"About us",path:""},
+      {label:"About us",path:"/about"},
       {label:"Stories",path:""},
       {label:"Diary",path:""},
     ]},
@@ -84,12 +84,12 @@ function Nav({ active }: any) {
                 } overflow-hidden cursor-pointer transition-[max-height] min-w-40 pt-7 border-t-0 mx-auto absolute top-full left-[50%] -translate-x-[50%] rounded-xl duration-300 flex flex-col items-center bg-white border border-zinc-200`}
                                 >
                 {item?.items?.map((it: any, ii: number) => (
-                  <li
+                  <a href={it.path}
                   key={ii}
                   className="p-3 px-5 w-full text-center hover:bg-zinc-100 duration-300"
                   >
                   {it.label}
-                  </li>
+                  </a>
                 ))}
                 </ul>
               )}
