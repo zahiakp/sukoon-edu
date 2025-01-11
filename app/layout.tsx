@@ -8,6 +8,7 @@ import { IoMdCall } from "react-icons/io";
 import Nav from "@/components/home/Nav";
 import Footer from "@/components/home/Footer";
 import PageLoader from "@/components/Loader";
+import AOSClient from "@/components/AOS";
 
 const outfit = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}><PageLoader/><Nav/>{children}
+      <body className={outfit.className}><PageLoader/><Nav/><AOSClient/>{children}
         <a target="_blank" href="https://wa.me/+919645900096?text=Hello%20Sukoon%20Edu%20Village" className="p-[6px] rounded-full fixed bottom-7 z-[2] right-7 shadow-xl bg-[#25D366] text-white text-4xl">
         <RiWhatsappFill />
         </a>

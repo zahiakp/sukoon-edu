@@ -6,12 +6,12 @@ import StyledButton from "../StyledButton";
 
 function Plans() {
   const ITEMS = [
-    { icon: "", size: "1 Sq feet", plan: "1,500" ,link:""},
-    { icon: "", size: "10 Sq feet", plan: "15,000" ,link:""},
-    { icon: "", size: "50 Sq feet", plan: "75,000",link:"" },
-    { icon: "", size: "100 Sq feet", plan: "1,50,000",link:"" },
-    { icon: "", size: "Classroom", plan: "8,00,000",link:"" },
-    { icon: "", size: "Classroom furniture", plan: "2,00,000",link:"" },
+    { icon: "", size: "1 Sq feet",amount:"1500",label:"1%20Sq%20feet", plan: "1,500" ,link:""},
+    { icon: "", size: "10 Sq feet",amount:"15000",label:"10%20Sq%20feet", plan: "15,000" ,link:""},
+    { icon: "", size: "50 Sq feet",amount:"75000",label:"50%20Sq%20feet", plan: "75,000",link:"" },
+    { icon: "", size: "100 Sq feet",amount:"150000",label:"100%20Sq%20feet", plan: "1,50,000",link:"" },
+    { icon: "", size: "Classroom",amount:"800000",label:"Classroom", plan: "8,00,000",link:"" },
+    { icon: "", size: "Classroom furniture",amount:"200000",label:"Classroom%20furniture", plan: "2,00,000",link:"" },
   ];
   return (
     <div className=" py-8 relative overflow-hidden group bg-lime-50">
@@ -30,7 +30,7 @@ function Plans() {
                 <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-3xl md:text-4xl font-semibold text-lime-600">
                   {item.plan}
                 </p>
-                <a target="_blank" href={`https://pay.google.com/gp/p/ui/pay?amount=${item.plan}&message=Donation for ${item.size}`} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
+                <a target="_blank" href={`upi://pay?pa=9645900097@okbizaxis&pn=SUKOON%20EDU%20FOUNDATION&mc=8220&aid=uGICAgMD7wdTTKg&ver=01&mode=01&tr=BCR2DN4TYPV7N7IR&am=${item.plan}&tn=Donation%20${item.size}%20for%20Sukoon%20Edu`} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
                   <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
                 </a>
               </div>
