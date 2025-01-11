@@ -30,7 +30,7 @@ function Plans() {
                 <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-3xl md:text-4xl font-semibold text-lime-600">
                   {item.plan}
                 </p>
-                <a target="_blank" href={`upi://pay?pa=9645900097@okbizaxis&pn=SUKOON%20EDU%20FOUNDATION&mc=8220&aid=uGICAgMD7wdTTKg&ver=01&mode=01&tr=BCR2DN4TYPV7N7IR&am=${item.plan}&tn=Donation%20${item.size}%20for%20Sukoon%20Edu`} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
+                <a target="_blank" href={`upi://pay?pa=9645900097@okbizaxis&pn=SUKOON%20EDU%20FOUNDATION&mc=8220&aid=uGICAgMD7wdTTKg&ver=01&mode=01&tr=BCR2DN4TYPV7N7IR&am=${item.amount}&tn=Donation%20${item.label}%20for%20Sukoon%20Edu`} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
                   <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
                 </a>
               </div>
