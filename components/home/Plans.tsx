@@ -12,7 +12,7 @@ function Plans() {
     { icon: "", size: "50 Sq feet", plan: "75,000" },
     { icon: "", size: "100 Sq feet", plan: "1,50,000" },
     { icon: "", size: "Classroom", plan: "8,00,000" },
-    { icon: "", size: "Classroom furniture", plan: "2,00,000" },
+    { icon: "", size: "Other", plan: "Custom" },
   ];
   return (
     <div className=" py-8 relative overflow-hidden group bg-blue-50 pb-72">
@@ -41,9 +41,9 @@ function Plans() {
                 <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-3xl md:text-4xl font-semibold text-sky-600">
                   {item.plan}
                 </p>
-                <button className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-sky-200 group-hover/box:bg-sky-500 mt-4">
+                <a href="/donate" className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-sky-200 group-hover/box:bg-sky-500 mt-4">
                   <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
-                </button>
+                </a>
               </div>
             </div>
           ))}
@@ -52,7 +52,7 @@ function Plans() {
 
 
       </div>
-      <img data-aos="fade-up" src="/image/Sukoon Front View Without Sky.png" className='h-[500px] md:w-full w-auto object-cover absolute bottom-0' alt="" />
+      <img data-aos="fade-up" data-aos-duration="2000" src="/image/Sukoon Front View Without Sky.png" className='h-[500px] md:w-full w-auto object-cover absolute bottom-0' alt="" />
     </div>
   );
 }

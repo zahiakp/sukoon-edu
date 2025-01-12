@@ -13,7 +13,7 @@ function Projects() {
   return (
     <div className="bg-lime-100 py-8 pb-14 relative group">
     <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col items-center">
-      <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-800 font-semibold">
+      <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-600 font-semibold">
       <StyledButton text="Our Projects"/>
       </h6>
       <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-4 z-[2]">
@@ -28,10 +28,11 @@ function Projects() {
                     </div>
         ))}
       </div>
-      <a href="/donate" className="flex items-center gap-3 text-lime-600 mt-3">Yes! I want to help<IoMdArrowForward />
+       <a href="/donate" className="flex items-center gap-2 hover:gap-3 duration-300 p-2 px-5 rounded-xl w-fit text-sm bg-lime-500 text-white mt-4">Yes! I want to help<IoMdArrowForward />
                 </a>
     </div>
-    <img src="/image/Logo strock.png" alt="" className="absolute rotate-12 hidden md:block -top-64 right-[10%] h-[400px] opacity-20"/>
+    <div className="absolute rotate-12 hidden md:block -top-64 right-[10%]  opacity-20">
+    <img className='h-[400px]' data-aos="fade-left" data-aos-duration="2000" src="/image/Logo strock.png" alt="" /></div>
   </div>
   )
 }
