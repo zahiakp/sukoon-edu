@@ -78,5 +78,5 @@
 }
 
 .swiper-button-next,.swiper-button-prev{
-  @apply !bg-lime-500/60
+  @apply !bg-transparent
 }

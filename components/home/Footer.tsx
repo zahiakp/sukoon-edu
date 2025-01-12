@@ -54,7 +54,10 @@ function Footer() {
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
             CONTACT
             </p>
-            <p className="mt-5">Sukoon Edu Foundation, New Delhi, India</p>
+            <p className="mt-5 font-semibold">Sukoon Edu Foundation
+              {/* , New Delhi, India */}
+
+            </p>
             <a href="" className="flex items-center gap-2 mt-2"><HiOutlineMail className="text-lime-600"/>
             <p>connect@mysukoon.in</p></a>
             <a href="" className="flex items-center gap-2 mt-2"><IoMdCall className="text-lime-600"/>
