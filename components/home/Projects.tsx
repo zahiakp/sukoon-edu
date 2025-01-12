@@ -32,7 +32,7 @@ function Projects() {
                 </a>
     </div>
     <div className="absolute rotate-12 hidden md:block -top-64 right-[10%]  opacity-20">
-    <img className='h-[400px]' data-aos="fade-left" data-aos-duration="2000" src="/image/Logo strock.png" alt="" /></div>
+    <img className='h-[400px]' data-aos="fade-left" src="/image/Logo strock.png" alt="" /></div>
   </div>
   )
 }
