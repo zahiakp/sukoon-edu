@@ -3,7 +3,7 @@ import React from "react";
 function Hero() {
   return (
     <div
-      className="w-full h-[400px] md:h-[500px]"
+      className="w-full h-[400px] md:h-[500px] overflow-hidden"
       style={{
         backgroundImage:
           "linear-gradient(to top, rgba(42, 64, 10,0.9), rgba(0,0,0,0)),url(/image/banner.jpg)",

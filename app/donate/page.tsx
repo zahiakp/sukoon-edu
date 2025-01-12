@@ -1,5 +1,6 @@
 import Hero from '@/components/donate/Hero'
 import Plans from '@/components/donate/Plans'
+import UserLayout from '@/components/Layout/UserLayout';
 import { Metadata } from 'next';
 import React from 'react'
 
@@ -11,10 +12,10 @@ export const metadata: Metadata = {
 
 function page() {
   return (
-    <div>
+    <UserLayout>
       <Hero/>
       <Plans/>
-    </div>
+    </UserLayout>
   )
 }
 

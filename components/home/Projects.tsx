@@ -6,8 +6,8 @@ import { IoMdArrowForward, IoMdArrowRoundForward } from 'react-icons/io'
 function Projects() {
     const PROJECTS = [
         {img:"banner.jpg",label:"Residential Campus",dis:"Sukoon Residential School provides a high-quality education for students in Grades 7 to 12 in a structured residential setting. Focused on academic excellence, character development, and moral studies, the campus equips students with the skills to tackle global challenges. It fosters independence and responsibility, preparing students to become confident leaders in a rapidly changing world."},
-        {img:"banner.jpg",label:"Village School",dis:"Sukoon Village School, a CBSE-affiliated institution, caters to students from Pre-KG to Grade 12. Designed for rural communities, it provides localized learning that integrates the village's cultural and environmental aspects, empowering children with education while preserving their traditional values."},
-        {img:"banner.jpg",label:"Learning Centers",dis:"Sukoon Learning Centres offer foundational education to children in rural and underserved areas, focusing on literacy, numeracy, and social skills. Designed to support personal growth, these centres provide flexible and accessible learning opportunities for children who lack the time or resources for formal schooling. By offering supplementary education in key subjects, they help bridge gaps in the formal education system."},
+        {img:"VILLAGE SCHOOL.webp",label:"Village School",dis:"Sukoon Village School, a CBSE-affiliated institution, caters to students from Pre-KG to Grade 12. Designed for rural communities, it provides localized learning that integrates the village's cultural and environmental aspects, empowering children with education while preserving their traditional values."},
+        {img:"Learning Centers Photo.webp",label:"Learning Centers",dis:"Sukoon Learning Centres offer foundational education to children in rural and underserved areas, focusing on literacy, numeracy, and social skills. Designed to support personal growth, these centres provide flexible and accessible learning opportunities for children who lack the time or resources for formal schooling. By offering supplementary education in key subjects, they help bridge gaps in the formal education system."},
         {img:"banner.jpg",label:"Milan",dis:"Sukoon Milan is our social empowerment initiative that blends skill development and community engagement to create meaningful opportunities for individuals and communities. It aims to equip youth and women with practical skills, foster economic self-reliance, and promote inclusivity. By strengthening community bonds and driving collective growth, Sukoon Milan embodies our mission of harmony and transformation."},
     ]
   return (
@@ -18,7 +18,7 @@ function Projects() {
       </h6>
       <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-4 z-[2]">
         {PROJECTS.map((project:any,i:number)=>(
-            <div className='flex cursor-pointer group/box flex-col border hover:-translate-y-1 duration-300 hover:shadow-lg bg-lime-50 border-lime-500 overflow-hidden rounded-2xl'>
+            <div key={i} className='flex cursor-pointer group/box flex-col border hover:-translate-y-1 duration-300 hover:shadow-lg bg-lime-50 border-lime-500 overflow-hidden rounded-2xl'>
                 <div className='h-40'>
                     <img src={`/image/${project.img}`} className='w-full h-full object-cover'/>
                     </div>
