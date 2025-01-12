@@ -28,7 +28,8 @@
     "sweetalert2": "^11.15.10",
     "swiper": "^11.1.5",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",
