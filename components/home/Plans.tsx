@@ -15,8 +15,8 @@ function Plans() {
     { icon: "", size: "Other", plan: "Custom" },
   ];
   return (
-    <div className=" py-8 relative overflow-hidden group bg-blue-50 pb-72">
-      <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col items-center">
+    <div className=" py-8 relative overflow-hidden group bg-blue-50 pb-72 md:pb-[350px]">
+      <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
         <h6 className="Grotesque-font text-5xl md:text-6xl text-sky-800 font-semibold">
         <StyledButton text="Let’s Build Sukoon"/> 
         </h6>
@@ -27,11 +27,11 @@ function Plans() {
           moral studies, the campus equips students with the skills to tackle
           global challenges
         </p>
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="mt-10 w-full grid grid-cols-2 md:grid-cols-3 gap-4">
           {ITEMS.map((item: any, i: number) => (
             <div
               key={i}
-              className="relative border z-[1] border-b-sky-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
+              className=" relative border z-[1] border-b-sky-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
             >
               {" "}
               <p className="text-xl p-3 px-5 text-center">Plan</p>
@@ -52,7 +52,7 @@ function Plans() {
 
 
       </div>
-      <img data-aos="fade-up" src="/image/Sukoon Front View Without Sky.png" className='h-[500px] md:w-full w-auto object-cover absolute bottom-0' alt="" />
+      <img data-aos="fade-up" src="/image/Sukoon Front View Without Sky.png" className='h-[500px] md:w-full w-auto object-cover md:object-bottom absolute bottom-0' alt="" />
     </div>
   );
 }

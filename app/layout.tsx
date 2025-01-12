@@ -24,14 +24,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}><PageLoader/><Nav/><AOSClient/>{children}
-        <a target="_blank" href="https://wa.me/+919645900096?text=Hello%20Sukoon%20Edu%20Village" className="p-[6px] rounded-full fixed bottom-7 z-[2] right-7 shadow-xl bg-[#25D366] text-white text-4xl">
-        <RiWhatsappFill />
-        </a>
-        <a target="_blank" href="tel:+919645900096" className="p-[10px] rounded-full fixed bottom-7 z-[2] left-7 shadow-xl bg-blue-500 text-white text-2xl">
-        <IoMdCall />
-        </a>
-        <Footer/>
+      <body className={outfit.className}><PageLoader/>{children}
+        
       </body>
     </html>
   );

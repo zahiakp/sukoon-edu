@@ -52,3 +52,31 @@
 .swiper-pagination-bullet-active {
   @apply !bg-lime-500 !w-[50px] !rounded-xl
 }
+
+.swiper-button-prev {
+  width: 50px !important;
+  height: 50px !important;
+  padding: 20px;
+  border-radius: 50%;
+  transform: translate(0) !important;
+}
+.swiper-button-prev::after {
+  color: #fff;
+  font-size: 20px !important;
+}
+.swiper-button-next {
+  width: 50px !important;
+  height: 50px !important;
+  padding: 20px;
+  border-radius: 50%;
+  /* bottom: 0 !important; */
+  transform: translate(0) !important;
+}
+.swiper-button-next::after {
+  color: #fff;
+  font-size: 20px !important;
+}
+
+.swiper-button-next,.swiper-button-prev{
+  @apply !bg-lime-500/60
+}

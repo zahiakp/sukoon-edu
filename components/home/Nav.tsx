@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from "react";
-import { FaArrowRight, FaHeart } from "react-icons/fa";
+import { FaArrowRight, FaHeart, FaYoutube } from "react-icons/fa";
 import { IoArrowDownCircle, IoMenu, IoMenuOutline } from "react-icons/io5";
 import { Twirl as Hamburger } from "hamburger-react";
 import Link from "next/link";
@@ -125,9 +125,9 @@ function Nav({ active }: any) {
                   {item?.items && (
                   <ul className={`bg-lime-200 overflow-hidden transition-[max-height] duration-500 ease-in-out ${drop === index+1 ? 'max-h-96' : 'max-h-0'}`}>
                     {item.items.map((subItem, subIndex) => (
-                    <li key={subIndex} className="p-3 px-14 text-lime-700 gap-3 flex items-center border-b hover:bg-lime-300/60 border-lime-100">
+                    <a href={subItem.path} key={subIndex} className="p-3 px-14 text-lime-700 gap-3 flex items-center border-b hover:bg-lime-300/60 border-lime-100">
                       <span>-</span>{subItem.label}
-                    </li>
+                    </a>
                     ))}
                   </ul>
                   )}
@@ -137,8 +137,9 @@ function Nav({ active }: any) {
             <FaHeart /> Donate
           </a></div>
             <div className="py-3 mt-3 border-t flex gap-2 border-lime-500 mx-10">
-              {[{icon:<AiFillInstagram/>,link:'https://www.instagram.com/mysukoon.in?igsh=ejhubHRlMGJ6dmZo'},{icon:<RiWhatsappFill />,lnik:''},{icon:<TiSocialFacebook />,lnik:''},{icon:<FaXTwitter />,lnik:''}].map((icon:any)=>(
-                      <a target="_blank" href={icon.link} className="p-2 bg-lime-200 text-lime-700 rounded-lg text-xl">{icon.icon}</a>
+              {[{icon:<AiFillInstagram/>,link:'https://www.instagram.com/mysukoon.in?igsh=ejhubHRlMGJ6dmZo'},{icon:<RiWhatsappFill />,lnik:''},{icon:<TiSocialFacebook />,lnik:''},{icon:<FaXTwitter />,lnik:''},{icon:<FaYoutube />,lnik:''}
+].map((icon:any,i:number)=>(
+                      <a target="_blank" key={i} href={icon.link} className="p-2 bg-lime-200 text-lime-700 rounded-lg text-xl">{icon.icon}</a>
               ))}
             </div>
         </section>

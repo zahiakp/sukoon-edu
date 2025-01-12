@@ -1,6 +1,6 @@
 import React from "react";
 import { AiFillInstagram } from "react-icons/ai";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiGlobe } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
@@ -10,9 +10,9 @@ import { RiWhatsappFill } from "react-icons/ri";
 function Footer() {
   return (
     <section className="py-10 bg-gray-50 sm:pt-16 lg:pt-24">
-      <div className=" mx-auto sm:px-6 px-7 lg:px-10 max-w-7xl">
-        <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-5 gap-y-7 gap-x-7">
-          <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
+      <div className="mx-auto sm:px-6 px-7 lg:px-10 max-w-7xl">
+        <div className="grid grid-cols-1 md:col-span-3 lg:grid-cols-5 gap-y-7 md:gap-x-7">
+          <div className="col-span-2 md:col-span-2 lg:col-span-2 lg:pr-8">
             <div className="flex items-center gap-2">
               <img src="/svg/sukoon-logo.svg" alt="" className="h-[55px]" />
             </div>
@@ -26,12 +26,12 @@ function Footer() {
             </p>
           </div>
 
-          <div>
+          <div className="hidden md:block">
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
               pages
             </p>
 
-            <ul className="mt-6 space-y-4">
+            <ul className="mt-6  space-y-4">
               {["Feel Sukoon","Our Projects","Life atSukoon", "Stories","Join us","Connect us",].map(
                 (item: string, index: number) => (
                   <li key={index}>
@@ -50,7 +50,7 @@ function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className=" col-span-1">
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
             CONTACT
             </p>
@@ -127,6 +127,13 @@ function Footer() {
               className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:text-primary duration-300"
             >
               <FaXTwitter className="text-zinc-800" />
+            </a>
+            <a
+              href=""
+              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:text-primary duration-300"
+            >
+              <FaYoutube
+              className="text-zinc-800" />
             </a>
           </div>
         </div>
