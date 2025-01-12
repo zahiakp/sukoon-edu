@@ -13,7 +13,7 @@ function Impact() {
   return (
     <div className="bg-lime-50 py-8 relative group">
       <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col items-center">
-        <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-800 font-semibold">
+        <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-600 font-semibold">
         <StyledButton text="Vision 2030"/>
         </h6>
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">

@@ -13,7 +13,7 @@ function Plans() {
     { icon: "", size: "50 Sq feet",amount:"75000",label:"50%20Sq%20feet", plan: "75,000",link:"" },
     { icon: "", size: "100 Sq feet",amount:"150000",label:"100%20Sq%20feet", plan: "1,50,000",link:"" },
     { icon: "", size: "Classroom",amount:"800000",label:"Classroom", plan: "8,00,000",link:"" },
-    { icon: "", size: "Classroom furniture",amount:"200000",label:"Classroom%20furniture", plan: "2,00,000",link:"" },
+    { icon: "", size: "Other",amount:"",label:"other", plan: "Custom",link:"" },
   ];
   return (
     <div className=" py-8 relative overflow-hidden group bg-lime-50">
@@ -40,7 +40,8 @@ function Plans() {
         ))}
       </div>
       </div>
-      <div className="mx-auto w-fit"><GooglePayButton
+      <div className="mx-auto w-fit">
+        <GooglePayButton
       environment="TEST"
       paymentRequest={{
         apiVersion: 2,

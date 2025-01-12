@@ -11,7 +11,7 @@ function About() {
           {/* <div className="w-20 h-20 bg-lime-300/50 shadow-xl absolute top-5 -right-5 rounded-2xl backdrop-blur-lg"></div> */}
           </div>
         <div className="max-w-[80%] md:max-w-[50%]">
-          <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-700 font-semibold">
+          <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-600 font-semibold">
             Sukoon Edu <span className="font-normal"> Foundation</span>
           </h6>
           <p className="mt-5">
@@ -23,8 +23,8 @@ function About() {
             Village, a sanctuary for harmony and learning nestled in Andhaka,
             Haryana.
           </p>
-          <a href="/donate" className="flex items-center gap-3 text-lime-600 mt-3">Yes! I want to help<IoMdArrowForward />
-          </a>
+          <a href="/donate" className="flex items-center gap-2 hover:gap-3 duration-300 p-2 px-5 rounded-xl w-fit text-sm bg-lime-500 text-white mt-4">Yes! I want to help<IoMdArrowForward />
+                          </a>
         </div>
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
       </div>
