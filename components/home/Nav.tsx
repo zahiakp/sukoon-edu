@@ -138,7 +138,7 @@ function Nav({ active }: any) {
             ))}
             <a href="/login" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white bg-lime-500 flex items-center gap-2 text-base">
             {/* <FaHeart /> */}
-            Log in
+            Pay Fee
           </a>
           </div>
             <div className="py-3 mt-3 border-t flex gap-2 border-lime-500 mx-10">
