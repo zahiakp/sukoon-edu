@@ -32,7 +32,7 @@ function Footer() {
             </p>
 
             <ul className="mt-6  space-y-4">
-              {[{label:"Feel Sukoon",path:""},{label:"Our Projects",path:""},{label:"Life atSukoon",path:""}, {label:"Privacy & Policy",path:'/privacypolicy'},{label:"Refund Policy",path:'/refundpolicy'},{label:"Terms & Conditions",path:'/terms'},{label:"Connect us",path:""}].map(
+              {[{label:"Feel Sukoon",path:""},{label:"Our Projects",path:""},{label:"Life at Sukoon",path:""}, {label:"Privacy & Policy",path:'/privacypolicy'},{label:"Refund Policy",path:'/refundpolicy'},{label:"Terms & Conditions",path:'/terms'},{label:"Connect us",path:""}].map(
                 (item: any, index: number) => (
                   <li key={index}>
                     <a

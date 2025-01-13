@@ -21,7 +21,7 @@ function Plans() {
     {size: "Residential & Food Fee", plan: " 88,000" },
     {size: "Extra-Curricular & Study Tours", plan: "20,000" },
     // {size: "Classroom", plan: "8,00,000" },
-    // {size: "Other", plan: "Custom" },
+    {size: "Other", plan: "Custom" },
   ];
   return (
     <div className=" py-8 relative overflow-hidden group bg-blue-50 pb-72 md:pb-[350px]">
@@ -69,7 +69,7 @@ function Plans() {
                 <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-3xl md:text-5xl font-semibold text-sky-600">
                   {item.plan}
                 </p>
-                <a href="/donate" className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-sky-200 group-hover/box:bg-sky-500 mt-4">
+                <a href="/login" className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-sky-200 group-hover/box:bg-sky-500 mt-4">
                   <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
                 </a>
               </div>
