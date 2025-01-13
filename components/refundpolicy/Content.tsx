@@ -17,31 +17,9 @@ function Content() {
       {/* <h1 className="text-3xl font-bold mb-4">Refund Policy</h1> */}
       <p className="mb-4">Last updated: January 01, 2025</p>
       <p className="mb-4">
-        At Sukoon Edu Village, fees and other payments may require you to request a refund. This Refund Policy outlines the process and conditions for refunding donations.
-      </p>
-
-      <h2 className="text-2xl font-semibold mt-6 mb-2">Refund Requests</h2>
-      <p className="mb-4">
-        If you wish to request a refund for your donation, please contact us at <a href="mailto:accounts@mysukoon.in" className="text-blue-500">accounts@mysukoon.in</a> within 7 days of making the donation. Please provide your name, Payment reference number (Bank Transaction), and a brief explanation for the refund request.
-      </p>
-
-      <h2 className="text-2xl font-semibold mt-6 mb-2">Refund Processing</h2>
-      <ol className="list-decimal list-inside mb-4">
-        <li><strong>Eligible Donations:</strong> Refunds are generally available for all types of payments made through our website or other channels.</li>
-        <li><strong>Processing Time:</strong> We strive to process all eligible refund requests within 7-10 business days from the date of receipt. However, please note that the actual refund processing time may vary depending on your payment method and financial institution.</li>
-        <li><strong>Refund Method:</strong> Refunds will be issued using the same payment method as the original payment, unless otherwise agreed upon or if the original payment method is no longer valid or available.</li>
-        <li><strong>Refund Fees:</strong> In some cases, additional fees or charges imposed by payment gateways or financial institutions may be deducted from the refund amount. Sukoon Edu Foundation is not responsible for any such fees or charges.</li>
-      </ol>
-
-      <h2 className="text-2xl font-semibold mt-6 mb-2">Privacy Policy</h2>
-      <p className="mb-4">
-        We may collect and use your information in accordance with our Privacy Policy.
-      </p>
-
-      <h2 className="text-2xl font-semibold mt-6 mb-2">Contact Us</h2>
-      <p className="mb-4">
-        If you have any questions or concerns about our Refund Policy or need assistance with a refund request, please contact us at <a href="mailto:accounts@mysukoon.in" className="text-blue-500">accounts@mysukoon.in</a>. We appreciate your understanding and cooperation in helping us allocate resources responsibly and continue our mission of empowering vulnerable communities.
-      </p>
+      This refund and cancellation policy outlines how you can cancel or seek a refund for a product / service that you have purchased through the Platform. Under this policy:
+Cancellations will only be considered if the request is made 1 days of placing the order.
+In case of any refunds approved by SUKOON EDU FOUNDATION, it will take 3 days for the refund to be processed to you and that will be get credited in your source account within 7-10 business days</p>
     </div>
   );
 }

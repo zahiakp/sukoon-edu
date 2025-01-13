@@ -19,15 +19,17 @@ function Nav({ active }: any) {
   const NAV_ITEMS = [
     { label: "Feel Sukoon", path: "" ,items:[
       {label:"About us",path:"/about"},
-      {label:"Stories",path:""},
-      {label:"Diary",path:""},
+      // {label:"Stories",path:""},
+      // {label:"Diary",path:""},
     ]},
-    { label: "Our Projects", path: "",items:[
-      {label:"Residential Campus",path:""},
-      {label:"Village School",path:""},
-      {label:"Learning Centers",path:""},
-      {label:"Milan",path:""},
-    ] },
+    { label: "Our Projects", path: "",
+    //   items:[
+    //   {label:"Residential Campus",path:""},
+    //   {label:"Village School",path:""},
+    //   {label:"Learning Centers",path:""},
+    //   {label:"Milan",path:""},
+    // ] 
+  },
     { label: "Life at Sukoon", path: "" },
     { label: "Join us", path: "" },
     { label: "Connect us", path: "" },
