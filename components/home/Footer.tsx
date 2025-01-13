@@ -26,7 +26,7 @@ function Footer() {
             </p>
           </div>
 
-          <div className="hidden md:block">
+          <div className="col-span-2">
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
               pages
             </p>
