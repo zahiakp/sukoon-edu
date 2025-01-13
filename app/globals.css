@@ -80,3 +80,11 @@
 .swiper-button-next,.swiper-button-prev{
   @apply !bg-transparent
 }
+
+
+.toast-custom {
+  background: #2B3F5C !important;
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 40px;
+}

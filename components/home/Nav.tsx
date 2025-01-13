@@ -96,8 +96,9 @@ function Nav({ active }: any) {
               </li>
             ))}
             </ul>
-          <a href="/donate" className=" p-2 px-5 rounded-xl text-white bg-lime-500 flex items-center gap-2 text-base">
-            <FaHeart /> Donate
+          <a href="/login" className=" p-2 px-5 rounded-xl text-white bg-lime-500 flex items-center gap-2 text-base">
+            {/* <FaHeart /> */}
+             Log in
           </a>
         </div>
         <div className="md:hidden">
@@ -133,9 +134,11 @@ function Nav({ active }: any) {
                   )}
                 </div>
             ))}
-            <a href="/donate" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white bg-lime-500 flex items-center gap-2 text-base">
-            <FaHeart /> Donate
-          </a></div>
+            <a href="/login" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white bg-lime-500 flex items-center gap-2 text-base">
+            {/* <FaHeart /> */}
+            Log in
+          </a>
+          </div>
             <div className="py-3 mt-3 border-t flex gap-2 border-lime-500 mx-10">
               {[{icon:<AiFillInstagram/>,link:'https://www.instagram.com/mysukoon.in?igsh=ejhubHRlMGJ6dmZo'},{icon:<RiWhatsappFill />,lnik:''},{icon:<TiSocialFacebook />,lnik:''},{icon:<FaXTwitter />,lnik:''},{icon:<FaYoutube />,lnik:''}
 ].map((icon:any,i:number)=>(
