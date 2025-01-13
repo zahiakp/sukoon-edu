@@ -22,16 +22,16 @@ function Nav({ active }: any) {
       // {label:"Stories",path:""},
       // {label:"Diary",path:""},
     ]},
-    { label: "Our Projects", path: "",
-    //   items:[
-    //   {label:"Residential Campus",path:""},
-    //   {label:"Village School",path:""},
-    //   {label:"Learning Centers",path:""},
-    //   {label:"Milan",path:""},
-    // ] 
-  },
-    { label: "Life at Sukoon", path: "" },
-    { label: "Join us", path: "" },
+  //   { label: "Our Projects", path: "",
+  //     items:[
+  //     {label:"Residential Campus",path:""},
+  //     {label:"Village School",path:""},
+  //     {label:"Learning Centers",path:""},
+  //     {label:"Milan",path:""},
+  //   ] 
+  // },
+  //   { label: "Life at Sukoon", path: "" },
+    // { label: "Join us", path: "" },
     { label: "Connect us", path: "" },
   ];
   // const [navBarHeight, setNavBarHeight] = useState(0);
@@ -100,7 +100,7 @@ function Nav({ active }: any) {
             </ul>
           <a href="/login" className=" p-2 px-5 rounded-xl text-white bg-lime-500 flex items-center gap-2 text-base">
             {/* <FaHeart /> */}
-             Log in
+             Pay Fee
           </a>
         </div>
         <div className="md:hidden">

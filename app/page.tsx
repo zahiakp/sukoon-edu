@@ -12,7 +12,7 @@ export default function Home() {
       <About />
       <Projects />
       <Impact />
-      {/* <Plans /> */}
+      <Plans />
       <SDGs />
     </UserLayout>
   );
