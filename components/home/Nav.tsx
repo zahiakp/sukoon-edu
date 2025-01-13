@@ -32,7 +32,7 @@ function Nav({ active }: any) {
   // },
   //   { label: "Life at Sukoon", path: "" },
     // { label: "Join us", path: "" },
-    { label: "Connect us", path: "" },
+    // { label: "Connect us", path: "" },
   ];
   // const [navBarHeight, setNavBarHeight] = useState(0);
 
