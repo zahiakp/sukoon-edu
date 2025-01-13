@@ -32,17 +32,17 @@ function Footer() {
             </p>
 
             <ul className="mt-6  space-y-4">
-              {["Feel Sukoon","Our Projects","Life atSukoon", "Stories","Join us","Connect us",].map(
-                (item: string, index: number) => (
+              {[{label:"Feel Sukoon",path:""},{label:"Our Projects",path:""},{label:"Life atSukoon",path:""}, {label:"Privacy & Policy",path:'/privacypolicy'},{label:"Refund Policy",path:'/refundpolicy'},{label:"Terms & Conditions",path:'/terms'},{label:"Connect us",path:""}].map(
+                (item: any, index: number) => (
                   <li key={index}>
                     <a
-                      href="#"
+                      href={item.path}
                       title=""
                       className="flex text-base group items-center hover:translate-x-0 -translate-x-2 gap-2 text-black transition-all duration-200 hover:text-primary hover:font-semibold focus:text-primary"
                     >
                       {" "}
                       <span className="group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 duration-300 text-lime-600 opacity-0"><IoMdArrowForward />
-                      </span>{item}{" "}
+                      </span>{item.label}{" "}
                     </a>
                   </li>
                 )
