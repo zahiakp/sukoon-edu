@@ -26,7 +26,7 @@ function Footer() {
             </p>
           </div>
 
-          <div className="col-span-2">
+          <div className="col-span-2 md:col-span-1">
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
               pages
             </p>
