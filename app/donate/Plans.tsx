@@ -1,9 +1,9 @@
 'use client'
 import { div } from "framer-motion/client";
 import React, { useState } from "react";
-import NumberTicker from "../ui/number-ticker";
+import NumberTicker from "../../components/ui/number-ticker";
 import { RiArrowRightLine } from "react-icons/ri";
-import StyledButton from "../StyledButton";
+import StyledButton from "../../components/StyledButton";
 import GooglePayButton from "@google-pay/button-react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
@@ -24,7 +24,7 @@ function Plans() {
     { icon: "",count:hundredSqFeet,min:100,max:9900,addvalue:100,setCount:setHundredSqFeet,setCountAmd:setHundredSqFeetAmd,amd:1500, size: `${hundredSqFeet} Sq feet`,amount:hundredSqFeetAmd,label:`${hundredSqFeet}%20Sq%20feet`, plan: hundredSqFeetAmd,link:"" },
     { icon: "",count:classRoomFur,min:1,max:9,addvalue:1,setCount:setClassRoomFur,setCountAmd:setClassRoomFurAmd,amd:200000, size: `${classRoomFur} Classroom Furniture`,amount:classRoomFurAmd,label:`${classRoomFur}%20Classroom%20Furniture`, plan:"2,00,000",link:"" },
     { icon: "",count:classRoom,min:1,max:9,addvalue:1,setCount:setClassRoom,setCountAmd:setClassRoomAmd,amd:800000, size:`${classRoom} Classroom`,amount:classRoomAmd,label:`${classRoom}%20Classroom`, plan: "8,00,000",link:"" },
-    { icon: "",count:"",min:"",max:"",addvalue:"",setCount:"",setCountAmd:"",amd:"", size: "Other",amount:"",label:"other", plan: "Custom",link:"" },
+    // { icon: "",count:"",min:"",max:"",addvalue:"",setCount:"",setCountAmd:"",amd:"", size: "Other",amount:"",label:"other", plan: "Custom",link:"" },
   ];
 
 const handleIncrement = (count: number, amount: number, setCount: any, setCountAmd: any, max: number, addvalue: number) => {
@@ -69,6 +69,21 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
           </div>
         </div>
         ))}
+        <div
+          className="relative border z-[1] border-b-lime-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
+        >
+          {" "}
+          <p className="text-lg p-3 px-5 flex items-center justify-between">Other</p>
+          <div className="w-full h-1 relative after:h-1 after:bg-lime-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
+          <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-lime-400  flex flex-col h-32">
+          <p className="Grotesque-font flex items-center gap-2 text-3xl md:text-4xl font-medium text-lime-600">₹<input placeholder="Enter Here" className="w-full border-none outline-none text-3xl md:text-5xl font-semibold"/></p>
+          
+            {/* 456564 */}
+          <a className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
+            <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
+          </a>
+          </div>
+        </div>
       </div>
       </div>
       <div className="mx-auto w-fit">

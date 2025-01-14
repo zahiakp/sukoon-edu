@@ -1,5 +1,5 @@
+import StyledButton from '@/components/StyledButton'
 import React from 'react'
-import StyledButton from '../StyledButton'
 
 function Mission() {
   return (
