@@ -1,9 +1,7 @@
-import { div } from "framer-motion/client";
 import Link from "next/link";
 import React from "react";
 import { LuYoutube } from "react-icons/lu";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
-import { IoCall, IoMailOutline } from "react-icons/io5";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoMdCall } from "react-icons/io";
 import { FiGlobe } from "react-icons/fi";

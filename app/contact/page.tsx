@@ -1,5 +1,5 @@
 import Content from '@/app/contact/Content'
-import ContactForm from '@/app/contact/Form'
+// import ContactForm from '@/app/contact/Form'
 import Hero from '@/app/contact/Hero'
 import UserLayout from '@/components/Layout/UserLayout'
 import React from 'react'
@@ -9,7 +9,7 @@ function page() {
     <UserLayout>
       <Hero/>
       <Content/>
-      <ContactForm/>
+      {/* <ContactForm/> */}
     </UserLayout>
   )
 }

@@ -10,7 +10,7 @@ function Details() {
             <p className='text-4xl my-4 font-bold py-4 flex flex-col items-center text-gray-700 rounded-2xl px-7 bg-gray-100'>9645900096 <br />
             9645900097</p>
             <a href="upi://pay?pa=ukoonedu55575@fbl&cu=INR" className="text-lg gap-2 flex items-center justify-center">
-           <img src="/image/upi.png" className=" h-auto w-14" alt="" />ukoonedu55575@fbl
+           <img src="/image/upi.png" className=" h-auto w-14" alt="" />sukoonedu55575@fbl
             </a>
           </section>
           {/* ACCOUNTS SECTION */}
