@@ -1,8 +1,9 @@
-import Hero from '@/components/donate/Hero'
-import Plans from '@/components/donate/Plans'
+import Hero from '@/app/donate/Hero'
+import Plans from '@/app/donate/Plans'
 import UserLayout from '@/components/Layout/UserLayout';
 import { Metadata } from 'next';
 import React from 'react'
+import Details from './Details';
 
 export const metadata: Metadata = {
   title: "Donate - Sukoon Edu Village",
@@ -15,6 +16,7 @@ function page() {
     <UserLayout>
       <Hero/>
       <Plans/>
+      <Details/>
     </UserLayout>
   )
 }

@@ -1,13 +1,15 @@
+import Content from '@/app/contact/Content'
+// import ContactForm from '@/app/contact/Form'
+import Hero from '@/app/contact/Hero'
 import UserLayout from '@/components/Layout/UserLayout'
-import Content from '@/app/refundpolicy/Content'
-import Hero from '@/app/refundpolicy/Hero'
 import React from 'react'
 
 function page() {
   return (
-    <UserLayout >
+    <UserLayout>
       <Hero/>
       <Content/>
+      {/* <ContactForm/> */}
     </UserLayout>
   )
 }

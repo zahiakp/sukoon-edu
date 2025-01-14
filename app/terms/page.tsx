@@ -1,6 +1,6 @@
 import UserLayout from '@/components/Layout/UserLayout'
-import Content from '@/components/terms/Content'
-import Hero from '@/components/terms/Hero'
+import Content from '@/app/terms/Content'
+import Hero from '@/app/terms/Hero'
 import React from 'react'
 
 function page() {
