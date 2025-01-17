@@ -25,7 +25,7 @@ export const TitleInput = ({
           formik.errors[name] && formik.touched[name]
             ? "bg-red-50 border-red-500 border-b-2"
             : "bg-white border-black"
-        }  h-40 text-xl font-semibold`}
+        }  h-60 text-xl font-semibold`}
         name={name}
         onChange={formik.handleChange}
         value={formik.values[name]}
@@ -58,12 +58,12 @@ export const BodyInput: React.FC<BodyInputProps> = ({
   };
 
   return (
-    <div className="p-2 bg-white">
-      <div className="text-sm text-primary-600 my-1 "></div>
+    <div className="p-2 bg-white text-lg">
+      <div className="text-lg text-primary-600 my-1 "></div>
       <Editor
         value={formik.values[name]}
         onTextChange={handleEditorChange}
-        style={{ height: '320px' }}
+        style={{ height: '480px' ,fontSize:18}}
       />
       <div>
         {formik.errors[name] && formik.touched[name] && (

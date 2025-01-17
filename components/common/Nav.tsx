@@ -32,7 +32,7 @@ function Nav({ active }: any) {
   },
     { label: "Life at Sukoon", path: "" },
     { label: "Join us", path: "" },
-    { label: "Connect us", path: "" },
+    { label: "Connect us", path: "/contact" },
   ];
   // const [navBarHeight, setNavBarHeight] = useState(0);
 
@@ -98,7 +98,7 @@ function Nav({ active }: any) {
               </li>
             ))}
             </ul>
-          <a href="/donate" className=" p-2 px-5 rounded-xl text-white bg-lime-500 flex items-center gap-2 text-base">
+          <a href="/donate" className=" p-2 px-5 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
             <FaHeart />
             Donate
           </a>
@@ -136,7 +136,7 @@ function Nav({ active }: any) {
                   )}
                 </div>
             ))}
-            <a href="/donate" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white bg-lime-500 flex items-center gap-2 text-base">
+            <a href="/donate" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
             <FaHeart />
             Donate
           </a>

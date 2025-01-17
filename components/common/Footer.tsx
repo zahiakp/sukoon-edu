@@ -42,7 +42,7 @@ function Footer() {
                     <a
                       href={item.path}
                       title=""
-                      className="flex text-base group items-center hover:translate-x-0 -translate-x-2 gap-2 text-black transition-all duration-200 hover:text-primary hover:font-semibold focus:text-primary"
+                      className="flex text-base group items-center hover:translate-x-0 -translate-x-2 gap-2 text-black transition-all duration-200  hover:font-semibold focus:text-primary"
                     >
                       {" "}
                       <span className="group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 duration-300 text-lime-600 opacity-0"><IoMdArrowForward />
@@ -113,31 +113,31 @@ function Footer() {
           <div className="md:flex gap-3 hidden">
             <a
               href=""
-              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:text-primary duration-300"
+              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center duration-300"
             >
               <RiWhatsappFill className="text-zinc-800" />
             </a>
             <a
               href=""
-              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:text-primary duration-300"
+              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center duration-300"
             >
               <FaFacebookF className="text-zinc-800" />
             </a>
             <a
               href=""
-              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:text-primary duration-300"
+              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center duration-300"
             >
               <AiFillInstagram className="text-zinc-800" />
             </a>
             <a
               href=""
-              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:text-primary duration-300"
+              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center duration-300"
             >
               <FaXTwitter className="text-zinc-800" />
             </a>
             <a
               href=""
-              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:text-primary duration-300"
+              className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center duration-300"
             >
               <FaYoutube
               className="text-zinc-800" />

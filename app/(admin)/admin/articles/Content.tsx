@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import DeleteItem from "./Add/Delete";
-import { TbPhotoUp } from "react-icons/tb";
+import { TbEdit, TbPhotoUp } from "react-icons/tb";
 import { IoSearchOutline } from "react-icons/io5";
 import Link from "next/link";
 import { RiAddCircleFill } from "react-icons/ri";
@@ -89,33 +89,19 @@ function Content() {
                 <li>
                   <Link href="/admin">Dashbord</Link>
                 </li>
-                <li>Articles</li>
+                <li>Dairies</li>
               </ul>
             </div>
             <h1 className="text-3xl font-[200] flex items-center gap-2">
-              News & Events{" "}
+            Dairies{" "}
               {totalRecords !== "loading" && (
-                <span className="text-base ml-2 text-zinc-700 p-[6px] px-5 rounded-3xl bg-zinc-200/80">{`${totalRecords} News`}</span>
+                <span className="text-base ml-2 text-zinc-700 p-[6px] px-5 rounded-3xl bg-zinc-200/80">{`${totalRecords} Items`}</span>
               )}
             </h1>
           </div>
         </div>
         <div className="flex gap-3 items-center justify-den">
-          <div className="p-[5px] bg-white shadow-md rounded-lg">
-            <select
-              onChange={handleCategoryChange}
-              value={selectedCategory}
-              // value={selectedValue}
-              className="select select-bordered select-sm w-40"
-            >
-              <option value="">All Categories</option>
-              {Categories.map((item: any, index: number) => (
-                <option key={index} value={item.value}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          
           <div className="p-[8px] px-4 bg-white shadow-md rounded-lg flex items-center  gap-3">
             <input
               id="search-input"
@@ -144,23 +130,19 @@ function Content() {
           <Spinner />
         ) : news.length !== 0 ? (
           <>
-            <div className="grid grid-cols-11 pl-1 uppercase font-semibold text-zinc-600 text-sm text-center">
+            <div className="grid grid-cols-9 pl-1 uppercase font-semibold text-zinc-600 text-sm text-center">
               <p>No</p>
               <p className="col-span-4">Title</p>
-              <p className="col-span-2">category</p>
               <p className="col-span-2">Date</p>
               <p className="col-span-2">Actions</p>
             </div>
             {news.map((item: any, index: number) => (
               <div
                 key={index}
-                className="p-5 border border-zinc-100 bg-white shadow-sm duration-200 rounded-xl grid grid-cols-11 gap-5 items-center"
+                className="p-5 border border-zinc-100 bg-white shadow-sm duration-200 rounded-xl grid grid-cols-9 gap-5 items-center"
               >
                 <p className="pl-5 font-bold">{item?.id}</p>
                 <p className="col-span-4 line-clamp-2">{item?.title}</p>
-                <p className="col-span-2 line-clamp-1 text-center font-semibold text-blue-600">
-                  {item?.category}
-                </p>
                 <p className="col-span-2 text-center">
                   {getRelativeTime(item?.date)}
                 </p>
@@ -179,12 +161,12 @@ function Content() {
                     href={`/admin/articles/Edit/${encodeId(item?.id)}`}
                     className="tooltip h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center cursor-pointer"
                   >
-                    <MdEditDocument className="text-xl text-blue-600 " />
+                    <TbEdit className="text-xl text-blue-600 " />
                   </a>
                   {/* <div className="h-10 w-10 rounded-lg bg-red-50 flex items-center justify-center cursor-pointer">
                       <MdDeleteOutline className="text-xl text-red-500 " />
                     </div> */}
-                  <DeleteItem id={item?.id} />
+                  <DeleteItem id={item?.id} fetch={fetchNews}/>
                 </div>
               </div>
             ))}

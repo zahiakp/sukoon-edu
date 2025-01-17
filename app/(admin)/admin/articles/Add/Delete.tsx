@@ -3,10 +3,10 @@
 import { useRouter } from "next/navigation";
 import { MdDelete, MdDeleteOutline } from "react-icons/md";
 import { deleteArticle } from "./func";
+import { showMessage } from "@/components/common/CusToast";
 
 
-const DeleteItem = ({ id }: { id: any }) => {
-  // const ids = decodeId(id)
+const DeleteItem = ({ id,fetch }: { id: any,fetch:any }) => {
   const router = useRouter();
   return (
     <button data-tip="Delete"
@@ -14,13 +14,10 @@ const DeleteItem = ({ id }: { id: any }) => {
         if (confirm("Are you sure you want to delete")) {
           await deleteArticle(id).then((res: any) => {
             if (res) {
-                // toast.success("Article Deleted successfully", {
-                //     autoClose : 2000
-                //   });
-                //   router.push('/products')
-                      router.refresh()
+              showMessage("Dairy Deleted successfully","success");
+                 fetch()
             } else {
-              // toast.error("Something went wrong");
+              showMessage("Something went wrong","error");
             }
           });
         }

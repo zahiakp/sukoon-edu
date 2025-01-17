@@ -21,6 +21,7 @@ import { id } from "date-fns/locale";
 import { Categories } from "../../Add/Form";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { showMessage } from "@/components/common/CusToast";
 
 const UploadForm = ({ data }: { data: any }) => {
   const router = useRouter();
@@ -41,10 +42,6 @@ const UploadForm = ({ data }: { data: any }) => {
         image: data?.image,
         title: data?.title,
         body: data?.body,
-        type: data?.category,
-        url: data?.url,
-        tags: StringtoArray(data?.tags),
-        status: data?.status ?? "active",
       });
     }
   }, [data]);
@@ -55,17 +52,11 @@ const UploadForm = ({ data }: { data: any }) => {
       image: "",
       title: "",
       body: "",
-      type: "",
-      url: "",
-      tags: [],
-      status: "active",
     },
     validationSchema: Yup.object({
       // file: Yup.mixed().required("Image is required"),
       title: Yup.string().required("Title is required"),
       body: Yup.string().required("Content is required"),
-      type: Yup.string().required("Category is required"),
-      tags: Yup.array().min(1, "At least one tag is required"),
     }),
     onSubmit: async (values) => {
       try {
@@ -79,17 +70,13 @@ const UploadForm = ({ data }: { data: any }) => {
               values.title,
               values.body,
               image,
-              values.type,
-              values.url,
-              ArraytoString(values.tags),
-              values.status
             );
             if (newsUploadResult) {
-              // toast.success("News updated successfully");
+              showMessage("Dairy updated successfully","success")
               router.replace("/admin/articles/");
               router.refresh();
             } else {
-              // toast.error("Something went wrong!");
+              showMessage("Something went wrong!","error")
             }
           }
         } else {
@@ -99,22 +86,18 @@ const UploadForm = ({ data }: { data: any }) => {
             values.title,
             values.body,
             image,
-            values.type,
-            values.url,
-            ArraytoString(values.tags),
-            values.status
           );
           if (newsUploadResult) {
-            // toast.success("News updated successfully");
+            showMessage("Dairy updated successfully","success")
             router.replace("/admin/articles/");
             router.refresh();
           } else {
-            // toast.error("Something went wrong!");
+            showMessage("Something went wrong!","error")
           }
         }
       } catch (error) {
         console.error("Error:", error);
-        // toast.error("Something went wrong!");
+        showMessage("Something went wrong!","error")
       } finally {
         setLoading(false);
       }
@@ -136,7 +119,7 @@ const UploadForm = ({ data }: { data: any }) => {
           />
           <BodyInput formik={formik} name="body" label="" />
 
-          <div className="bg-white rounded-md mt-4 p-4 grid gap-1">
+          {/* <div className="bg-white rounded-md mt-4 p-4 grid gap-1">
             <div className="flex justify-between items-center">
               <p>Select Tags</p>
             </div>
@@ -152,14 +135,14 @@ const UploadForm = ({ data }: { data: any }) => {
               onChange={(value) => formik.setFieldValue("tags", value)}
               options={Categories}
             />
-          </div>
+          </div> */}
         </div>
         <div className="col-span-1">
           <div className="grid gap-2 w-full text-lg">
             <button
               className={`bg-zinc-800 hover:bg-black ${
                 loading && "bg-zinc-700"
-              } duration-300 rounded-lg text-base font-semibold text-white flex items-center justify-center gap-3 py-3 px-10`}
+              } duration-300 rounded-lg text-base font-semibold text-white flex items-center justify-center gap-3 py-4 px-10`}
               type="submit"
               disabled={loading}
             >
@@ -194,13 +177,13 @@ const UploadForm = ({ data }: { data: any }) => {
                 </>
               )}
             </button>
-            <button
+            {/* <button
               className="btn bg-white text-zinc-800 border-zinc-700"
               disabled
             >
               <RiSave3Line className="mr-2 text-lg" />
               Save & Unlist
-            </button>
+            </button> */}
           </div>
           <div
             className={` border mt-5 rounded-md p-4 grid gap-3 ${
@@ -222,7 +205,7 @@ const UploadForm = ({ data }: { data: any }) => {
             />
           </div>
 
-          <div className="mt-2 p-2 rounded-lg bg-zinc-200 grid gap-2">
+          {/* <div className="mt-2 p-2 rounded-lg bg-zinc-200 grid gap-2">
             <div
               className={` border  rounded-md p-4 grid gap-3 ${
                 formik.errors["type"] && formik.touched["type"]
@@ -241,7 +224,7 @@ const UploadForm = ({ data }: { data: any }) => {
                 items={Categories}
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </form>
     </div>
