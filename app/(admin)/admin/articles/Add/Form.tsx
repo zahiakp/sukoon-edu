@@ -3,25 +3,16 @@ import { useState } from "react";
 import * as Yup from "yup";
 import {
   BodyInput,
-  FormSelect,
   FormUpload,
   TitleInput,
 } from "@/components/common/FormAssets";
 import { useRouter } from "next/navigation";
 import { PiUploadBold } from "react-icons/pi";
-import { RiSave3Line } from "react-icons/ri";
-import { Select } from "antd";
-import { antFilterOption } from "@/components/common/antFillteroption";
-import { ArraytoString } from "@/components/common/decodeTags";
 import { uploadArticle, uploadImage } from "./func";
 import { useFormik } from "formik";
-import { createUrlLink } from "@/components/common/urlCreator";
+import { showMessage } from "@/components/common/CusToast";
 
 const UploadForm = () => {
-  const POST_STATUS = [
-    { value: "active", label: "active" },
-    { value: "inactive", label: "inactive" },
-  ];
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -31,69 +22,59 @@ const UploadForm = () => {
       image: "",
       title: "",
       body: "",
-      type: "",
-      url: "",
-      tags: [],
-      status: "active",
     },
     validationSchema: Yup.object({
-      // file: Yup.mixed().required("Image is required"),
       title: Yup.string().required("Title is required"),
       body: Yup.string().required("Content is required"),
-      type: Yup.string().required("Category is required"),
-      tags: Yup.array().min(1, "At least one tag is required"),
+      file: Yup.mixed().notRequired(),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values:any) => {
+      setLoading(true);
       try {
-        setLoading(true);
-        if(values.file){
-          const imageUploadResult = await uploadImage(values.file);
-          if (imageUploadResult?.success) {
-            const image = imageUploadResult.filename;
-            const newsUploadResult = await uploadArticle(
-              values.title,
-              values.body,
-              image,
-              values.type,
-              createUrlLink(values.title),
-              ArraytoString(values.tags),
-              values.status
-            );
-            if (newsUploadResult) {
-              // toast.success("News uploaded successfully");
-              router.replace("/admin/articles/");
-              router.refresh();
-            } else {
-              // toast.error("Something went wrong!");
-            }
-          }
-        }else{
-          const newsUploadResult = await uploadArticle(
+        const image : any =
+          values.file && values.file instanceof File
+            ? await handleImageUpload(values.file)
+            : values.image;
+
+        if (image) {
+          const newsUploadResult :any = await uploadArticle(
             values.title,
             values.body,
-            values.image,
-            values.type,
-            createUrlLink(values.title),
-            ArraytoString(values.tags),
-            values.status
+            image
           );
-          if (newsUploadResult) {
-            // toast.success("News uploaded successfully");
+
+          if (newsUploadResult?.success) {
+            showMessage("Article uploaded successfully", "success");
             router.replace("/admin/articles/");
             router.refresh();
           } else {
-            // toast.error("Something went wrong!");
+            throw new Error("Article upload failed.");
           }
+        } else {
+          throw new Error("Image upload failed.");
         }
-        
-      } catch (error) {
+      } catch (error:any) {
         console.error("Error:", error);
-        // toast.error("Something went wrong!");
+        showMessage(error.message || "Something went wrong!", "error");
       } finally {
         setLoading(false);
       }
     },
   });
+
+  const handleImageUpload = async (file:any) => {
+    try {
+      const result = await uploadImage(file);
+      if (result?.success) {
+        return result.filename;
+      } else {
+        throw new Error(result?.message || "Image upload failed.");
+      }
+    } catch (error) {
+      console.error("Image upload error:", error);
+      return null;
+    }
+  };
 
   return (
     <div className="w-[95%] max-w-[1200px] flex items-center">
@@ -109,30 +90,13 @@ const UploadForm = () => {
             placeholder="Title"
           />
           <BodyInput formik={formik} label="" name="body" />
-          <div className="bg-white rounded-md mt-4 p-4 grid gap-1">
-            <div className="flex justify-between items-center">
-              <p>Select Tags</p>
-            </div>
-            <Select
-              variant="borderless"
-              mode="tags"
-              className="w-full border rounded-md focus:border-zinc-900 mt-2 py-1 cursor-pointer"
-              showSearch
-              placeholder="Select tags"
-              size="large"
-              filterOption={antFilterOption}
-              value={formik.values["tags"]}
-              onChange={(value) => formik.setFieldValue("tags", value)}
-              options={Categories}
-            />
-          </div>
         </div>
         <div className="col-span-1">
           <div className="grid gap-2 w-full text-lg">
             <button
               className={`bg-zinc-800 hover:bg-black ${
                 loading && "bg-zinc-700"
-              } duration-300 rounded-lg text-base font-semibold text-white flex items-center justify-center gap-3 py-3 px-10`}
+              } duration-300 rounded-lg text-base font-semibold text-white flex items-center justify-center gap-3 py-4 px-10`}
               type="submit"
               disabled={loading}
             >
@@ -167,13 +131,6 @@ const UploadForm = () => {
                 </>
               )}
             </button>
-            <button
-              className="btn bg-white text-zinc-800 border-zinc-700"
-              disabled
-            >
-              <RiSave3Line className="mr-2 text-lg" />
-              Save & Unlist
-            </button>
           </div>
           <div
             className={` border mt-5 rounded-md p-4 grid gap-3 ${
@@ -193,27 +150,6 @@ const UploadForm = () => {
               name="file"
               fileTypes="image/*"
             />
-          </div>
-
-          <div className="mt-2 p-2 rounded-lg bg-zinc-200 grid gap-2">
-            <div
-              className={` border  rounded-md p-4 grid gap-3 ${
-                formik.errors["type"] && formik.touched["type"]
-                  ? "bg-red-100 border-red-500"
-                  : "bg-white"
-              }`}
-            >
-              <div className="flex justify-between items-center">
-                <p>Select Category</p>
-              </div>
-              <FormSelect
-                formik={formik}
-                name="type"
-                placeholder="Select Category"
-                label=""
-                items={Categories}
-              />
-            </div>
           </div>
         </div>
       </form>

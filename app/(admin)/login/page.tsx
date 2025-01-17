@@ -1,8 +1,10 @@
+'use client'
 import React from 'react'
-import LoginForm from './Form'
 import { IoIosArrowBack } from 'react-icons/io';
+import dynamic from 'next/dynamic';
 
 function page() {
+  const LoginForm = dynamic(() => import('./Form'), { ssr: false });
   return (
     <div className='w-screen min-h-screen flex items-center justify-center flex-col relative overflow-hidden'>
       <LoginForm/>

@@ -1,5 +1,4 @@
 import React from "react";
-// import UploadForm from "./Form";
 import { getArticlebyId } from "../../Add/func";
 import { decodeId } from "@/components/common/decode";
 import dynamic from "next/dynamic";

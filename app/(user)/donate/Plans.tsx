@@ -7,6 +7,7 @@ import { gateway } from "@/components/common/PhonePyGt";
 import { ROOT_URL } from "@/components/data/func";
 
 function Plans() {
+  const [cusAmount,setCusAmount] = useState<any>()
   const [sqFeet,setSqFeet] =useState<any>(1)
   const [sqFeetAmd,setSqFeetAmd] =useState<any>(1500)
   const [tenSqFeet,setTenSqFeet] =useState<any>(10)
@@ -69,6 +70,7 @@ const handlePayment = async (amount:any) => {
   }
 };
 
+console.log(cusAmount);
 
 
   return (
@@ -103,12 +105,12 @@ const handlePayment = async (amount:any) => {
           <p className="text-lg p-3 px-5 flex items-center justify-between">Other</p>
           <div className="w-full h-1 relative after:h-1 after:bg-lime-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
           <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-lime-400  flex flex-col h-32">
-          <p className="Grotesque-font flex items-center gap-2 text-3xl md:text-4xl font-medium text-lime-600">₹<input placeholder="Enter Here" className="w-full border-none outline-none text-3xl md:text-5xl font-semibold"/></p>
+          <p className="Grotesque-font flex items-center gap-2 text-3xl md:text-4xl font-medium text-lime-600">₹<input onChange={(e) => setCusAmount(e.target.value)} placeholder="Enter Here" className="w-full border-none outline-none text-3xl md:text-5xl font-semibold"/></p>
           
             {/* 456564 */}
-          <a className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
+          <button onClick={()=>handlePayment(cusAmount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
             <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
-          </a>
+          </button>
           </div>
         </div>
       </div>

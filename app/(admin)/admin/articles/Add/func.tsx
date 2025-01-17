@@ -22,28 +22,24 @@ export async function uploadArticle(
   title: string,
   body: string,
   image: string,
-  type: string,
-  url: string,
-  tags: string,
-  status:string
 ) {
-  const URL: string = `${ROOT_URL}news/actions.php?api=${API_KEY}`;
+  const URL: string = `${ROOT_URL}dairies/actions.php?api=${API_KEY}`;
 
   try {
     const response = await axios.post(
       URL,
       JSON.stringify({
-        title,body,image,type,url,tags,status
+        title,body,image
       })
     );
 
     if (response.status === 201) {
       const data = response.data;
-      console.log("News Added");
+      console.log("Dairy Added");
       return true;
     } else {
       const data = response.data;
-      console.log("Failed to Add News");
+      console.log("Failed to Add Dairy");
       return false;
     }
   } catch (error: any) {
@@ -60,28 +56,24 @@ export async function updateArticle(
   title: string,
   body: string,
   image: string,
-  type: string,
-  url: string,
-  tags: string,
-  status:string
 ) {
-  const URL: string = `${ROOT_URL}news/actions.php?api=${API_KEY}&id=${id}`;
+  const URL: string = `${ROOT_URL}dairies/actions.php?api=${API_KEY}&id=${id}`;
 
   try {
     const response = await axios.put(
       URL,
       JSON.stringify({
-        title,body,image,type,url,tags,status
+        title,body,image
       })
     );
 
     if (response.status === 200) {
       const data = response.data;
-      console.log("Article Updated");
+      console.log("Dairy Updated");
       return true;
     } else {
       const data = response.data;
-      console.log("Failed to Update Article");
+      console.log("Failed to Update Dairy");
       return false;
     }
   } catch (error: any) {
@@ -109,7 +101,7 @@ export async function updateArticle(
 export async function getArticle(
     quary:any
 ) {
-  const URL: string = `${ROOT_URL}news/actions.php?api=${API_KEY}&${quary}`;
+  const URL: string = `${ROOT_URL}dairies/actions.php?api=${API_KEY}&${quary}`;
   
   try {
     const response = await axios.get(URL);
@@ -130,7 +122,7 @@ export async function getArticle(
 export async function getArticlebyId(
     id:string
 ) {
-  const URL: string = `${ROOT_URL}news/actions.php?api=${API_KEY}&id=${id}`;
+  const URL: string = `${ROOT_URL}dairies/actions.php?api=${API_KEY}&id=${id}`;
   
   try {
     const response = await axios.get(URL);
@@ -138,7 +130,7 @@ export async function getArticlebyId(
     if (response.status === 200) {
       return response.data;
     } else {
-      console.error(`Failed to get Article ${id} :`, response.statusText);
+      console.error(`Failed to get dairy ${id} :`, response.statusText);
       return null; 
     }
   } catch (error) {
@@ -150,7 +142,7 @@ export async function getArticlebyId(
 export async function getArticlebyCategory(
   category:string
 ) {
-const URL: string = `${ROOT_URL}news/actions.php?api=${API_KEY}&category=${category}`;
+const URL: string = `${ROOT_URL}dairies/actions.php?api=${API_KEY}&category=${category}`;
 
 try {
   const response = await axios.get(URL);
@@ -170,7 +162,7 @@ try {
 export async function getArticlebyCount(
   count:string
 ) {
-const URL: string = `${ROOT_URL}news/actions.php?api=${API_KEY}&count=${count}`;
+const URL: string = `${ROOT_URL}dairies/actions.php?api=${API_KEY}&count=${count}`;
 
 try {
   const response = await axios.get(URL);
@@ -190,7 +182,7 @@ try {
 export async function getArticlebyCategorywithCount(
   count:string,category:string
 ) {
-const URL: string = `${ROOT_URL}news/actions.php?api=${API_KEY}&count=${count}&category=${category}`;
+const URL: string = `${ROOT_URL}dairies/actions.php?api=${API_KEY}&count=${count}&category=${category}`;
 
 try {
   const response = await axios.get(URL);
@@ -210,7 +202,7 @@ try {
 
 export async function getArticlesasNewArray(
 ) {
-const URL: string = `${ROOT_URL}news/actions.php?api=${API_KEY}&action=catbasedarray`;
+const URL: string = `${ROOT_URL}dairies/actions.php?api=${API_KEY}&action=catbasedarray`;
 
 try {
   const response = await axios.get(URL);
@@ -233,7 +225,7 @@ try {
 export async function deleteArticle(
     id:string
 ) {
-  const URL: string = `${ROOT_URL}news/actions.php?api=${API_KEY}&id=${id}`;
+  const URL: string = `${ROOT_URL}dairies/actions.php?api=${API_KEY}&id=${id}`;
   
   try {
     const response = await axios.delete(URL);

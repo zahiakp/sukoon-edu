@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { encodeId } from "@/components/common/decode";
 import { showMessage } from "@/components/common/CusToast";
 import { useCookies } from "react-cookie";
+import { ROOT_URL } from "@/components/data/func";
 
 const VALID_EMAIL = "sukoonedu@gmail.com";
 const VALID_PASSWORD = "sukoonedu@admin";
@@ -58,10 +59,12 @@ const LoginForm = () => {
     }
   }, [cookies]);
 
+const server = ROOT_URL == 'http://localhost/sukoonedu-backend/'
+
   const formik = useFormik({
     initialValues: {
-      email: "sukoonedu@gmail.com",
-      password: "sukoonedu@admin",
+      email:server ? "sukoonedu@gmail.com" : "",
+      password:server ? "sukoonedu@admin":"",
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid email address").required("Email is required"),
