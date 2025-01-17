@@ -2,7 +2,7 @@ import { div } from "framer-motion/client";
 import React from "react";
 import NumberTicker from "../ui/number-ticker";
 import { RiArrowRightLine } from "react-icons/ri";
-import StyledButton from "../StyledButton";
+import StyledButton from "../common/StyledButton";
 import GooglePayButton from '@google-pay/button-react';
 
 function Plans() {

@@ -7,7 +7,7 @@ import "swiper/css/autoplay";
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from "swiper/react";
-import StyledButton from "../StyledButton";
+import StyledButton from "../common/StyledButton";
 
 function Hero() {
   const [show,setShow] = useState(true)

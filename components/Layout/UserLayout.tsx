@@ -1,9 +1,9 @@
 import React, { PropsWithChildren } from 'react';
-import Nav from '../home/Nav';
-import Footer from '../home/Footer';
+import Nav from '../common/Nav';
+import Footer from '../common/Footer';
 import { RiWhatsappFill } from 'react-icons/ri';
 import { IoMdCall } from 'react-icons/io';
-import AOSClient from '../AOS';
+import AOSClient from '../common/AOS';
 
 interface UserLayoutProps {}
 

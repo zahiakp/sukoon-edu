@@ -1,5 +1,5 @@
 import React from 'react'
-import StyledButton from '../StyledButton'
+import StyledButton from '../common/StyledButton'
 import { GoArrowRight } from 'react-icons/go'
 import { IoMdArrowForward, IoMdArrowRoundForward } from 'react-icons/io'
 
@@ -29,8 +29,8 @@ function Projects() {
                     </div>
         ))}
       </div>
-       {/* <a href="/donate" className="flex items-center gap-2 hover:gap-3 duration-300 p-2 px-5 rounded-xl w-fit text-sm bg-lime-500 text-white mt-4">Yes! I want to help<IoMdArrowForward />
-                </a> */}
+       <a href="/donate" className="flex items-center gap-2 hover:gap-3 duration-300 p-2 px-5 rounded-xl w-fit text-sm bg-lime-500 text-white mt-4">Yes! I want to help<IoMdArrowForward />
+                </a>
     </div>
     <div className="absolute rotate-12 hidden md:block -top-64 right-[10%]  opacity-20">
     <img className='h-[400px]' data-aos="fade-left" src="/image/Logo strock.png" alt="" /></div>

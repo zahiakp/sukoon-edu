@@ -8,7 +8,7 @@
   font-family: "Darker Grotesque", sans-serif;
 }
 
-
+/* 
 @layer base {
   * {
     @apply border-border;
@@ -16,7 +16,7 @@
   body {
     @apply bg-background text-foreground;
   }
-}
+} */
 
  
 
@@ -87,4 +87,19 @@
   border-radius: 12px;
   color: white;
   margin-bottom: 40px;
+}
+
+/* =======================paginator======================= */
+
+.p-paginator{
+  @apply w-full py-5 rounded-[10px] 
+}
+.p-paginator-page{
+  @apply hover:bg-zinc-100 duration-300 rounded-[10px]
+}
+.p-paginator-pages{
+  @apply gap-1 flex
+}
+.p-paginator .p-paginator-pages .p-highlight {
+  @apply bg-zinc-800 font-bold text-white
 }

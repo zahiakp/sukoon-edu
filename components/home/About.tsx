@@ -1,5 +1,5 @@
 import React from "react";
-import StyledButton from "../StyledButton";
+import StyledButton from "../common/StyledButton";
 import { IoMdArrowForward } from "react-icons/io";
 
 function About() {
@@ -23,8 +23,8 @@ function About() {
             Village, a sanctuary for harmony and learning nestled in Andhaka,
             Haryana.
           </p>
-          {/* <a href="/donate" className="flex items-center gap-2 hover:gap-3 duration-300 p-2 px-5 rounded-xl w-fit text-sm bg-lime-500 text-white mt-4">Yes! I want to help<IoMdArrowForward />
-                          </a> */}
+          <a href="/donate" className="flex items-center gap-2 hover:gap-3 duration-300 p-2 px-5 rounded-xl w-fit text-sm bg-lime-500 text-white mt-4">Yes! I want to help<IoMdArrowForward />
+                          </a>
         </div>
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
       </div>
