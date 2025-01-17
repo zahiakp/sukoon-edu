@@ -14,7 +14,7 @@ function Logout() {
   const confirm = window.confirm('are ready to logout ?')
    if(confirm){
       Cookies.remove("token");
-      window.location.replace("/admin/login");
+      window.location.replace("/login");
     }
   };
   
