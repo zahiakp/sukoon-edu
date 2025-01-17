@@ -1,7 +1,7 @@
 import { div } from "framer-motion/client";
 import React from "react";
 import NumberTicker from "../ui/number-ticker";
-import StyledButton from "../StyledButton";
+import StyledButton from "../common/StyledButton";
 
 function Impact() {
   const ITEMS = [
