@@ -49,6 +49,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/swiper": "^6.0.0",
+    "daisyui": "^4.12.23",
     "i": "^0.3.7",
     "npm": "^11.0.0",
     "postcss": "^8",
