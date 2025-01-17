@@ -41,21 +41,15 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
     setCountAmd(amount * newCount);
   }
 };
-const handlePayment = async () => {
+const handlePayment = async (amount:any) => {
   try {
     const merchantTransactionId = "SEF" + Date.now()
     const resp = await gateway.initPayment({
-      amount: 100,
+      amount: amount,
       transactionId: merchantTransactionId,
-      userId: "MUID" + "123",
+      userId: "SED" + "123",
       redirectUrl: `/donate`,
       callbackUrl: `/donate`,
-      // Add metadata for better tracking
-      // metadata: {
-      //   source: 'web',
-      //   campaign: 'summer_campaign',
-      //   // ... other relevant metadata
-      // }
     });
 // console.log(resp.data.instrumentResponse.redirectInfo.url);
 
@@ -96,7 +90,7 @@ const handlePayment = async () => {
           <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-3xl md:text-5xl font-semibold text-lime-600">
             {item.amount}
           </p>
-          <button onClick={handlePayment} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
+          <button onClick={()=>handlePayment(item.amount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
             <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
           </button>
           </div>

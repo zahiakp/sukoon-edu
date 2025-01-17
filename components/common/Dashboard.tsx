@@ -25,7 +25,7 @@ function Dashboard() {
     },
     {
       title: "Diaries",
-      url: "/admin/diaries",
+      url: "/admin/articles",
       icon: (
         <PiNewspaperClippingBold className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
 
