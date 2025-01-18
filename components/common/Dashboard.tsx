@@ -6,6 +6,7 @@ import { TbLayoutDashboard, TbListDetails, TbUserSquareRounded } from "react-ico
 import {PiNewspaperClippingBold, PiUsersThreeBold } from "react-icons/pi";
 import { HiOutlineBookmarkAlt, HiOutlineCog } from "react-icons/hi";
 import StyledButton from "./StyledButton";
+import { MdOutlineAutoStories } from "react-icons/md";
 
 function Dashboard() {
   const pathname = usePathname();
@@ -26,10 +27,12 @@ function Dashboard() {
     {
       title: "Diaries",
       url: "/admin/articles",
-      icon: (
-        <PiNewspaperClippingBold className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
-
-      ),
+      icon: <PiNewspaperClippingBold className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
+    },
+    {
+      title: "Stories",
+      url: "/admin/stories",
+      icon: <MdOutlineAutoStories className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
     },
     // {
     //   title: "Publications",
@@ -91,7 +94,7 @@ function Dashboard() {
                   className={`${
                     item.url==pathname
                       ? "text-white  bg-lime-600 "
-                      : "bg-white text-zinc-800 hover:bg-lime-50"
+                      : "bg-white text-zinc-800 hover:bg-lime-500/20"
                   } flex items-center px-4 py-3 text-sm font-medium  transition-all duration-300   rounded-xl group`}
                 >
                   {item.icon}

@@ -1,7 +1,14 @@
 import React, { PropsWithChildren } from 'react';
 import Dashboard from '../common/Dashboard';
+import { Metadata } from 'next';
 
 interface AdminLayoutProps {}
+
+export const metadata: Metadata = {
+  title: "Admin - Sukoon Edu Village",
+  description: "Sukoon Edu Village is a sanctuary of harmony and learning, we nurture young minds through education and the universal language of love.",
+};
+
 
 const AdminLayout: React.FC<PropsWithChildren<AdminLayoutProps>> = (props) => {
   return (
