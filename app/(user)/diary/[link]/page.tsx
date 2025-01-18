@@ -60,19 +60,19 @@ export async function generateMetadata({ params }: { params: any }) {
   const data = await getArticlebyId(id);
   return {
     title: `${data?.data?.title} | Sukoon Edu Foundation`,
-    description: "Prism Bulletin is a news portal launched in 2024, under Prism Foundation.",
+    description: `${data?.data?.body}`,
     metadataBase: new URL(`https://www.mysukoon.in/diary/${params.link}`),
     openGraph: {
       url: `https://www.mysukoon.in/diary/${params.link}`,
       title: data?.data?.title,
-      description: 'Prism Bulletin is a news portal launched in 2024, under Prism Foundation.',
-      images: [data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"prism thumb.jpg"],
+      description: `${data?.data?.body}`,
+      images: [data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"/image/sukoonlogo.png"],
     },
     twitter: {
       card: "summary_large_image",
       title: data?.data?.title,
-      description: "Prism Bulletin is a news portal launched in 2024, under Prism Foundation.",
-      image: data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"prism thumb.jpg",
+      description: `${data?.data?.body}`,
+      image: data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"/image/sukoonlogo.png",
     },
   };
 }
