@@ -28,53 +28,50 @@ const UploadForm = () => {
       body: Yup.string().required("Content is required"),
       file: Yup.mixed().notRequired(),
     }),
-    onSubmit: async (values:any) => {
-      setLoading(true);
+    
+    onSubmit: async (values) => {
       try {
-        const image : any =
-          values.file && values.file instanceof File
-            ? await handleImageUpload(values.file)
-            : values.image;
-
-        if (image) {
-          const newsUploadResult :any = await uploadArticle(
+        setLoading(true);
+        if(values.file){
+          const imageUploadResult = await uploadImage(values.file);
+          if (imageUploadResult?.success) {
+            const image = imageUploadResult.filename;
+            const newsUploadResult = await uploadArticle(
+              values.title,
+              values.body,
+              image
+            );
+            if (newsUploadResult) {
+              showMessage("Dairy uploaded successfully","success")
+              router.replace("/admin/articles/");
+              router.refresh();
+            } else {
+             showMessage("Something went wrong!","error")
+            }
+          }
+        }else{
+          const newsUploadResult = await uploadArticle(
             values.title,
             values.body,
-            image
+            values.image,
           );
-
-          if (newsUploadResult?.success) {
-            showMessage("Article uploaded successfully", "success");
+          if (newsUploadResult) {
+            showMessage("Dairy uploaded successfully","success")
             router.replace("/admin/articles/");
             router.refresh();
           } else {
-            throw new Error("Article upload failed.");
+            showMessage("Something went wrong!","error")
           }
-        } else {
-          throw new Error("Image upload failed.");
         }
-      } catch (error:any) {
+        
+      } catch (error) {
         console.error("Error:", error);
-        showMessage(error.message || "Something went wrong!", "error");
+       showMessage("Something went wrong!","error")
       } finally {
         setLoading(false);
       }
     },
   });
-
-  const handleImageUpload = async (file:any) => {
-    try {
-      const result = await uploadImage(file);
-      if (result?.success) {
-        return result.filename;
-      } else {
-        throw new Error(result?.message || "Image upload failed.");
-      }
-    } catch (error) {
-      console.error("Image upload error:", error);
-      return null;
-    }
-  };
 
   return (
     <div className="w-[95%] max-w-[1200px] flex items-center">

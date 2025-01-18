@@ -55,24 +55,24 @@ export default page;
 
 
 
-// export async function generateMetadata({ params }: { params: any }) {
-//   const id = decodeId(params.link)
-//   const data = await getArticlebyId(id);
-//   return {
-//     title: `${data?.data?.title} | Sukoon Edu Foundation`,
-//     description: "Prism Bulletin is a news portal launched in 2024, under Prism Foundation.",
-//     metadataBase: new URL(`https://www.mysukoon.in/${params.link}`),
-//     openGraph: {
-//       url: `https://www.mysukoon.in/${params.link}`,
-//       title: data?.data?.title,
-//       description: 'Prism Bulletin is a news portal launched in 2024, under Prism Foundation.',
-//       images: [data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"prism thumb.jpg"],
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       title: data?.data?.title,
-//       description: "Prism Bulletin is a news portal launched in 2024, under Prism Foundation.",
-//       image: data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"prism thumb.jpg",
-//     },
-//   };
-// }
+export async function generateMetadata({ params }: { params: any }) {
+  const id = decodeId(params.link)
+  const data = await getArticlebyId(id);
+  return {
+    title: `${data?.data?.title} | Sukoon Edu Foundation`,
+    description: "Prism Bulletin is a news portal launched in 2024, under Prism Foundation.",
+    metadataBase: new URL(`https://www.mysukoon.in/diary/${params.link}`),
+    openGraph: {
+      url: `https://www.mysukoon.in/diary/${params.link}`,
+      title: data?.data?.title,
+      description: 'Prism Bulletin is a news portal launched in 2024, under Prism Foundation.',
+      images: [data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"prism thumb.jpg"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data?.data?.title,
+      description: "Prism Bulletin is a news portal launched in 2024, under Prism Foundation.",
+      image: data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"prism thumb.jpg",
+    },
+  };
+}

@@ -9,7 +9,7 @@ interface PostData {
 
 export const shareToFacebook = (post: PostData) => {
     // Construct the post URL (with ID encoded)
-    const postUrl = `https://www.mysukoon.in/${encodeId(post.id)}`;
+    const postUrl = `https://www.mysukoon.in/diary/${encodeId(post.id)}`;
 
     // Facebook share URL
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;

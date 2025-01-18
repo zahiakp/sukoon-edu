@@ -12,7 +12,7 @@ export const shareToWhatsApp = (post: PostData) => {
     const bodyText = post.body.replace(/<[^>]+>/g, '').slice(0, 500);
   
     // Construct the post URL
-    const postUrl = `https://www.mysukoon.in/${encodeId(post.id)}`;
+    const postUrl = `https://www.mysukoon.in/diary/${encodeId(post.id)}`;
   
     // WhatsApp sharing URL with properly constructed body and post URL
     const message = `*${post.title}*\n\n${bodyText}\n\nRead more:\n${postUrl}`;
