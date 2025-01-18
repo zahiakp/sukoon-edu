@@ -5,6 +5,7 @@ import GooglePayButton from "@google-pay/button-react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { gateway } from "@/components/common/PhonePyGt";
 import { ROOT_URL } from "@/components/data/func";
+import { initPayment } from "@/components/common/init";
 
 function Plans() {
   const [cusAmount,setCusAmount] = useState<any>()
@@ -44,14 +45,8 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
 };
 const handlePayment = async (amount:any) => {
   try {
-    const merchantTransactionId = "SEF" + Date.now()
-    const resp = await gateway.initPayment({
-      amount: amount,
-      transactionId: merchantTransactionId,
-      userId: "SED" + "123",
-      redirectUrl: `/donate`,
-      callbackUrl: `/donate`,
-    });
+    // const merchantTransactionId = "SEF" + Date.now()
+    const resp = await initPayment(amount)
 // console.log(resp.data.instrumentResponse.redirectInfo.url);
 
     // Check for specific success codes or messages
