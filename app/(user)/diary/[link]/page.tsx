@@ -66,13 +66,13 @@ export async function generateMetadata({ params }: { params: any }) {
       url: `https://www.mysukoon.in/diary/${params.link}`,
       title: data?.data?.title,
       description: `${data?.data?.body}`,
-      images: [data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"/image/sukoonlogo.png"],
+      images: [data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"https://mysukoon.in/image/sukoonlogo.png"],
     },
     twitter: {
       card: "summary_large_image",
       title: data?.data?.title,
       description: `${data?.data?.body}`,
-      image: data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"/image/sukoonlogo.png",
+      image: data?.data?.image!=""? `${ROOT_URL}uploads/news/${data?.data?.image}`:"https://mysukoon.in/image/sukoonlogo.png",
     },
   };
 }
