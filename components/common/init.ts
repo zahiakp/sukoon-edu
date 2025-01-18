@@ -6,23 +6,24 @@ import crypto from "crypto";
 export async function initPayment(amount: number) {
   const merchantTransactionId = "M" + Date.now();
   const data: any = {
-    merchantId: "DELHITHAIBAONLINE",
+    merchantId: "M228XR6AHKBZ0",
     merchantTransactionId: merchantTransactionId,
     merchantUserId: "MUID" + "123",
     amount: amount * 100,
-    redirectUrl: `https://delhithaiba.com/donate/${merchantTransactionId}`,
-    callbackUrl: `https://delhithaiba.com/donate/callback`,
+    redirectUrl: `https://mysukoon.in/donate/${merchantTransactionId}`,
+    callbackUrl: `https://mysukoon.in/donate`,
     redirectMode: "REDIRECT",
     paymentInstrument: {
       type: "PAY_PAGE",
     },
   };
-
+// M228XR6AHKBZ0
+// 5368e0ab-2b33-40d4-b3c5-76ca3f2dd929
   const payload = JSON.stringify(data);
 
   const payloadMain = Buffer.from(payload).toString("base64");
   const keyIndex = 1;
-  const SALT_KEY: string = "6da9015a-da1d-4d32-ad89-dce2d4a20896";
+  const SALT_KEY: string = "5368e0ab-2b33-40d4-b3c5-76ca3f2dd929";
   const string = payloadMain + "/pg/v1/pay" + SALT_KEY;
   const sha256 = crypto.createHash("sha256").update(string).digest("hex");
   const checksum = sha256 + "###" + keyIndex;
