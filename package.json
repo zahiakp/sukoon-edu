@@ -19,6 +19,7 @@
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "express": "^4.21.2",
     "formik": "^2.4.6",
     "framer-motion": "^11.15.0",
     "hamburger-react": "^2.5.2",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",
+    "@types/express": "^5.0.0",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
