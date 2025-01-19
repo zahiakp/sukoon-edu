@@ -19,19 +19,19 @@ function Nav({ active }: any) {
   const NAV_ITEMS = [
     { label: "Feel Sukoon", path: "" ,items:[
       {label:"About us",path:"/about"},
-      {label:"Stories",path:""},
+      // {label:"Stories",path:""},
       {label:"Diary",path:"/diary"},
     ]},
-    { label: "Our Projects", path: "",
-      items:[
-      {label:"Residential Campus",path:""},
-      {label:"Village School",path:""},
-      {label:"Learning Centers",path:""},
-      {label:"Milan",path:""},
-    ] 
-  },
-    { label: "Life at Sukoon", path: "" },
-    { label: "Join us", path: "" },
+  //   { label: "Our Projects", path: "",
+  //     items:[
+  //     {label:"Residential Campus",path:""},
+  //     {label:"Village School",path:""},
+  //     {label:"Learning Centers",path:""},
+  //     {label:"Milan",path:""},
+  //   ] 
+  // },
+  //   { label: "Life at Sukoon", path: "" },
+  //   { label: "Join us", path: "" },
     { label: "Connect us", path: "/contact" },
   ];
   // const [navBarHeight, setNavBarHeight] = useState(0);
@@ -63,7 +63,7 @@ function Nav({ active }: any) {
         <div className="items-center gap-10 hidden md:flex">
             <ul className="flex items-center justify-center gap-10 text-[16px]">
             {NAV_ITEMS.map((item: any, i: number) => (
-              <li
+              <a href={item.path}
               onMouseEnter={() => setDrop(drop == i + 1 ? !drop : i + 1)}
               onMouseLeave={() => setDrop(drop == i + 1 ? !drop : i + 1)}
               key={i}
@@ -95,12 +95,12 @@ function Nav({ active }: any) {
                 ))}
                 </ul>
               )}
-              </li>
+              </a>
             ))}
             </ul>
-          <a href="/donate" className=" p-2 px-5 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
+          <a href="/login" className=" p-2 px-5 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
             <FaHeart />
-            Donate
+            login
           </a>
         </div>
         <div className="md:hidden">
@@ -120,9 +120,9 @@ function Nav({ active }: any) {
                     "hover:font-bold hover:translate-x-1 w-full justify-between box-border p-3 px-10 pr-20 hover:bg-lime-200/70 duration-300 font-bold text-lime-600 flex items-center border-b border-lime-100"
                   }
                   >
-                  <p className="text-xl text-lime-700 flex items-center gap-4 ">
+                  <a href={item.path} className="text-xl text-lime-700 flex items-center gap-4 ">
                     <span className="text-lg text-zinc-600"><IoMdArrowForward /></span>{item.label}
-                  </p>
+                  </a>
                   {item?.items && <><IoIosArrowDropdownCircle className={`text-2xl text-lime-700 ${drop === index+1 ? 'rotate-180' : ''} duration-300`} /></>}
                   </div>
                   {item?.items && (
@@ -136,9 +136,9 @@ function Nav({ active }: any) {
                   )}
                 </div>
             ))}
-            <a href="/donate" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
+            <a href="/login" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
             <FaHeart />
-            Donate
+            login
           </a>
           </div>
             <div className="py-3 mt-3 border-t flex gap-2 border-lime-500 mx-10">
