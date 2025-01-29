@@ -42,7 +42,7 @@ function Content() {
         <li><strong>Service Provider:</strong> any natural or legal person who processes the data on behalf of the Company.</li>
         <li><strong>Third-party Social Media Service:</strong> any website or social network through which a User can log in or create an account.</li>
         <li><strong>Usage Data:</strong> data collected automatically when using the Service.</li>
-        <li><strong>Website:</strong> refers to Sukoon Edu Foundation, accessible from <a href="https://sukoon-edu.vercel.app/" className="text-blue-500">https://sukoon-edu.vercel.app/</a>.</li>
+        <li><strong>Website:</strong> refers to Sukoon Edu Foundation, accessible from <a href="https://mysukoon.in/" className="text-blue-500">https://mysukoon.in/</a>.</li>
         <li><strong>You:</strong> the individual accessing or using the Service.</li>
       </ul>
 
