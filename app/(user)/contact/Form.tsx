@@ -43,14 +43,14 @@ const ContactForm = () => {
   });
 
   return (
-    <div className="w-[80%] max-w-[800px] mx-auto py-10">
-        <div className="bg-blue-50 w-full my-5 rounded-2xl">
+    <div className="">
+        <div className="bg-white w-full my-3">
       {sent ? (
         <div className="px-4 md:px-10 h-full text-center flex flex-col justify-center items-center gap-5">
-          <div className="h-20 w-20 bg-blue-500 text-white text-5xl grid place-items-center rounded-3xl my-3">
+          <div className="h-20 w-20 bg-lime-500 text-white text-5xl grid place-items-center rounded-3xl my-3">
             <MdDone />
           </div>
-          <h3 className="text-2xl text-blue-500 font-bold">Message Sent</h3>
+          <h3 className="text-2xl text-lime-500 font-bold">Message Sent</h3>
           <p>
             {" "}
             Thank you for contacting us. <br />
@@ -59,9 +59,9 @@ const ContactForm = () => {
         </div>
       ) : (
         <form onSubmit={formik.handleSubmit} className="p-5 md:p-10">
-          <h3 className="h-[100px] font-[300] text-blue-500 text-4xl border-b text-center">
+          {/* <h3 className="h-[100px] font-[300] text-blue-500 text-4xl border-b text-center">
             Keep in <span className="font-[700]"> Touch</span>
-          </h3>
+          </h3> */}
 
           <FormInput
             formik={formik}
@@ -88,7 +88,7 @@ const ContactForm = () => {
             name="message"
             placeholder="Enter Message"
           />
-          <button className="w-full text-center bg-blue-500 text-white py-4 px-5 rounded-[15px] flex items-center justify-center duration-300 gap-2 hover:gap-3" type="submit" disabled={loading}>
+          <button className="w-full text-center bg-lime-500 text-white py-3 px-5 rounded-[10px] flex items-center justify-center duration-300 gap-2 hover:gap-3" type="submit" disabled={loading}>
             {loading ? "Sending Message...." : "Send Message"}{" "}
             <LuSendHorizontal className=" text-lg " />
           </button>

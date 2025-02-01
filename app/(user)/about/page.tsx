@@ -21,7 +21,7 @@ function page() {
       <Hero/>
       <Highlight/>
       <FounderNote/>
-      <Story/>
+      {/* <Story/> */}
       <Vision/>
       <Mission/>
     </UserLayout>

@@ -74,7 +74,7 @@ function Features() {
     <>
       <div className="bg-green-500 py-8 relative group">
       <FlickeringGrid 
-        className="z-0 absolute inset-0 size-full"
+        className="z-0 absolute overflow-x-hidden inset-0 size-full"
         squareSize={14}
         gridGap={9}
         color="#ffffff"
@@ -84,13 +84,13 @@ function Features() {
         width={2000}
       />
         <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col  items-center">
-          <h6 className="Grotesque-font text-5xl md:text-7xl text-white font-semibold">
+          <h6 className="Grotesque-font text-center  text-5xl md:text-7xl text-white font-semibold">
             {/* <StyledButton text="What our campus Offers" /> */}
             <TextAnimate animation="blurInUp" by="character">
             What our campus Offers
     </TextAnimate>
           </h6>
-          <p className="mt-3 text-zinc-100">
+          <p className="mt-3 text-zinc-100 text-center">
             Our campus features comprehensive facilities designed to enhance the
             learning and living experience:
           </p>
@@ -111,10 +111,10 @@ function Features() {
       {FEATURES.map((feature: any, i: number) => (
         <div className={`${i%2==1?"bg-white":"bg-green-50"}  py-8 pb-14 relative group`}>
           <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col  items-center">
-            <h6 className="Grotesque-font text-5xl md:text-6xl text-green-600 font-semibold">
-            <TextAnimate animation="blurInUp" by="character">{feature.title}</TextAnimate>
+            <h6 className="Grotesque-font text-5xl md:text-6xl text-green-600 font-semibold text-center">
+            <TextAnimate animation="blurInUp" by="word">{feature.title}</TextAnimate>
             </h6>
-            <p data-aos="fade-up" className="mt-3">
+            <p data-aos="fade-up" className="mt-3 text-center">
               {feature.dis}
             </p>
             <div className={`mt-10 grid grid-cols-1 w-full md:w-fit md:grid-cols-${feature.items.length} gap-4 z-[2]`}>

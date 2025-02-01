@@ -4,6 +4,7 @@ import NumberTicker from "../ui/number-ticker";
 import { RiArrowRightLine } from "react-icons/ri";
 import StyledButton from "../common/StyledButton";
 import GooglePayButton from '@google-pay/button-react';
+import { TextAnimate } from "../ui/text-animate";
 
 function Plans() {
   const ITEMS = [
@@ -26,16 +27,17 @@ function Plans() {
   return (
     <div className=" py-8 relative overflow-hidden group bg-blue-50 pb-72 md:pb-[350px]">
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
-        {/* <h6 className="Grotesque-font text-5xl md:text-6xl text-sky-800 font-semibold">
-        <StyledButton text="Let’s Build Sukoon"/> 
+        <h6 className="Grotesque-font text-5xl md:text-6xl text-sky-800 font-semibold">
+        {/* <StyledButton text=""/>  */}
+        <TextAnimate animation="blurInUp" by="word">Let’s Build Sukoon</TextAnimate>
         </h6>
-        <p className="text-zinc-500 text-center text-[14px] mt-5">
+        <p data-aos='fade-up' className="text-zinc-500 text-center text-[14px] mt-5">
           Sukoon Residential School provides a high-quality education for
           students in Grades from Nursery to 12 in a structured residential
           setting. Focused on academic excellence, character development, and
           moral studies, the campus equips students with the skills to tackle
           global challenges
-        </p> */}
+        </p>
         <div className="mt-10 w-full grid grid-cols-2 md:grid-cols-3 gap-4">
           {ITEMS.map((item: any, i: number) => (
             <div data-aos="fade-up" data-aos-delay={`${i+2}00`}

@@ -1,24 +1,25 @@
 import StyledButton from "@/components/common/StyledButton";
+import { TextAnimate } from "@/components/ui/text-animate";
 import React from "react";
 import { BiSolidQuoteLeft } from "react-icons/bi";
 
 function FounderNote() {
   return (
-    <div className="w-full  py-20 group ">
-      <section className="w-[90%] max-w-[1200px] mx-auto flex flex-col md:flex-row gap-20">
-        <div className="flex flex-col gap-3 justify-start mt-14">
+    <div className="w-full py-10">
+      <section className="w-[85%] overflow-hidden max-w-[1200px] mx-auto flex flex-col md:flex-row gap-10 md:gap-20">
+        <div className=" flex flex-col gap-3 justify-start mt-14">
           <h6 className="Grotesque-font text-5xl !leading-[25px] md:text-6xl text-zinc-500 font-medium">
-          Founder's <span className="text-7xl text-lime-600 font-semibold"> Message</span>
+          Founder's <TextAnimate animation="blurInUp" by="character" className="text-6xl  text-lime-600 font-semibold">Message</TextAnimate>
           </h6>
-          <div className="h-28 w-28 rounded-[30px] overflow-hidden border-t-4 mt-5 border border-lime-600"><img className="h-full w-full object-cover" src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="" /></div>
-        <p className="font-semibold text-lg mt-3 !leading-5">PT Muhammed <br />
+          <div data-aos='fade-up'  data-aos-delay='100' className="h-28 w-28 max-w-[85%] rounded-[30px] overflow-hidden border-t-4 mt-5 border border-lime-600"><img className="h-full w-full object-cover" src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="" /></div>
+        <p data-aos='fade-up' data-aos-delay='300' className="font-semibold text-lg mt-3 !leading-5">PT Muhammed <br />
         <span className="mt-5 font-normal text-base">
         Founder, Sukoon Edu Foundation</span></p>
         </div>
         <div className="">
-        <BiSolidQuoteLeft className="text-8xl text-lime-800/10"/>
+        <BiSolidQuoteLeft className="text-8xl text-lime-800/10 hidden md:block"/>
 
-          <p>
+          <p data-aos='fade-up' data-aos-delay='400' className="">
             Once, I had the opportunity to visit a government school in a remote
             village in Haryana. Over 500 students were enrolled, but fewer than
             50 regularly attended classes. The classrooms, devoid of any
