@@ -22,7 +22,7 @@ const FormInput = ({
       <div className="text-sm text-primary-600 my-1">{label}</div>
       <input
         type={type ?? "text"}
-        className="w-full p-3 px-5 border border-blue-300 rounded-[15px] outline-blue-500"
+        className="w-full p-3 px-5 border border-lime-300 rounded-[10px] outline-lime-500"
         name={name}
         onChange={formik.handleChange}
         value={formik.values[name]}
@@ -60,7 +60,7 @@ export function FormTextArea({
     <div className="py-2">
       <div className="text-sm text-primary-600 my-1">{label}</div>
       <textarea
-        className="w-full p-3 px-5 border border-blue-300 rounded-[15px] outline-blue-500"
+        className="w-full p-3 px-5 border border-lime-300 rounded-[10px] outline-lime-500"
         name={name}
         onChange={formik.handleChange}
         value={formik.values[name]}

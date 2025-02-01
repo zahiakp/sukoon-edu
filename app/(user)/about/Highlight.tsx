@@ -18,8 +18,9 @@ function Highlight() {
       </section>
       {/* <div className="absolute rotate-12 hidden md:block -bottom-64 right-[10%]">
     <img className='h-[500px] contrast-more:'  src="/image/Logo strock.png" alt="" /></div> */}
-    <div className="w-screen overflow-hidden md:w-fit  absolute md:-right-[25%] top-0"><FlickeringGrid 
-        className="z-0 inset-0 hidden md:block [mask-image:radial-gradient(450px_circle_at_center,white,transparent)]"
+    <div className="w-screen overflow-hidden md:w-fit  absolute md:-right-[25%] top-0">
+      <FlickeringGrid 
+        className="z-0 inset-0 overflow-x-hidden hidden md:block [mask-image:radial-gradient(450px_circle_at_center,white,transparent)]"
         squareSize={12}
         gridGap={6}
         color="#d4ffcc"
@@ -29,7 +30,7 @@ function Highlight() {
         width={1200}
       />
       <FlickeringGrid 
-        className="z-0 inset-0 md:hidden [mask-image:radial-gradient(450px_circle_at_center,white,transparent)]"
+        className="z-0 inset-0 overflow-x-hidden md:hidden [mask-image:radial-gradient(450px_circle_at_center,white,transparent)]"
         squareSize={12}
         gridGap={6}
         color="#d4ffcc"

@@ -12,7 +12,7 @@ function page() {
     <UserLayout>
       <Hero/>
       <Content/>
-      <ContactForm/>
+      {/* <ContactForm/> */}
     </UserLayout>
   )
 }
