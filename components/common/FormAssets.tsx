@@ -45,13 +45,13 @@ export const TitleInput = ({
 interface BodyInputProps {
   formik: any;
   name: string;
-  label: string;
+  label: string;height?:number
 }
 
 export const BodyInput: React.FC<BodyInputProps> = ({
   formik,
   name,
-  label,
+  label,height,
 }) => {
   const handleEditorChange = (e:any) => {
     formik.setFieldValue(name, e.htmlValue);
@@ -63,7 +63,7 @@ export const BodyInput: React.FC<BodyInputProps> = ({
       <Editor
         value={formik.values[name]}
         onTextChange={handleEditorChange}
-        style={{ height: '480px' ,fontSize:18}}
+        style={{ height:height?height: '480px' ,fontSize:18}}
       />
       <div>
         {formik.errors[name] && formik.touched[name] && (

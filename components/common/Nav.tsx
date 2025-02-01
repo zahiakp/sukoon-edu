@@ -19,19 +19,19 @@ function Nav({ active }: any) {
   const NAV_ITEMS = [
     { label: "Feel Sukoon", path: "" ,items:[
       {label:"About us",path:"/about"},
-      // {label:"Stories",path:""},
+      {label:"Stories",path:""},
       {label:"Diary",path:"/diary"},
     ]},
-  //   { label: "Our Projects", path: "",
-  //     items:[
-  //     {label:"Residential Campus",path:""},
-  //     {label:"Village School",path:""},
-  //     {label:"Learning Centers",path:""},
-  //     {label:"Milan",path:""},
-  //   ] 
-  // },
-  //   { label: "Life at Sukoon", path: "" },
-  //   { label: "Join us", path: "" },
+    { label: "Our Projects", path: "",
+      items:[
+      {label:"Residential Campus",path:""},
+      {label:"Village School",path:""},
+      {label:"Learning Centers",path:""},
+      {label:"Milan",path:""},
+    ] 
+  },
+    { label: "Life at Sukoon", path: "/life-sukoon" },
+    { label: "Join us", path: "/join" },
     { label: "Connect us", path: "/contact" },
   ];
   // const [navBarHeight, setNavBarHeight] = useState(0);
@@ -52,7 +52,7 @@ function Nav({ active }: any) {
       setTimeout(()=>{
        hidden = 'opacity-0'
        setHidden(hidden)
-    },3000)
+    },1000)
     }
     
   },[])
@@ -98,9 +98,9 @@ function Nav({ active }: any) {
               </a>
             ))}
             </ul>
-          <a href="/login" className=" p-2 px-5 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
+          <a href="/donate" className=" p-2 px-5 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
             <FaHeart />
-            login
+            Donate
           </a>
         </div>
         <div className="md:hidden">
@@ -136,9 +136,9 @@ function Nav({ active }: any) {
                   )}
                 </div>
             ))}
-            <a href="/login" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
+            <a href="/donate" className=" p-3 px-6 my-5 w-fit ml-10 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
             <FaHeart />
-            login
+            donate
           </a>
           </div>
             <div className="py-3 mt-3 border-t flex gap-2 border-lime-500 mx-10">

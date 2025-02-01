@@ -66,7 +66,7 @@ function Content() {
         
           
             {news.map((item: any, index: number) => (
-              <Link key={index} href={`/diary/${encodeId(item.id)}`}>
+              <Link key={index} href={`/diary/${encodeId(item.id)}`} className='hover:scale-[1.01] duration-300'>
                 <NewsCard data={item} />
               </Link>
             ))}

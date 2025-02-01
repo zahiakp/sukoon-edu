@@ -25,6 +25,7 @@
     "hamburger-react": "^2.5.2",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.468.0",
+    "motion": "^11.18.2",
     "next": "^15.1.0",
     "next-nprogress-bar": "^2.4.3",
     "phonepepg": "^0.1.0",

@@ -6,6 +6,8 @@ import Hero from './Hero';
 import Story from './Story';
 import Vision from './Vision';
 import Mission from './Mission';
+import FounderNote from './FounderNote';
+import Highlight from './Highlight';
 
 
 export const metadata: Metadata = {
@@ -17,6 +19,8 @@ function page() {
   return (
     <UserLayout>
       <Hero/>
+      <Highlight/>
+      <FounderNote/>
       <Story/>
       <Vision/>
       <Mission/>
