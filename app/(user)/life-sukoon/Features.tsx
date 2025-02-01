@@ -114,12 +114,12 @@ function Features() {
             <h6 className="Grotesque-font text-5xl md:text-6xl text-green-600 font-semibold">
             <TextAnimate animation="blurInUp" by="character">{feature.title}</TextAnimate>
             </h6>
-            <p className="mt-3">
+            <p data-aos="fade-up" className="mt-3">
               {feature.dis}
             </p>
             <div className={`mt-10 grid grid-cols-1 w-full md:w-fit md:grid-cols-${feature.items.length} gap-4 z-[2]`}>
                 {feature.items.map((item:any,ii:number)=>(
-                     <div key={ii} className={`flex md:min-w-[250px] w-full md:w-fit relative cursor-pointer after:h-[6px] after:bg-green-500 after:absolute after:bottom-0 after:w-0 hover:after:w-full after:duration-300 group/box items-center justify-center flex-col border hover:-translate-y-1 duration-300 hover:shadow-lg ${i%2==0?"bg-white border-green-400":"bg-green-50/50 border-green-500"} p-7 px-10 overflow-hidden rounded-2xl`}>
+                     <div data-aos="fade-up" data-aos-delay={`${ii+2}00`} key={ii} className={`flex md:min-w-[250px] w-full md:w-fit relative cursor-pointer after:h-[6px] after:bg-green-500 after:absolute after:bottom-0 after:w-0 hover:after:w-full after:duration-300 group/box items-center justify-center flex-col border hover:-translate-y-1 duration-300 hover:shadow-lg ${i%2==0?"bg-white border-green-400":"bg-green-50/50 border-green-500"} p-7 px-10 overflow-hidden rounded-2xl`}>
                         {/* <LuSchool  className="text-7xl text-lime-600"/> */}
               <img src={item.image} alt="" className="h-32"/>
 

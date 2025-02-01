@@ -2,6 +2,7 @@ import React from 'react'
 import StyledButton from '../common/StyledButton'
 import { GoArrowRight } from 'react-icons/go'
 import { IoMdArrowForward, IoMdArrowRoundForward } from 'react-icons/io'
+import { TextAnimate } from '../ui/text-animate'
 
 function Projects() {
     const PROJECTS = [
@@ -15,11 +16,12 @@ function Projects() {
     <div className="bg-lime-100 py-8 pb-14 relative group">
     <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col  items-center">
       <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-600 font-semibold">
-      <StyledButton text="Our Projects"/>
+      {/* <StyledButton text="Our Projects"/> */}
+       <TextAnimate animation="blurInUp" by="character">Our Projects</TextAnimate>
       </h6>
       <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-4 z-[2]">
         {PROJECTS.map((project:any,i:number)=>(
-            <div key={i} className='flex cursor-pointer group/box flex-col border hover:-translate-y-1 duration-300 hover:shadow-lg bg-lime-50 border-lime-500 overflow-hidden rounded-2xl'>
+            <div data-aos="fade-up" data-aos-delay={`${i+2}00`} key={i} className='flex cursor-pointer group/box flex-col border hover:-translate-y-1 duration-300 hover:shadow-lg bg-lime-50 border-lime-500 overflow-hidden rounded-2xl'>
                 <div className='h-40'>
                     <img src={`/image/${project.img}`} className='w-full h-full object-cover'/>
                     </div>
@@ -33,7 +35,7 @@ function Projects() {
                 </a> */}
     </div>
     <div className="absolute rotate-12 hidden md:block -top-64 right-[10%]  opacity-20">
-    <img className='h-[400px]' data-aos="fade-left" src="/image/Logo strock.png" alt="" /></div>
+    <img className='h-[400px]' data-aos="fade-left" data-aos-delay={`500`} src="/image/Logo strock.png" alt="" /></div>
   </div>
   )
 }

@@ -49,10 +49,10 @@ function Nav({ active }: any) {
   useEffect(()=>{
     let hidden;
     if(drop !== NAV_ITEMS[drop - 1]){
-      setTimeout(()=>{
+      // setTimeout(()=>{
        hidden = 'opacity-0'
        setHidden(hidden)
-    },1000)
+    // },1000)
     }
     
   },[])
@@ -82,7 +82,7 @@ function Nav({ active }: any) {
                 className={`${
                   drop == i + 1
                   ? "max-h-96 "
-                  : `max-h-0 ${hidden}`
+                  : `max-h-0 h-0 ${hidden}`
                 } overflow-hidden cursor-pointer transition-[max-height] min-w-40 pt-7 border-t-0 mx-auto absolute top-full left-[50%] -translate-x-[50%] rounded-xl duration-300 flex flex-col items-center bg-white border border-zinc-200`}
                                 >
                 {item?.items?.map((it: any, ii: number) => (
