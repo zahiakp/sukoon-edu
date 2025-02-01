@@ -8,6 +8,9 @@
   font-family: "Darker Grotesque", sans-serif;
 }
 
+body{
+  overflow-x: hidden;
+}
 
 .swiper-pagination-bullet {
   background: #eeffde79 !important;

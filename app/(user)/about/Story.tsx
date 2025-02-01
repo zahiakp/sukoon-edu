@@ -7,14 +7,14 @@ function Story() {
     {img:"",content:"We think about a place where underprivileged children could live, study, and grow without worrying about their next meal or other struggles. Foundation. Now, we are stepping into the solution. In the peaceful village of Andheka, Sudaka, Haryana, we found a three-acre plot of land to create Sukoon Edu Village. This will be a special place where 600 children can live and study. Children from nearby villages can also join. We plan to set up a CBSE school and, later, introduce vocational training to help children learn skills based on their interests and abilities. This will prepare them to join society as confident and skilled individuals. This dream is big, but it is possible with your support. Together, we can create a brighter future for children who have been left behind. Sukoon Edu Village is not just a project; it’s a promise of hope and opportunity. Let’s come together to make this dream a reality. Every child deserves a chance to learn, grow, and live a life full of possibilities."},
 ]
   return (
-    <div className="w-full bg-lime-100">
-    <div className="w-full max-w-[1200px] mx-auto py-20">
+    <div className="w-full bg-lime-100 px-10">
+    <div className="w-full max-w-[1200px] mx-auto py-20 ">
       <h6 className="Grotesque-font text-center text-5xl md:text-6xl text-lime-600 font-semibold">
       Our Story</h6>
       <div className="flex flex-col gap-7 md:gap-10 mt-10">
         {Data.map((item:any,index:number)=>(
           <div key={index} className={`flex flex-col  ${index%2==1? 'md:flex-row':"md:flex-row-reverse"} items-center justify-center gap-5 md:gap-20`}>
-    <div data-aos="fade-left" className="w-[400px] h-[300px] bg-white shadow-xl border border-lime-400 overflow-hidden rounded-[30px]">
+    <div data-aos="fade-left" className="max-w-[100%] w-[400px] h-[300px] bg-white shadow-xl border border-lime-400 overflow-hidden rounded-[30px]">
         <img src="/image/IMG_1830test.JPG" alt="" className="h-full w-full object-cover"/>
         </div>
       <div data-aos="fade-right" className={`flex items-start flex-col md:w-1/2`}>

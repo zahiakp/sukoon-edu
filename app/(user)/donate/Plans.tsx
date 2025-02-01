@@ -73,7 +73,7 @@ console.log(cusAmount);
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
       <div className="mt-10 w-full grid grid-cols-2 md:grid-cols-3 gap-4">
         {ITEMS.map((item: any, i: number) => (
-        <div
+        <div data-aos="fade-up" data-aos-delay={i*100}
           key={i}
           className="relative border z-[1] border-b-lime-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
         >
@@ -93,7 +93,7 @@ console.log(cusAmount);
           </div>
         </div>
         ))}
-        <div
+        <div data-aos="fade-up" data-aos-delay={600}
           className="relative border z-[1] border-b-lime-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
         >
           {" "}
