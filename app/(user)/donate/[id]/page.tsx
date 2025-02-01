@@ -1,6 +1,8 @@
 import React from "react";
 import router from "./func";
 import UserLayout from "@/components/Layout/UserLayout";
+import Ripple from "@/components/ui/ripple";
+import { HiBadgeCheck, HiCheckCircle } from "react-icons/hi";
 
 function page({ params }: { params: any }) {
   const data = router;
@@ -10,9 +12,13 @@ function page({ params }: { params: any }) {
     <UserLayout>
       <div className="">
         <div className="w-[80%] flex flex-col justify-center items-center max-w-[1200px] mx-auto min-h-[400px] bg-green-500/10 md:p-20 my-20 rounded-2xl border border-green-500">
-          <div className="relative w-fit">
-            <img src="\svg\success.svg" alt="" className="absolute animate-ping mx-auto top-0 bottom-0 opacity-20 -z-[1]"/>
-            <img src="\svg\success.svg" alt="" className="z-[5]"/>
+          <div className="relative  flex h-full w-full  flex-col items-center justify-center"
+          >
+            <div className="absolute z-0 bg-gradient"></div>
+          <Ripple numCircles={5} className=""/>
+          {/* <img src="/svg/success.svg" alt="" className="z-[1]"/> */}
+          <HiBadgeCheck  className="text-[170px] text-green-500" />
+
           </div>
           <h6 className="text-6xl text-green-600 font-bold Grotesque-font mt-7">You're Making Dreams Come True</h6>
           <p className="text-sm text-zinc-700 mt-3 text-center w-3/4">

@@ -13,7 +13,7 @@ function Projects() {
     // caters to students from Pre-KG to Grade 12. Designed for rural communities,
   return (
     <div className="bg-lime-100 py-8 pb-14 relative group">
-    <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col items-center">
+    <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col  items-center">
       <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-600 font-semibold">
       <StyledButton text="Our Projects"/>
       </h6>

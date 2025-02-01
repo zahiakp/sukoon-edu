@@ -13,12 +13,14 @@ function Hero() {
     >
       <div className="p-20 px-[15%] flex flex-col h-full items-start justify-end text-white">
         <h1 className="text-5xl md:text-7xl font-bold font Grotesque-font text-lime-200">
-          Let’s Build Sukoon
+          Life at Sukoon
         </h1>
         <p className="text-zinc-300 text-left hidden md:flex gap-2 text-[12px] md:text-[15px] mt-4 w-[80%]">
-          Your donation helps us provide quality education, safe spaces, and
-          essential resources for underprivileged children in North India who
-          deserve a brighter tomorrow.
+          At Sukoon, we offer a global standard of education and lifestyle,
+          seamlessly blending academic excellence with world-class facilities in
+          a serene, eco-friendly environment. Our emphasis on holistic
+          development creates a nurturing ground for future leaders, inspiring
+          students to excel intellectually, ethically, and socially.
         </p>
       </div>
     </div>

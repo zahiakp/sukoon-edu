@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
-import { showMessage } from "@/components/common/CusToast";
 import StyledButton from "@/components/common/StyledButton";
 
 function Logout() {
