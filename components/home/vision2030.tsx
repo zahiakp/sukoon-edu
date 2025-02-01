@@ -2,6 +2,7 @@ import { div } from "framer-motion/client";
 import React from "react";
 import NumberTicker from "../ui/number-ticker";
 import StyledButton from "../common/StyledButton";
+import { TextAnimate } from "../ui/text-animate";
 
 function Impact() {
   const ITEMS = [
@@ -13,9 +14,9 @@ function Impact() {
   return (
     <div className="bg-lime-50 py-8 relative group">
       <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col md:flex-row items-center">
-        <div data-aos="fade-right" className="md:w-1/2 flex flex-col md:items-start gap-3">
+        <div data-aos="fade-up" className="md:w-1/2 flex flex-col md:items-start gap-3">
           <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-600 font-semibold">
-            <StyledButton text="Vision 2030" />
+             <TextAnimate animation="blurInUp" by="character">Vision 2030</TextAnimate>
           </h6>
           <p className="text-sm md:w-3/4 text-center md:text-left">
             As Mahatma Gandhi said, "The soul of India lives in its villages."
@@ -26,9 +27,9 @@ function Impact() {
           </p>
           <p className="text-lime-300 leading-[12px] mt-5 hidden md:block">{`>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`} <br />{`<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<`}</p>
         </div>
-        <div data-aos="fade-left" className="mt-10 grid grid-cols-2 md:grid-cols-2 gap-4">
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-2 gap-4">
           {ITEMS.map((item: any, i: number) => (
-            <div
+            <div data-aos="fade-up" data-aos-delay={`${i+4}00`}
               key={i}
               className="relative overflow-hidden min-w-full pb-9 px-5 md:px-10 py-5 pt-2 bg-gradient-to-br from-lime-200 to-lime-300 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
             >

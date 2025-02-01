@@ -1,21 +1,23 @@
 import React from "react";
 import StyledButton from "../common/StyledButton";
 import { IoMdArrowForward } from "react-icons/io";
+import { TextAnimate } from "../ui/text-animate";
 
 function About() {
   return (
     <div className="bg-white relative group pt-10">
       <div className="w-full max-w-[1200px] mx-auto py-10 flex flex-col md:flex-row gap-10 md:gap-20 items-center justify-center">
-        <div data-aos="fade-left" className="w-[300px] h-[300px] relative bg-white shadow-xl border border-lime-400 overflow-hidden rounded-[60px]">
+        <div data-aos="fade-up" className="w-[300px] h-[300px] relative bg-white shadow-xl border border-lime-400 overflow-hidden rounded-[60px]">
           <img src="/image/IMGtest_1824.JPG" alt="" className="h-full w-full object-cover"/>
           {/* <div className="w-20 h-20 bg-lime-300/50 shadow-xl absolute top-5 -right-5 rounded-2xl backdrop-blur-lg"></div> */}
           </div>
-        <div className="max-w-[80%] md:max-w-[50%]" data-aos="fade-right">
+        <div className="max-w-[80%] md:max-w-[50%]">
           <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-600 font-semibold">
-            Sukoon Edu <span className="font-normal"> Foundation</span>
+            {/* Sukoon Edu <span className="font-normal"> Foundation</span> */}
+            <TextAnimate animation="blurInUp" by="character">Sukoon Edu Foundation</TextAnimate>
           </h6>
-          <p className="mt-5">
-            Sukoon Edu Foundation is a non-profit organization dedicated to
+          <p className="mt-5" data-aos="fade-up" data-aos-delay="300">
+          Sukoon Edu Foundation is a non-profit organization dedicated to
             providing quality education to underprivileged children and
             empowering communities through innovative learning initiatives. We
             believe education is the cornerstone of sustainable development and
@@ -23,8 +25,8 @@ function About() {
             Village, a sanctuary for harmony and learning nestled in Andhaka,
             Haryana.
           </p>
-          {/* <a href="/donate" className="flex items-center gap-2 hover:gap-3 duration-300 p-2 px-5 rounded-xl w-fit text-sm bg-lime-500 text-white mt-4">Yes! I want to help<IoMdArrowForward />
-                          </a> */}
+          <a data-aos="fade-up" data-aos-delay="500" href="/donate" className="flex items-center gap-2 hover:gap-3 duration-300 p-2 px-5 rounded-xl w-fit text-sm bg-lime-500 text-white mt-4">Yes! I want to help<IoMdArrowForward />
+                          </a>
         </div>
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
       </div>

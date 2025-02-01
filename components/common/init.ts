@@ -10,7 +10,7 @@ export async function initPayment(amount: number) {
     merchantTransactionId: merchantTransactionId,
     merchantUserId: "MUID" + "123",
     amount: amount * 100,
-    redirectUrl: `https://mysukoon.in/donate${merchantTransactionId}`,
+    redirectUrl: `https://mysukoon.in/donate/${merchantTransactionId}`,
     callbackUrl: `https://mysukoon.in/donate`,
     redirectMode: "REDIRECT",
     paymentInstrument: {
