@@ -14,7 +14,7 @@ function About() {
         <div className="max-w-[80%] md:max-w-[50%]">
           <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-600 font-semibold">
             {/* Sukoon Edu <span className="font-normal"> Foundation</span> */}
-            <TextAnimate animation="blurInUp" by="character">Sukoon Edu Foundation</TextAnimate>
+            <TextAnimate animation="blurInUp" by="word">Sukoon Edu Foundation</TextAnimate>
           </h6>
           <p className="mt-5" data-aos="fade-up" data-aos-delay="300">
           Sukoon Edu Foundation is a non-profit organization dedicated to

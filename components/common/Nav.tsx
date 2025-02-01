@@ -17,12 +17,12 @@ function Nav({ active }: any) {
   const [hidden,setHidden] = useState<any>()
   const [mobileDrop, setMobileDrop] = useState<number | null>(null);
   const NAV_ITEMS = [
-    { label: "Feel Sukoon", path: "" ,items:[
+    { label: "Feel Sukoon",items:[
       {label:"About us",path:"/about"},
       {label:"Stories",path:""},
       {label:"Diary",path:"/diary"},
     ]},
-    { label: "Our Projects", path: "",
+    { label: "Our Projects",
       items:[
       {label:"Residential Campus",path:""},
       {label:"Village School",path:""},

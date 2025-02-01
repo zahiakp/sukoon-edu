@@ -12,7 +12,7 @@ function Footer() {
     <section className="py-10 bg-gray-50 sm:pt-16 lg:pt-24">
       <div className="mx-auto sm:px-6 px-7 lg:px-10 max-w-7xl">
         <div className="grid grid-cols-1 md:col-span-3 lg:grid-cols-5 gap-y-7 md:gap-x-7">
-          <div className="col-span-2 md:col-span-2 lg:col-span-2 lg:pr-8">
+          <div data-aos="fade-up" data-aos-delay='100' className="col-span-2 md:col-span-2 lg:col-span-2 lg:pr-8">
             <div className="flex items-center gap-2">
               <img src="/svg/sukoon-logo.svg" alt="" className="h-[55px]" />
             </div>
@@ -26,7 +26,7 @@ function Footer() {
             </p>
           </div>
 
-          <div className="col-span-2 md:col-span-1">
+          <div data-aos="fade-up" data-aos-delay='200' className="col-span-2 md:col-span-1">
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
               pages
             </p>
@@ -54,7 +54,7 @@ function Footer() {
             </ul>
           </div>
 
-          <div className=" col-span-1">
+          <div data-aos="fade-up" data-aos-delay='300' className=" col-span-1">
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
             CONTACT
             </p>
@@ -70,7 +70,7 @@ function Footer() {
             <p>www.mysukoon.in</p></a>
           </div>
 
-          <div className="col-span-2 md:col-span-1 lg:col-span-1 lg:pl-8">
+          <div data-aos="fade-up" data-aos-delay='400' className="col-span-2 md:col-span-1 lg:col-span-1 lg:pl-8">
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
               Subscribe to newsletter
             </p>
