@@ -12,10 +12,10 @@ import StyledButton from "../common/StyledButton";
 function Hero() {
   const [show,setShow] = useState(true)
 const SLIDES = [
-  {title:"Learning lights up lives",image:"banner.jpg",phoneImg:'img1_potrait.jpg',dis:""},
-  {title:"We dream ! possibilities are endless.",image:"11.jpg",phoneImg:'11.jpg',dis:""},
-  {title:"Stories that shape lives.",image:"HP4A5440.jpg",phoneImg:'HP4A5440.jpg',dis:""},
   {title:"Education for a Better Nation.",image:"p4test.jpg",phoneImg:'P4-new-Potrait.jpg',dis:""},
+  {title:"We dream ! possibilities are endless.",image:"11.jpg",phoneImg:'11.jpg',dis:""},
+  {title:"Learning lights up lives",image:"banner.jpg",phoneImg:'img1_potrait.jpg',dis:""},
+  {title:"Stories that shape lives.",image:"HP4A5440.jpg",phoneImg:'HP4A5440.jpg',dis:""},
 ]
 console.log("Show state:", show);
 useEffect(() => {

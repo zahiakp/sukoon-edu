@@ -66,7 +66,7 @@ function Content() {
         
           
             {news.map((item: any, index: number) => (
-              <Link key={index} href={`/diary/${encodeId(item.id)}`} className='hover:scale-[1.01] duration-300'>
+              <Link data-aos="fade-up" data-aos-delay={(index+2)*100} key={index} href={`/diary/${encodeId(item.id)}`} className='hover:scale-[1.01] duration-300'>
                 <NewsCard data={item} />
               </Link>
             ))}

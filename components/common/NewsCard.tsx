@@ -8,7 +8,7 @@ function NewsCard({ data }: { data: any }) {
   return (
     <Link href={`/diary/${encodeId(data.id)}`}>
       <div className="flex flex-col mb-10">
-        <div className="h-48 w-full overflow-hidden rounded-xl  col-span-3 relative">
+        <div className="h-48 w-full overflow-hidden rounded-xl bg-zinc-100 col-span-3 relative">
           <img
             src={
               data.image != ""

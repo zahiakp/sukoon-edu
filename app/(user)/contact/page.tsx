@@ -4,7 +4,6 @@ import UserLayout from '@/components/Layout/UserLayout'
 import React from 'react'
 import Hero from './Hero'
 import Content from './Content'
-import dynamic from 'next/dynamic'
 
 function page() {
   
@@ -12,7 +11,6 @@ function page() {
     <UserLayout>
       <Hero/>
       <Content/>
-      {/* <ContactForm/> */}
     </UserLayout>
   )
 }
