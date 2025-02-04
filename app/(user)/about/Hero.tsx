@@ -16,13 +16,13 @@ function Hero() {
           About Us
         </h1>
         <p className="text-zinc-300 text-left hidden md:flex gap-2 text-[12px] md:text-[15px] mt-4 w-[80%]">
-          Sukoon Residential School provides a high-quality education for Sukoon
-          Edu Foundation is a non-profit organization dedicated to providing
-          quality education to underprivileged children and empowering
-          communities through innovative learning initiatives. We believe
-          education is the cornerstone of sustainable development and societal
-          progress. At the heart of our mission lies the Sukoon Edu Village, a
-          sanctuary for harmony and learning nestled in Andhaka, Haryana.
+          Sukoon Edu Foundation is dedicated to empowering children from
+          economically and socially marginalized backgrounds through accessible,
+          inclusive, and transformative education. The word “Sukoon” represents
+          tranquility, wisdom, stability, and the positive transformation that
+          education brings. From Sukoon to success, the foundation bridges the
+          gap between dreams and destiny, ensuring that knowledge becomes the
+          key to a brighter future.
         </p>
       </div>
     </div>

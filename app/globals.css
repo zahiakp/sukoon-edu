@@ -7,10 +7,7 @@
 .Grotesque-font{
   font-family: "Darker Grotesque", sans-serif;
 }
-
-/* body{
-  overflow-x: hidden !important;
-} */
+html { scroll-behavior: smooth; }
 
 .swiper-pagination-bullet {
   background: #eeffde79 !important;
