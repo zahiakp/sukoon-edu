@@ -3,11 +3,11 @@
 import React from "react";
 import Content from "./Content";
 import SocialShare from "./SocialShare";
-import { getArticle, getArticlebyId } from "@/app/(admin)/admin/articles/Add/func";
 import { decodeId } from "@/components/common/decode";
 import UserLayout from "@/components/Layout/UserLayout";
 import { ROOT_URL } from "@/components/data/func";
 import Hero from "./Hero";
+import { getArticlebyId } from "@/app/(admin)/admin/diaries/Add/func";
 
 
 

@@ -7,6 +7,8 @@ import {PiNewspaperClippingBold, PiUsersThreeBold } from "react-icons/pi";
 import { HiOutlineBookmarkAlt, HiOutlineCog } from "react-icons/hi";
 import StyledButton from "./StyledButton";
 import { MdOutlineAutoStories } from "react-icons/md";
+import Link from "next/link";
+import Image from "next/image";
 
 function Dashboard() {
   const pathname = usePathname();
@@ -24,18 +26,18 @@ function Dashboard() {
     },
     {
       title: "Diaries",
-      url: "/admin/articles",
+      url: "/admin/diaries",
       icon: <PiNewspaperClippingBold className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
-    },
-    {
-      title: "Stories",
-      url: "/admin/stories",
-      icon: <MdOutlineAutoStories className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
     },
     {
       title: "Careers",
       url: "/admin/careers",
       icon: <TbSubtask  className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
+    },
+    {
+      title: "Stories",
+      url: "/admin/stories",
+      icon: <MdOutlineAutoStories className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
     },
     // {
     //   title: "Publications",
@@ -80,7 +82,7 @@ function Dashboard() {
       <div className="hidden md:flex md:w-72 md:flex-col">
         <div className="flex flex-col flex-grow overflow-y-auto bg-white md:w-72 fixed h-screen">
           <div className="flex items-center justify-center flex-shrink-0 py-20 pb-16 bg-lime-50">
-           <img src="/svg/Logo.svg" alt="Logo" className="h-36" />
+           <Image width={200} height={200} src="/svg/Logo.svg" alt="Logo" className="h-36" />
           </div>
 
           {/* <div className="px-10 mt-6">
@@ -90,7 +92,7 @@ function Dashboard() {
           <div className="flex flex-col flex-1 px-7 mt-20">
             <div className="space-y-1">
               {NAV_ITEMS.map((item: Items, index: number) => (
-                <a
+                <Link
                   key={index}
                   href={item.url}
                   title=""
@@ -102,7 +104,7 @@ function Dashboard() {
                 >
                   {item.icon}
                   <StyledButton text={item.title} type="bold"/>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

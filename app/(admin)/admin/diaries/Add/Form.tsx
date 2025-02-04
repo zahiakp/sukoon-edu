@@ -1,50 +1,20 @@
 "use client";
-
-import { useState, useMemo, useEffect } from "react";
-import { useFormik } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
-import FormInput, {
-  FormCusInput,
+import {
   BodyInput,
-  FormSelect,
   FormUpload,
   TitleInput,
 } from "@/components/common/FormAssets";
 import { useRouter } from "next/navigation";
 import { PiUploadBold } from "react-icons/pi";
-import { RiSave3Line } from "react-icons/ri";
-import { Select } from "antd";
-import { antFilterOption } from "@/components/common/antFillteroption";
-import { ArraytoString, StringtoArray } from "@/components/common/decodeTags";
-import { updateArticle, uploadImage } from "../../Add/func";
-import { id } from "date-fns/locale";
-import { Categories } from "../../Add/Form";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { uploadArticle, uploadImage } from "./func";
+import { useFormik } from "formik";
 import { showMessage } from "@/components/common/CusToast";
 
-const UploadForm = ({ data }: { data: any }) => {
+const UploadForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-
-  const POST_STATUS = useMemo(
-    () => [
-      { value: "active", label: "active" },
-      { value: "inactive", label: "inactive" },
-    ],
-    []
-  );
-
-  useEffect(() => {
-    if (data) {
-      formik.setValues({
-        file: data?.image,
-        image: data?.image,
-        title: data?.title,
-        body: data?.body,
-      });
-    }
-  }, [data]);
 
   const formik = useFormik({
     initialValues: {
@@ -54,50 +24,49 @@ const UploadForm = ({ data }: { data: any }) => {
       body: "",
     },
     validationSchema: Yup.object({
-      // file: Yup.mixed().required("Image is required"),
       title: Yup.string().required("Title is required"),
       body: Yup.string().required("Content is required"),
+      file: Yup.mixed().notRequired(),
     }),
+    
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        if (formik.values.file !== data?.image) {
+        if(values.file){
           const imageUploadResult = await uploadImage(values.file);
           if (imageUploadResult?.success) {
             const image = imageUploadResult.filename;
-            const newsUploadResult = await updateArticle(
-              data?.id,
+            const newsUploadResult = await uploadArticle(
               values.title,
               values.body,
-              image,
+              image
             );
             if (newsUploadResult) {
-              showMessage("Dairy updated successfully","success")
-              router.replace("/admin/articles/");
+              showMessage("Dairy uploaded successfully","success")
+              router.replace("/admin/diaries/");
               router.refresh();
             } else {
-              showMessage("Something went wrong!","error")
+             showMessage("Something went wrong!","error")
             }
           }
-        } else {
-          const image = data?.image;
-          const newsUploadResult = await updateArticle(
-            data?.id,
+        }else{
+          const newsUploadResult = await uploadArticle(
             values.title,
             values.body,
-            image,
+            values.image,
           );
           if (newsUploadResult) {
-            showMessage("Dairy updated successfully","success")
-            router.replace("/admin/articles/");
+            showMessage("Dairy uploaded successfully","success")
+            router.replace("/admin/diaries/");
             router.refresh();
           } else {
             showMessage("Something went wrong!","error")
           }
         }
+        
       } catch (error) {
         console.error("Error:", error);
-        showMessage("Something went wrong!","error")
+       showMessage("Something went wrong!","error")
       } finally {
         setLoading(false);
       }
@@ -117,25 +86,7 @@ const UploadForm = ({ data }: { data: any }) => {
             name="title"
             placeholder="Title"
           />
-          <BodyInput formik={formik} name="body" label="" />
-
-          {/* <div className="bg-white rounded-md mt-4 p-4 grid gap-1">
-            <div className="flex justify-between items-center">
-              <p>Select Tags</p>
-            </div>
-            <Select
-              variant="borderless"
-              mode="tags"
-              className="w-full border rounded-md focus:border-zinc-900 mt-2 py-1 cursor-pointer"
-              showSearch
-              placeholder="Select tags"
-              size="large"
-              filterOption={antFilterOption}
-              value={formik.values["tags"]}
-              onChange={(value) => formik.setFieldValue("tags", value)}
-              options={Categories}
-            />
-          </div> */}
+          <BodyInput formik={formik} label="" name="body" />
         </div>
         <div className="col-span-1">
           <div className="grid gap-2 w-full text-lg">
@@ -168,22 +119,15 @@ const UploadForm = ({ data }: { data: any }) => {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  <p>Updating...</p>
+                  <p>Publishing...</p>
                 </>
               ) : (
                 <>
                   <PiUploadBold className="text-lg ml-2" />
-                  <p>Update</p>
+                  <p>Publish</p>
                 </>
               )}
             </button>
-            {/* <button
-              className="btn bg-white text-zinc-800 border-zinc-700"
-              disabled
-            >
-              <RiSave3Line className="mr-2 text-lg" />
-              Save & Unlist
-            </button> */}
           </div>
           <div
             className={` border mt-5 rounded-md p-4 grid gap-3 ${
@@ -204,27 +148,6 @@ const UploadForm = ({ data }: { data: any }) => {
               fileTypes="image/*"
             />
           </div>
-
-          {/* <div className="mt-2 p-2 rounded-lg bg-zinc-200 grid gap-2">
-            <div
-              className={` border  rounded-md p-4 grid gap-3 ${
-                formik.errors["type"] && formik.touched["type"]
-                  ? "bg-red-100 border-red-500"
-                  : "bg-white"
-              }`}
-            >
-              <div className="flex justify-between items-center">
-                <p>Select Category</p>
-              </div>
-              <FormSelect
-                formik={formik}
-                name="type"
-                placeholder="Select Category"
-                label=""
-                items={Categories}
-              />
-            </div>
-          </div> */}
         </div>
       </form>
     </div>
@@ -232,3 +155,13 @@ const UploadForm = ({ data }: { data: any }) => {
 };
 
 export default UploadForm;
+
+export const Categories = [
+  { label: "General", value: "General" },
+  { label: "Education", value: "Education" },
+  { label: "Health", value: "Health" },
+  { label: "Culture", value: "Culture" },
+  { label: "Commerce", value: "Commerce" },
+  { label: "Agriculture", value: "Agriculture" },
+  { label: "Living", value: "Living" },
+];

@@ -11,7 +11,7 @@ function FounderNote() {
           <h6 className="Grotesque-font text-5xl !leading-[25px] md:text-6xl text-zinc-500 font-medium">
           Founder's <TextAnimate animation="blurInUp" by="character" className="text-6xl  text-lime-600 font-semibold">Message</TextAnimate>
           </h6>
-          <div data-aos='fade-up'  data-aos-delay='100' className="h-28 w-28 max-w-[85%] rounded-[30px] overflow-hidden border-t-4 mt-5 border border-lime-600"><img className="h-full w-full object-cover" src="/image/ptsaqafi.jpg" alt="" /></div>
+          <div data-aos='fade-up'  data-aos-delay='100' className="h-32 w-32 max-w-[85%] rounded-[30px] overflow-hidden border-t-4 mt-5 border border-lime-600"><img className="h-full w-full object-cover" src="/image/pt muhammed photo-min.jpg" alt="" /></div>
         <p data-aos='fade-up' data-aos-delay='300' className="font-semibold text-lg mt-3 !leading-5">PT Muhammed <br />
         <span className="mt-5 font-normal text-base">
         Founder, Sukoon Edu Foundation</span></p>
