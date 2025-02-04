@@ -3,7 +3,7 @@ import React from 'react'
 function Hero() {
   return (
     <div className='w-full h-[400px] md:h-[500px]'
-    style={{backgroundImage:'linear-gradient(to top, rgba(0, 0, 0,0.9), rgba(0,0,0,0)),url(https://liffeycollege.ie/wp-content/uploads/2021/10/liffeycollege_job_student_studyandwork_liffey_college_englishschool_english_school_intercambio_estude_na_irlanda.jpg)',
+    style={{backgroundImage:'linear-gradient(to top, rgba(0, 0, 0,0.7), rgba(0,0,0,0)),url(/image/12.jpg)',
         backgroundPosition:"center",
         backgroundSize:"cover",
     }}>

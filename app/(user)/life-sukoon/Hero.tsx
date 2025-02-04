@@ -6,7 +6,7 @@ function Hero() {
       className="w-full h-[400px] md:h-[500px]"
       style={{
         backgroundImage:
-          "linear-gradient(to top, rgba(42, 64, 10,0.9), rgba(0,0,0,0)),url(/image/banner.jpg)",
+          "linear-gradient(to top, rgba(0, 0, 0,0.7), rgba(0,0,0,0)),url(/image/7.jpg)",
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}

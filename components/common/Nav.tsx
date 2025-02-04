@@ -20,7 +20,7 @@ function Nav({ active }: any) {
     { label: "Feel Sukoon",items:[
       {label:"About us",path:"/about"},
       {label:"Stories",path:""},
-      {label:"Diary",path:"/diary"},
+      {label:"Diaries",path:"/diary"},
     ]},
     { label: "Our Projects",
       items:[

@@ -78,7 +78,7 @@ function Forms() {
         },
       ];
   return (
-    <div className='w-[90%] max-w-[1200px] mx-auto my-40'>
+    <div className='w-[90%] max-w-[1200px] mx-auto my-20'>
     {items.length > 0 ? 
           <div className="grid lg:grid-cols-3 gap-6 py-4">
                {items.map((inv: any,i:number) => (
