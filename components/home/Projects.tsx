@@ -6,7 +6,7 @@ import { TextAnimate } from '../ui/text-animate'
 
 function Projects() {
     const PROJECTS = [
-        {img:"Residential Campus (2).jpg",label:"Residential Campus",dis:"Sukoon Residential School offers Grades 7–12 education in a structured residential setting, emphasizing academics, character, ethical studies and leadership. It prepares students to tackle global challenges and thrive in a changing world."},
+        {img:"Residential_Campus(2).jpg",label:"Residential Campus",dis:"Sukoon Residential School offers Grades 7–12 education in a structured residential setting, emphasizing academics, character, ethical studies and leadership. It prepares students to tackle global challenges and thrive in a changing world."},
         {img:"VILLAGE SCHOOL.webp",label:"Village School",dis:"Sukoon Village School, a CBSE-affiliated institution, it provides localized learning that integrates the village's cultural and environmental aspects, empowering children with education while preserving their traditional values."},
         {img:"Learning Centers Photo.webp",label:"Learning Centers",dis:"Sukoon Learning Centres provide foundational education in rural areas, focusing on literacy, numeracy, and social skills. They bridge educational gaps and offer flexible learning opportunities for underserved children who lack formal schooling, supporting their personal growth."},
         {img:"IMGtest_1824.JPG",label:"Sukoon Milan",dis:"Sukoon Milan empowers youth and women through skill development and community engagement. It promotes economic self-reliance, inclusivity, and stronger community bonds. The initiative drives collective growth, reflecting Sukoon’s mission of harmony and transformation."},

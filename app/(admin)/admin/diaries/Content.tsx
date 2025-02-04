@@ -89,11 +89,11 @@ function Content() {
                 <li>
                   <Link href="/admin">Dashbord</Link>
                 </li>
-                <li>Dairies</li>
+                <li>Diaries</li>
               </ul>
             </div>
             <h1 className="text-3xl font-[200] flex items-center gap-2">
-            Dairies{" "}
+            Diaries{" "}
               {totalRecords !== "loading" && (
                 <span className="text-base ml-2 text-zinc-700 p-[6px] px-5 rounded-3xl bg-zinc-200/80">{`${totalRecords} Items`}</span>
               )}
@@ -117,7 +117,7 @@ function Content() {
             </div>
           </div>{" "}
           <Link
-            href={"/admin/articles/Add"}
+            href={"/admin/diaries/Add"}
             className="gap-2 cursor-pointer p-[8px] px-4 bg-zinc-800 hover:shadow-lg hover:-translate-y-1 duration-200 rounded-md text-white w-fit shadow-lg flex items-center"
           >
             <RiAddCircleFill />
@@ -156,13 +156,13 @@ function Content() {
                       <TbPhotoUp className="text-xl text-zinc-600 " />
                     </div>
                   )}
-                  <a
+                  <Link
                     data-tip="Edit"
-                    href={`/admin/articles/Edit/${encodeId(item?.id)}`}
+                    href={`/admin/diaries/Edit/${encodeId(item?.id)}`}
                     className="tooltip h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center cursor-pointer"
                   >
                     <TbEdit className="text-xl text-blue-600 " />
-                  </a>
+                  </Link>
                   {/* <div className="h-10 w-10 rounded-lg bg-red-50 flex items-center justify-center cursor-pointer">
                       <MdDeleteOutline className="text-xl text-red-500 " />
                     </div> */}

@@ -15,6 +15,8 @@ import { MdEditDocument } from "react-icons/md";
 import { encodeId } from "@/components/common/decode";
 import { ROOT_URL } from "@/components/data/func";
 import { getCareer } from "./Add/func";
+import { CgArrowsExpandUpRight } from "react-icons/cg";
+import DeleteItem from "./Add/Delete";
 
 function Content() {
   const [imageView, setImageView] = useState<any>(false);
@@ -155,18 +157,20 @@ function Content() {
                  dangerouslySetInnerHTML={{ __html: item.body.substring(0, 50) }}
                ></article>
              <div>
-              <div className="flex items-center gap-2 mt-2">
+              <div className="flex items-center gap-1 mt-2">
                <Link
-                 href={`/admin/${encodeId(item.id)}`}
-                 className="inline-block bg-lime-500 hover:bg-primary-600 text-white px-5 py-1 rounded-lg"
-               >
+               href={``}
+                //  href={`/admin/${encodeId(item.id)}`}
+                 className=" bg-lime-500 hover:bg-primary-600 flex items-center gap-2 text-white px-3 pr-4 py-1 rounded-lg"
+               > <CgArrowsExpandUpRight />
                  Entries
                </Link>
-               <a data-tip="Edit" href={`/admin/articles/Edit/${encodeId(item?.id)}`}
+               <Link data-tip="Edit" href={`/admin/careers/Edit/${encodeId(item?.id)}`}
                                    className="tooltip h-8 w-8 rounded-lg bg-blue-500 flex items-center justify-center cursor-pointer"
                                  >
                                    <TbEdit className="text-lg text-white " />
-                                 </a>
+                                 </Link>
+                                 <DeleteItem id={item?.id} fetch={fetchNews} />
                </div>
              </div>
            </div>

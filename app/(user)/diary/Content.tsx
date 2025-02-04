@@ -1,15 +1,15 @@
 'use client'
-import { getArticle } from '@/app/(admin)/admin/articles/Add/func';
 import Empty from '@/components/common/Empty';
 import NewsCard from '@/components/common/NewsCard'
 import Spinner from '@/components/common/Spinner'
 import Link from 'next/link';
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { decodeId, encodeId } from '@/components/common/decode';
+import { getArticle } from '@/app/(admin)/admin/diaries/Add/func';
 function Content() {
     const [news, setNews] = useState<any>("loading");
       const [totalRecords, setTotalRecords] = useState<any>("loading");
@@ -66,9 +66,10 @@ function Content() {
         
           
             {news.map((item: any, index: number) => (
+              <Fragment key={index}>
               <Link data-aos="fade-up" data-aos-delay={(index+2)*100} key={index} href={`/diary/${encodeId(item.id)}`} className='hover:scale-[1.01] duration-300'>
                 <NewsCard data={item} />
-              </Link>
+              </Link></Fragment>
             ))}
             
           

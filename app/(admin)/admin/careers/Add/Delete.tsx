@@ -12,10 +12,10 @@ const DeleteItem = ({ id,fetch }: { id: any,fetch:any }) => {
   return (
     <button data-tip="Delete"
       onClick={async () => {
-        if (confirm("Are you sure you want to delete")) {
+        if (confirm(`Are you sure you want to delete career #${id}`)) {
           await deleteCareer(id).then((res: any) => {
             if (res) {
-              showMessage("Dairy Deleted successfully","success");
+              showMessage("Career Deleted successfully","success");
                  fetch()
             } else {
               showMessage("Something went wrong","error");
@@ -23,9 +23,9 @@ const DeleteItem = ({ id,fetch }: { id: any,fetch:any }) => {
           });
         }
       }}
-      className="h-10 w-10 rounded-lg bg-red-50 flex items-center justify-center cursor-pointer tooltip"
+      className="h-8 w-8 rounded-lg bg-red-500 flex items-center justify-center cursor-pointer tooltip"
     >
-      <MdDeleteOutline className="text-xl text-red-500 " />
+      <MdDeleteOutline className="text-xl text-white " />
     </button>
   );
 };

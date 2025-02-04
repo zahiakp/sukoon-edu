@@ -1,8 +1,10 @@
+'use client'
 import AdminLayout from '@/components/Layout/AdminLayout'
 import React from 'react'
-import Content from './Content'
+import dynamic from 'next/dynamic'
 
 function page() {
+  const Content = dynamic(() => import('./Content'), { ssr: false });
   return (
     <AdminLayout>
       <Content/>
