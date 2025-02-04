@@ -8,7 +8,7 @@ function Projects() {
     {
       id: "Residential-Campus",
       name: "Sukoon Residential Campus",
-      image: "Residential Campus (2).jpg",
+      image: "Residential_Campus(2).jpg",
       dis: "Sukoon Residential School is a premier institution dedicated to nurturing young minds from Grades 7 to 12 in a structured residential environment. Our campus is designed to provide a holistic educational experience that blends academic excellence, character development, and moral education. At Sukoon Residential School, we prepare students not just for exams but for life. Sukoon Residential School shapes tomorrow’s leaders—young individuals who think critically, act compassionately, and contribute meaningfully to society.",
       qus: "What Sets Us Apart?",
       items: [
@@ -63,22 +63,22 @@ function Projects() {
       {Projects.map((project: any, i: number) => (
         <Fragment key={i}>
           <section id={project.id}
-            className={`py-32 ${i % 2 == 1 ? "bg-lime-50" : "bg-white"}`}
+            className={`py-20 md:py-32 ${i % 2 == 1 ? "bg-lime-50" : "bg-white"}`}
           >
             <main
-              className={`w-[90%] max-w-[1200px] mx-auto flex justify-center ${
-                i % 2 == 1 ? "flex-row-reverse" : ""
-              } gap-28`}
+              className={`w-[90%] max-w-[1200px] mx-auto flex-col md:flex-row items-center flex justify-center ${
+                i % 2 == 1 ? "md:flex-row-reverse" : "md:flex-row"
+              } gap-10 md:gap-28`}
             >
               <div className="relative group/img" data-aos="fade-up" data-aos-delay="300">
-                <div className="h-full w-80 z-[5] group-hover/img:scale-[1.02] duration-300 rounded-[40px] shadow-md overflow-hidden relative">
+                <div className="h-80 md:h-96 w-[100%] max-w-80 md:w-80 z-[5] group-hover/img:scale-[1.02] duration-300 rounded-[40px] shadow-md overflow-hidden relative">
                   <img
                     src={`/image/${project.image}`}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="h-72 w-72 group-hover/img:-translate-y-[65%] duration-300 absolute top-[50%] -translate-y-[50%] translate-x-16 z-[1] opacity-15 rounded-[40px] shadow-md overflow-hidden">
+                <div className="hidden md:block h-72 w-72 group-hover/img:-translate-y-[65%] duration-300 absolute top-[50%] -translate-y-[50%] translate-x-16 z-[1] opacity-15 rounded-[40px] shadow-md overflow-hidden">
                   <img
                     src={`/image/${project.image}`}
                     alt=""
@@ -86,7 +86,7 @@ function Projects() {
                   />
                 </div>
 
-                <div className="h-72 w-72 group-hover/img:-translate-y-[35%] duration-300 absolute top-[50%] -translate-y-[50%] -translate-x-10 z-[1] opacity-15 rounded-[40px] shadow-md overflow-hidden">
+                <div className="hidden md:block h-72 w-72 group-hover/img:-translate-y-[35%] duration-300 absolute top-[50%] -translate-y-[50%] -translate-x-10 z-[1] opacity-15 rounded-[40px] shadow-md overflow-hidden">
                   <img
                     src={`/image/${project.image}`}
                     alt=""
@@ -95,7 +95,7 @@ function Projects() {
                 </div>
               </div>
               <div className="flex-1 gap-3 flex flex-col w-3/4">
-                <h6 className="text-6xl Grotesque-font text-green-600 font-bold">
+                <h6 className="text-5xl md:text-6xl Grotesque-font text-green-600 font-bold">
                   <TextAnimate animation="blurInUp" by="word">
                     {project.name}
                   </TextAnimate>
