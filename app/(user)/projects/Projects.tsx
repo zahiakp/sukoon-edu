@@ -8,7 +8,7 @@ function Projects() {
     {
       id: "Residential-Campus",
       name: "Sukoon Residential Campus",
-      image: "6.jpg",
+      image: "Residential Campus (2).jpg",
       dis: "Sukoon Residential School is a premier institution dedicated to nurturing young minds from Grades 7 to 12 in a structured residential environment. Our campus is designed to provide a holistic educational experience that blends academic excellence, character development, and moral education. At Sukoon Residential School, we prepare students not just for exams but for life. Sukoon Residential School shapes tomorrow’s leaders—young individuals who think critically, act compassionately, and contribute meaningfully to society.",
       qus: "What Sets Us Apart?",
       items: [
@@ -21,7 +21,7 @@ function Projects() {
     {
       id: "Village-School",
       name: "Sukoon Village School",
-      image: "7.jpg",
+      image: "VILLAGE SCHOOL.webp",
       dis: "Sukoon Village School is a CBSE-affiliated institution that blends modern education with cultural preservation. We provide a high-quality learning experience from kindergarten to Grade 12, ensuring that students receive a strong academic foundation while staying connected to their roots. We integrate the cultural, environmental, and social aspects of the village into our curriculum, fostering a sense of pride and identity among students. Our goal is to empower students with critical thinking skills, creativity, and a problem-solving mindset. By blending tradition with modernity, Sukoon Village School prepares students for the global stage while preserving their unique cultural identities.",
       qus: "Our Unique Approach:",
       items: [
@@ -34,7 +34,7 @@ function Projects() {
     {
       id: "Learning-Centres",
       name: "Sukoon Learning Centres",
-      image: "5.jpg",
+      image: "Learning Centers Photo.webp",
       dis: "Sukoon Learning Centres are a beacon of hope for children in rural and underserved areas who face barriers to formal education. These centres provide flexible, inclusive, and foundational learning opportunities to ensure that every child, regardless of their circumstances, has access to education. Our primary focus is on literacy, numeracy, and social skills, empowering children with the tools they need to succeed. Recognizing that many children may not be able to attend full-time school due to economic hardships, family responsibilities, or lack of infrastructure, we offer supplementary education in key subjects. This helps bridge gaps in the traditional education system, ensuring that students stay engaged in learning. These centres serve as a stepping stone to formal education, opening doors for children who might otherwise be left behind. ",
       qus: "Key Features:",
       items: [
@@ -47,7 +47,7 @@ function Projects() {
     {
       id: "Sukoon-Milan",
       name: "Sukoon Milan",
-      image: "2.jpg",
+      image: "IMGtest_1824.JPG",
       dis: "Sukoon Milan is more than just a program—it’s our comprehensive social empowerment initiative that brings together skill development, livelihood support, community projects, and essential services for people in need. Rooted in the core values of unity, inclusivity, and sustainable growth, Sukoon Milan works to create opportunities that uplift individuals, strengthen communities, and empower society at large.",
       qus: "Key Projects Under Sukoon Milan",
       items: [
