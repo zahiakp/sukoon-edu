@@ -22,12 +22,12 @@ function Nav({ active }: any) {
       {label:"Stories",path:""},
       {label:"Diaries",path:"/diary"},
     ]},
-    { label: "Our Projects",
+    { label: "Our Projects",path:"/projects",
       items:[
-      {label:"Residential Campus",path:""},
-      {label:"Village School",path:""},
-      {label:"Learning Centers",path:""},
-      {label:"Milan",path:""},
+      {label:"Residential Campus",path:"/projects#Residential-Campus"},
+      {label:"Village School",path:"/projects#Village-School"},
+      {label:"Learning Centers",path:"/projects#Learning-Centres"},
+      {label:"Milan",path:"/projects#Sukoon-Milan"},
     ] 
   },
     { label: "Life at Sukoon", path: "/life-sukoon" },
@@ -99,7 +99,7 @@ function Nav({ active }: any) {
             ))}
             </ul>
           <a href="/donate" className=" p-2 px-5 rounded-xl text-white font-semibold bg-lime-500 flex items-center gap-2 text-base">
-            <FaHeart />
+            <FaHeart className="text-yellow-300"/>
             Donate
           </a>
         </div>

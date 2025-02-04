@@ -21,7 +21,7 @@ function SukoonianLife() {
           className="w-[300px] h-[300px] bg-white shadow-xl border border-lime-400 overflow-hidden rounded-[60px]"
         >
           <img
-            src="/image/IMG_1830test.JPG"
+            src="/image/7.jpg"
             alt=""
             className="h-full w-full object-cover"
           />
@@ -30,7 +30,7 @@ function SukoonianLife() {
           data-aos="fade-right"
           className="flex items-start flex-col md:w-1/2 px-10"
         >
-          <h6 className="Grotesque-font text-5xl md:text-6xl text-zinc-500 !leading-[55px] font-medium">
+          <h6 className="Grotesque-font text-5xl md:text-6xl text-zinc-600 !leading-[55px] font-medium">
             A Day in the Life of <br className="hidden md:block" /><span className="font-bold text-lime-600"> A Sukoonian</span>
           </h6>
           <p className="text-left mt-5">

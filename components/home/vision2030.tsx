@@ -3,6 +3,7 @@ import React from "react";
 import NumberTicker from "../ui/number-ticker";
 import StyledButton from "../common/StyledButton";
 import { TextAnimate } from "../ui/text-animate";
+import { IoMdArrowForward } from "react-icons/io";
 
 function Impact() {
   const ITEMS = [
@@ -25,7 +26,9 @@ function Impact() {
             for future generations. We are committed to creating lasting change
             by empowering students and uplifting communities across India.
           </p>
-          <p className="text-lime-300 leading-[12px] mt-5 hidden md:block">{`>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`} <br />{`<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<`}</p>
+          <a data-aos="fade-up" data-aos-delay="500" href="/donate" className="flex items-center gap-2 hover:gap-3 duration-300 p-2 px-5 rounded-xl w-fit text-sm bg-lime-500 text-white mt-4">Yes! I want to help<IoMdArrowForward />
+                                    </a>
+          {/* <p className="text-lime-300 leading-[12px] mt-5 hidden md:block">{`>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`} <br />{`<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<`}</p> */}
         </div>
         <div className="mt-10 grid grid-cols-2 md:grid-cols-2 gap-4">
           {ITEMS.map((item: any, i: number) => (

@@ -74,7 +74,7 @@ function Features() {
     <>
       <div className="bg-green-500 py-8 relative group">
       <FlickeringGrid 
-        className="z-0 absolute overflow-x-hidden inset-0 size-full"
+        className="z-0 absolute overflow-hidden inset-0 size-full"
         squareSize={14}
         gridGap={9}
         color="#ffffff"
@@ -119,7 +119,7 @@ function Features() {
             </p>
             <div className={`mt-10 grid grid-cols-1 w-full md:w-fit md:grid-cols-${feature.items.length} gap-4 z-[2]`}>
                 {feature.items.map((item:any,ii:number)=>(
-                     <div data-aos="fade-up" data-aos-delay={`${ii+2}00`} key={ii} className={`flex md:min-w-[250px] w-full md:w-fit relative cursor-pointer after:h-[6px] after:bg-green-500 after:absolute after:bottom-0 after:w-0 hover:after:w-full after:duration-300 group/box items-center justify-center flex-col border hover:-translate-y-1 duration-300 hover:shadow-lg ${i%2==0?"bg-white border-green-400":"bg-green-50/50 border-green-500"} p-7 px-10 overflow-hidden rounded-2xl`}>
+                     <div data-aos="fade-up" data-aos-delay={`${ii+2}00`} key={ii} className={`flex md:min-w-[250px] w-full md:w-fit relative cursor-pointer after:h-[6px] after:bg-green-500 after:absolute after:left-0 after:bottom-0 after:w-0 hover:after:w-full after:duration-300 group/box items-center justify-center flex-col border hover:-translate-y-1 duration-300 hover:shadow-lg ${i%2==0?"bg-white border-green-400":"bg-green-50/50 border-green-500"} p-7 px-10 overflow-hidden rounded-2xl`}>
                         {/* <LuSchool  className="text-7xl text-lime-600"/> */}
               <img src={item.image} alt="" className="h-32"/>
 
