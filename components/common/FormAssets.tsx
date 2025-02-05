@@ -266,14 +266,14 @@ export function FormUpload({
   placeholder,
   name,
   label,
-  fileTypes,
+  fileTypes,folder
 }: {
   add_url?: any;
   formik: any;
   placeholder: string;
   name: string;
   label: string;
-  fileTypes?: string;
+  fileTypes?: string;folder?:string
 }) {
   const [file, setFile] = useState<string | undefined>(undefined);
   const formik_image = formik.values.file;
@@ -304,7 +304,7 @@ export function FormUpload({
             <div
               className="h-full w-full rounded-lg "
               style={{
-                backgroundImage: `url(${ROOT_URL}/uploads/news/${formik_image})`,
+                backgroundImage: `url(${ROOT_URL}/uploads/${folder}/${formik_image})`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",

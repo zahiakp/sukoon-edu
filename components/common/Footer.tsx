@@ -1,13 +1,25 @@
 import React from "react";
 import { AiFillInstagram } from "react-icons/ai";
-import { FaFacebookF, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiGlobe } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoMdArrowForward, IoMdCall } from "react-icons/io";
+import { LuYoutube } from "react-icons/lu";
 import { RiWhatsappFill } from "react-icons/ri";
+import { TiSocialFacebook } from "react-icons/ti";
 
 function Footer() {
+  const SOCIAL_LINKS: any[] = [
+                {
+                  icon: <AiFillInstagram />,
+                  link: "https://www.instagram.com/mysukoon.in?igsh=ejhubHRlMGJ6dmZo",
+                },
+                { icon: <RiWhatsappFill />, link: "" },
+                { icon: <TiSocialFacebook />, link: "" },
+                // { icon: <FaXTwitter />, link: "" },
+                { icon: <FaYoutube />, link: "" },
+              ]
   return (
     <section className="py-10 bg-gray-50 sm:pt-16 lg:pt-24">
       <div className="mx-auto sm:px-6 px-7 lg:px-10 max-w-7xl">
@@ -32,10 +44,34 @@ function Footer() {
             </p>
 
             <ul className="mt-6  space-y-4">
-              {[{label:"Feel Sukoon",path:""},
-              // {label:"Our Projects",path:""},{label:"Life at Sukoon",path:""},
+              {[{label:"Feel Sukoon",path:""},{label:"Our Projects",path:""},{label:"Life at Sukoon",path:""},{label:"Join us",path:""},{label:"Connect us",path:""},{label:"Donate",path:"/donate"}
+              ].map(
+                (item: any, index: number) => (
+                  <li key={index}>
+                    <a
+                      href={item.path}
+                      title=""
+                      className="flex text-base group items-center hover:translate-x-0 -translate-x-2 gap-2 text-black transition-all duration-200  hover:font-semibold focus:text-primary"
+                    >
+                      {" "}
+                      <span className="group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 duration-300 text-lime-600 opacity-0"><IoMdArrowForward />
+                      </span>{item.label}{" "}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay='200' className="col-span-2 md:col-span-1">
+            <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
+              Useful Links
+            </p>
+
+            <ul className="mt-6  space-y-4">
+              {[
                {label:"Privacy & Policy",path:'/privacypolicy'},{label:"Refund Policy",path:'/refundpolicy'},{label:"Terms & Conditions",path:'/terms'},
-               {label:"Connect us",path:""}
+               {label:"Admin Panel",path:"/admin"}
               ].map(
                 (item: any, index: number) => (
                   <li key={index}>
@@ -68,9 +104,20 @@ function Footer() {
             <p>+91- 9645900096</p></a>
             <a href="" className="flex items-center gap-2 mt-2"><FiGlobe className="text-lime-600"/>
             <p>www.mysukoon.in</p></a>
+            <div className="flex mt-5">
+                  {SOCIAL_LINKS.map((link: any, index: number) => (
+                    <a
+                      key={index}
+                      href={link.link}
+                      className="bg-gradient-to-tr from-lime-600 to-lime-500 text-white duration-300 p-2 rounded-[10px] mr-2 hover:scale-[1.1]"
+                    >
+                      {link.icon}
+                    </a>
+                  ))}
+                </div>
           </div>
 
-          <div data-aos="fade-up" data-aos-delay='400' className="col-span-2 md:col-span-1 lg:col-span-1 lg:pl-8">
+          {/* <div data-aos="fade-up" data-aos-delay='400' className="col-span-2 md:col-span-1 lg:col-span-1 lg:pl-8">
             <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
               Subscribe to newsletter
             </p>
@@ -97,20 +144,17 @@ function Footer() {
                 Subscribe
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
 
-        <hr className="mt-16 mb-10 border-cyan-400/60" />
+        <hr className="mt-16 mb-8 border-zinc-300/60" />
 
         <div className="flex items-center justify-center md:justify-between">
           <p className="text-sm text-center text-gray-600">
           © 2025 Sukoon Edu Foundation
-            <a
-              href="https://ziqx.in"
-              className="text-violet-600 cursor-pointer"
-            ></a>
+            
           </p>
-          <div className="md:flex gap-3 hidden">
+          {/* <div className="md:flex gap-3 hidden">
             <a
               href=""
               className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center duration-300"
@@ -142,7 +186,10 @@ function Footer() {
               <FaYoutube
               className="text-zinc-800" />
             </a>
-          </div>
+          </div> */}
+          <a href="https://ziqx.cc" className="text-sm my-2">
+          ⚡ ziqx.cc
+        </a>
         </div>
       </div>
     </section>

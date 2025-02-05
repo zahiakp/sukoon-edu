@@ -49,8 +49,8 @@ const NewsCard = React.memo(({ inv,i }: { inv: NewsItem,i:number }) => {
                     ></article>
                   <div>
                     <Link
-                    href={`#`}
-                      // href={`/join/${encodeId(inv.id)}`}
+                    // href={`#`}
+                      href={`/join/${encodeId(inv.id)}`}
                       className="inline-block bg-lime-600 hover:bg-primary-600 text-white px-3 py-1 rounded mt-2"
                     >
                       Apply

@@ -138,7 +138,7 @@ function Content() {
             {news.map((item: any, index: number) => (
              <div
              key={item.id}
-             className="p-5 border rounded-lg hover:border-lime-500 duration-300 cursor-pointer hover:scale-[1.01]"
+             className="p-5 border rounded-lg bg-white hover:border-lime-500 duration-300 cursor-pointer hover:scale-[1.01]"
            >
              <div
                className="text-xs px-2 py-1 bg-lime-100
@@ -157,11 +157,11 @@ function Content() {
                  dangerouslySetInnerHTML={{ __html: item.body.substring(0, 50) }}
                ></article>
              <div>
-              <div className="flex items-center gap-1 mt-2">
+              <div className="flex items-center gap-[6px] mt-2">
                <Link
-               href={``}
-                //  href={`/admin/${encodeId(item.id)}`}
-                 className=" bg-lime-500 hover:bg-primary-600 flex items-center gap-2 text-white px-3 pr-4 py-1 rounded-lg"
+              //  href={``}
+                 href={`/admin/careers/${encodeId(item.id)}`}
+                 className=" bg-green-500 hover:bg-primary-600 flex items-center gap-2 text-white px-3 pr-4 py-1 rounded-lg"
                > <CgArrowsExpandUpRight />
                  Entries
                </Link>

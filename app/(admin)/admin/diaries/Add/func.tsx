@@ -6,6 +6,7 @@ export async function uploadImage(file: any) {
   const URL: string = `${ROOT_URL}upload.php?api=${API_KEY}`;
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("folder", 'diaries');
 
   const resp = await fetch(URL, {
     method: "POST",

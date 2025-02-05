@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import Logout from "@/app/(admin)/admin/Logout";
 import { usePathname } from "next/navigation";
 import { TbLayoutDashboard, TbListDetails, TbSubtask, TbUserSquareRounded } from "react-icons/tb";
-import {PiNewspaperClippingBold, PiUsersThreeBold } from "react-icons/pi";
+import {PiAddressBookTabs, PiNewspaperClippingBold, PiUsersThreeBold } from "react-icons/pi";
 import { HiOutlineBookmarkAlt, HiOutlineCog } from "react-icons/hi";
 import StyledButton from "./StyledButton";
 import { MdOutlineAutoStories } from "react-icons/md";
@@ -34,11 +34,11 @@ function Dashboard() {
       url: "/admin/careers",
       icon: <TbSubtask  className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
     },
-    {
-      title: "Stories",
-      url: "/admin/stories",
-      icon: <MdOutlineAutoStories className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
-    },
+    // {
+    //   title: "Applications",
+    //   url: "#",
+    //   icon: <PiAddressBookTabs  className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
+    // },
     // {
     //   title: "Publications",
     //   url: "/admin/publications",

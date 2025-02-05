@@ -313,7 +313,7 @@ export function FormCV({
     <>
       <div className="py-2">
         <div className="text-sm text-primary-600 my-3"></div>
-        <div className="w-full h-72 rounded-2xl bg-gray-100 relative flex flex-col items-center justify-center group">
+        <div className="w-full h-72 rounded-2xl bg-white border border-lime-300 relative flex flex-col items-center justify-center group">
           <input
             type="file"
             className={`absolute w-full h-full  opacity-0`}
@@ -335,26 +335,33 @@ export function FormCV({
             click
           </button> */}
           {formik.values.cv ? (
+            <>
             <div
-              className="h-[60%] w-[80%] rounded-xl"
+              className="h-[150px] w-[200px]"
               style={{
-                backgroundImage: `url(/images/pdf_temp.jpg)`,
+                backgroundImage: `url(/image/pdffile.png)`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
+            <p className="mt-3 text-gray-400">
+            Drag your CV here or
+            <span className="text-blue-400"> Update CV file</span>
+          </p></>
           ) : (
+            <>
             <img
-              src="/images/selectimage.png"
+              src="/image/file.png"
               alt="hghfkj"
-              className="duration-300 h-28 group-hover:-translate-y-1 group-hover:scale-[1.05]"
+              className="duration-300 h-[170px]"
             />
-          )}
-          <p className="mt-3 text-gray-400">
+            <p className="mt-3 text-gray-400">
             Drag your CV here or
             <span className="text-blue-400"> upload CV file</span>
-          </p>
+          </p></>
+          )}
+          
           {formik.errors[name] && formik.touched[name] && (
             <p className="text-red-600 text-sm my-1 ml-1">
               {formik.errors[name]}

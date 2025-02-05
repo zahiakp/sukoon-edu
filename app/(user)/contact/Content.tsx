@@ -37,7 +37,7 @@ function Content() {
           <section>
             <div className="text-gray-600 text-lg  mt-5">
               <b>Sukoon Edu Foundation</b> <br />
-              New Delhi, India
+              Andhaka, Sudaka - Haryana
               <section className="py-3">
                 <a href="" className="flex items-center gap-2 mt-2"><HiOutlineMail className="text-lime-600"/>
                             <p>connect@mysukoon.in</p></a>
