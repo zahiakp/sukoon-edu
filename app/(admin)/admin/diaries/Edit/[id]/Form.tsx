@@ -202,6 +202,7 @@ const UploadForm = ({ data }: { data: any }) => {
               placeholder="Select Item"
               name="file"
               fileTypes="image/*"
+              folder="diaries"
             />
           </div>
 

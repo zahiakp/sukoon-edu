@@ -11,7 +11,7 @@ function Content({ data }: { data: any }) {
       <span className="text-lime-700">{getRelativeTime(data?.date)}</span>
       {data?.image!="" && <div className="w-full h-[450px] overflow-hidden rounded-2xl my-7">
         <img
-          src={`${ROOT_URL}uploads/news/${data.image}`}
+          src={`${ROOT_URL}uploads/diaries/${data.image}`}
           alt=""
           className="w-full h-full object-cover"
         />

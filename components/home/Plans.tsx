@@ -3,7 +3,7 @@ import React from "react";
 import NumberTicker from "../ui/number-ticker";
 import { RiArrowRightLine } from "react-icons/ri";
 import StyledButton from "../common/StyledButton";
-import GooglePayButton from '@google-pay/button-react';
+import GooglePayButton from "@google-pay/button-react";
 import { TextAnimate } from "../ui/text-animate";
 
 function Plans() {
@@ -23,24 +23,28 @@ function Plans() {
     { icon: "", size: "Other", plan: "Custom" },
   ];
 
-
   return (
     <div className=" py-8 relative overflow-hidden group bg-blue-50 pb-72 md:pb-[350px]">
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
         <h6 className="Grotesque-font text-5xl md:text-6xl text-sky-800 font-semibold">
-        {/* <StyledButton text=""/>  */}
-        <TextAnimate animation="blurInUp" by="word">Let’s Build Sukoon</TextAnimate>
+          {/* <StyledButton text=""/>  */}
+          <TextAnimate animation="blurInUp" by="word">
+            Let’s Build Sukoon
+          </TextAnimate>
         </h6>
-        <p data-aos='fade-up' className="text-zinc-500 text-center text-[14px] mt-5">
-          Sukoon Residential School provides a high-quality education for
-          students in Grades from Nursery to 12 in a structured residential
-          setting. Focused on academic excellence, character development, and
-          moral studies, the campus equips students with the skills to tackle
-          global challenges
+        <p
+          data-aos="fade-up"
+          className="text-zinc-500 text-center text-[14px] mt-5"
+        >
+          Your donation helps us provide quality education, safe spaces, and
+          essential resources for underprivileged children in North India who
+          deserve a brighter tomorrow.
         </p>
         <div className="mt-10 w-full grid grid-cols-2 md:grid-cols-3 gap-4">
           {ITEMS.map((item: any, i: number) => (
-            <div data-aos="fade-up" data-aos-delay={`${i+2}00`}
+            <div
+              data-aos="fade-up"
+              data-aos-delay={`${i + 2}00`}
               key={i}
               className=" relative border z-[1] border-b-sky-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
             >
@@ -52,19 +56,24 @@ function Plans() {
                 <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-3xl md:text-4xl font-semibold text-sky-600">
                   {item.plan}
                 </p>
-                <a href="/donate" className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-sky-200 group-hover/box:bg-sky-500 mt-4">
+                <a
+                  href="/donate"
+                  className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-sky-200 group-hover/box:bg-sky-500 mt-4"
+                >
                   <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
                 </a>
               </div>
             </div>
           ))}
-          
         </div>
-       
-
-
       </div>
-      <img data-aos="fade-up" data-aos-delay={`700`} src="/image/Sukoon Front View Without Sky.png" className='h-[500px] md:w-full w-auto object-cover md:object-bottom absolute bottom-0' alt="" />
+      <img
+        data-aos="fade-up"
+        data-aos-delay={`700`}
+        src="/image/Sukoon Front View Without Sky.png"
+        className="h-[500px] md:w-full w-auto object-cover md:object-bottom absolute bottom-0"
+        alt=""
+      />
     </div>
   );
 }

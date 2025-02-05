@@ -9,7 +9,7 @@ function Hero({data}:{data:any}) {
       className="w-full h-[400px] md:h-[500px] overflow-hidden"
       style={{
         backgroundImage:
-          `linear-gradient(to top, rgba(0, 0, 0,0.5), rgba(0,0,0,0)),url('${ROOT_URL}uploads/news/${data?.image}')`,
+          `linear-gradient(to top, rgba(0, 0, 0,0.5), rgba(0,0,0,0)),url('${ROOT_URL}uploads/diaries/${data?.image}')`,
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}

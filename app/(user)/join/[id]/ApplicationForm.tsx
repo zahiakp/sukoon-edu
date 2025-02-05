@@ -3,14 +3,16 @@
 import FormInput, { FormCV, FormTextArea, FormUpload } from "@/components/common/Form";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { applyForm, uploadCV } from "./applyForm";
+import {uploadApplication, uploadCV } from "./applyForm";
 import { MdDone } from "react-icons/md";
 import * as Yup from "yup";
 import Button from "@/components/common/Button";
 import Cancel from "@/components/common/Cancel";
 import { showMessage } from "@/components/common/CusToast";
+import { useRouter } from "next/navigation";
 
 const ApplicationForm = ({ invId }: { invId: any }) => {
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -30,20 +32,23 @@ const ApplicationForm = ({ invId }: { invId: any }) => {
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        const folder = "cv";
-        const imageUploadResult = await uploadCV(values.cv, folder);
+        const imageUploadResult = await uploadCV(values.cv);
 
         if (imageUploadResult.success) {
           const cv = imageUploadResult.filename;
-          await applyForm(invId,values.name, values.place, values.contact, values.email,values.message, cv).then((res) => {
-            if (res)
-            {
-              showMessage("success", "Application Submitted");
-                // toast.success("Application Submitted");
-                setApplied(true);
-               }
-           
-        });
+          if (imageUploadResult?.success) {
+                      const image = imageUploadResult.filename;
+                      const newsUploadResult = await uploadApplication(
+                        values,image,invId
+                      );
+                      if (newsUploadResult) {
+                        showMessage("Application uploaded successfully","success")
+                        router.replace("/join/");
+                        // router.refresh();
+                      } else {
+                       showMessage("Something went wrong!","error")
+                      }
+                    }
         } else {
           showMessage("error", "Something went wrong!");
         }
@@ -61,7 +66,7 @@ const ApplicationForm = ({ invId }: { invId: any }) => {
 
   if (applied) {
     return (
-      <div className="bg-blue-50 px-8 py-32 rounded-lg border border-blue-500 flex flex-col justify-center items-center">
+      <div className="bg-lime-100 px-8 py-32 rounded-lg border border-lime-500 flex flex-col justify-center items-center">
         <div className="h-20 w-20 bg-blue-500 rounded-full flex justify-center items-center mb-4">
           <MdDone className="text-5xl text-white" />
         </div>
@@ -78,8 +83,8 @@ const ApplicationForm = ({ invId }: { invId: any }) => {
     );
   }
   return (
-    <div className="bg-primary-50 p-8 rounded-lg border border-primary-500">
-      <h3 className="text-2xl font-bold text-primary-600 mb-2 border-b py-2">
+    <div className="bg-lime-50/50 p-8 rounded-lg border border-lime-500">
+      <h3 className="text-2xl font-bold text-lime-600 mb-2 border-b py-2">
         Apply Now
       </h3>
       <form onSubmit={formik.handleSubmit}>

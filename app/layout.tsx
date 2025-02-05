@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import { RiWhatsappFill } from "react-icons/ri";
-import { TbPhoneCall } from "react-icons/tb";
-import { PiPhoneCallFill } from "react-icons/pi";
-import { IoMdCall } from "react-icons/io";
-import Nav from "@/components/common/Nav";
-import Footer from "@/components/common/Footer";
 import PageLoader from "@/components/common/Loader";
-import AOSClient from "@/components/common/AOS";
 
 const outfit = Plus_Jakarta_Sans({ subsets: ["latin"] });
 

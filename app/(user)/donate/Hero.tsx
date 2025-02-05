@@ -15,7 +15,7 @@ function Hero() {
         <h1 className="text-5xl md:text-7xl font-bold font Grotesque-font text-lime-200">
           Let’s Build Sukoon
         </h1>
-        <p className="text-zinc-300 text-left hidden md:flex gap-2 text-[12px] md:text-[15px] mt-4 w-[80%]">
+        <p className="text-zinc-300 text-left flex gap-2 text-[13px] md:text-[15px] mt-4 w-[80%]">
           Your donation helps us provide quality education, safe spaces, and
           essential resources for underprivileged children in North India who
           deserve a brighter tomorrow.

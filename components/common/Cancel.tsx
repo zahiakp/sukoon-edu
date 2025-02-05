@@ -11,7 +11,7 @@ function Cancel({prefetch}:{prefetch?:string}) {
             router.prefetch(prefetch);
         }
         router.back();
-    }} className='bg-red-500 text-white rounded-3xl py-3 px-5 h-fit w-32 flex items-center justify-center cursor-pointer'>
+    }} className='bg-red-500 text-white rounded-lg py-3 px-5 h-fit w-32 flex items-center justify-center cursor-pointer'>
       Cancel
     </button>
   )

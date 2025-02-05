@@ -71,7 +71,7 @@ console.log(cusAmount);
   return (
     <div className=" py-8 relative overflow-hidden group bg-lime-50">
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
-      <div className="mt-10 w-full grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="mt-10 w-full grid grid-cols-1 md:grid-cols-3 gap-4">
         {ITEMS.map((item: any, i: number) => (
         <div data-aos="fade-up" data-aos-delay={i*100}
           key={i}
@@ -84,8 +84,8 @@ console.log(cusAmount);
           <div className="w-full h-1 relative after:h-1 after:bg-lime-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
           <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-lime-400  flex flex-col h-32">
           {/* <p className="text-sm mt-5"></p> */}
-          <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-3xl md:text-5xl font-semibold text-lime-600">
-            {item.amount}
+          <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-5xl font-semibold text-lime-600">
+          <span className="text-4xl font-normal mr-2">₹</span>{item.amount}
           </p>
           <button onClick={()=>handlePayment(item.amount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
             <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
