@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import PageLoader from "@/components/common/Loader";
+import { PrimeReactProvider } from 'primereact/api';
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 const outfit = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -26,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}><PageLoader/>{children}
+      <body className={outfit.className}><PageLoader/><PrimeReactProvider>{children}</PrimeReactProvider>
         
       </body>
     </html>
