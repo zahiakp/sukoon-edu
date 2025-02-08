@@ -1,50 +1,90 @@
-// Assuming you're using Express.js for your server-side code
+import { API_KEY, ROOT_URL } from "@/components/data/func";
+import axios from "axios";
 
-import axios from 'axios';
-import express from 'express';
+// export async function CheckPaymentStatus(
+//   transactionId: string,
+// ) {
+//   const URL: string = `${ROOT_URL}paymentStatus.php`;
+// const formData = {
 
-const router = express.Router();
+// }
+//   try {
+//     const response = await axios.post(
+//       URL,
+//       JSON.stringify({
+//         transactionId
+//       })
+//     );
 
-router.get('/donate', async (req:any, res:any) => {
-  const transactionId = req.query.transactionId;
+//     if (response.data.success === 'success') {
+//       const data = response.data;
+//       console.log("Payment status fetched successfully");
+//       return data;
+//     } else {
+//       const data = response.data;
+//       console.log("Failed to fetch payment status");
+//       return data;
+//     }
+//   } catch (error: any) {
+//     console.log(error.message);
+//     return false;
+//   }
+// }
+// export async function CheckPaymentStatus(
+//   transactionId: string,
+// ) {
+//   const axios = require('axios');
+//   const FormData = require('form-data');
+//   let data = new FormData();
+//   data.append('transactionId', transactionId);
+  
+//   let config = {
+//     method: 'post',
+//     maxBodyLength: Infinity,
+//     url: 'http://localhost/sukoonedu-backend/paymentStatus.php',
+//     headers: { 
+//       ...data.getHeaders()
+//     },
+//     data : data
+//   };
+  
+//   axios.request(config)
+//   .then((response:any) => {
+//     // console.log(JSON.stringify(response.data));
+//     return response.data;
+//   })
+//   .catch((error:any) => {
+//     console.log(error);
+//   });
+// }
+
+
+export async function CheckPaymentStatus(transactionId:any) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+  const urlencoded = new URLSearchParams();
+  urlencoded.append("transactionId", transactionId); // Join categories into a comma-separated string
+
+  const requestOptions: RequestInit = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow"
+  };
 
   try {
-    // Call PhonePe's Payment Query API using the transactionId
-    const response = await axios.get(
-      `https://api.phonepe.com/apis/hermes/pg/v1/transaction/status`, // Replace with actual API endpoint
-      {
-        headers: {
-          // Add necessary headers for authentication with PhonePe API
-        },
-        params: {
-          merchantTransactionId: transactionId,
-        },
-      }
-    );
-
-    // Extract relevant information from the response
-    const paymentStatus = response.data.status; // Example: SUCCESS, FAILED, PENDING
-    const paidAmount = response.data.amount; 
-    // ... other details you need
-
-    // Render a success/failure page with the details
-    if (paymentStatus === 'SUCCESS') {
-      res.render('success', { 
-        transactionId, 
-        paidAmount, 
-        // ... other details 
-      });
-    } else {
-      res.render('failure', { 
-        transactionId, 
-        // ... error message if available 
-      });
+      const response = await fetch(`${ROOT_URL}paymentStatus.php`, requestOptions);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-  } catch (error) {
-    console.error('Error fetching transaction details:', error);
-    res.status(500).send('Error processing payment');
+    const result = await response.json();
+    // console.log(result); 
+    return result
+  } catch (error: any) {
+      console.error("Error:", error.message);
+      return { success: false, message: error.message }; // Return error message
   }
-});
-
-export default router;
+}

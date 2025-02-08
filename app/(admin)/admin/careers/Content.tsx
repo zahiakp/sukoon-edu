@@ -163,7 +163,7 @@ function Content() {
                  href={`/admin/careers/${encodeId(item.id)}`}
                  className=" bg-green-500 hover:bg-primary-600 flex items-center gap-2 text-white px-3 pr-4 py-1 rounded-lg"
                > <CgArrowsExpandUpRight />
-                 Entries
+                 Applications
                </Link>
                <Link data-tip="Edit" href={`/admin/careers/Edit/${encodeId(item?.id)}`}
                                    className="tooltip h-8 w-8 rounded-lg bg-blue-500 flex items-center justify-center cursor-pointer"
