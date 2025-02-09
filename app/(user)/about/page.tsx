@@ -1,4 +1,3 @@
-
 import UserLayout from '@/components/Layout/UserLayout';
 import { Metadata } from 'next';
 import React from 'react'

@@ -1,20 +1,20 @@
-import StyledButton from "@/components/common/StyledButton";
 import { TextAnimate } from "@/components/ui/text-animate";
 import React from "react";
 import { BiSolidQuoteLeft } from "react-icons/bi";
+
 
 function FounderNote() {
   return (
     <div className="w-full py-10">
       <section className="w-[85%] overflow-hidden max-w-[1200px] mx-auto flex flex-col md:flex-row gap-10 md:gap-20">
         <div className=" flex flex-col gap-3 justify-start mt-24">
-          <h6 className="Grotesque-font text-5xl !leading-[25px] md:text-6xl text-zinc-500 font-medium">
-          Founder's <TextAnimate animation="blurInUp" by="character" className="text-6xl  text-lime-600 font-semibold">Message</TextAnimate>
+          <h6 data-aos='fade-up' className="Grotesque-font text-5xl !leading-[25px] md:text-6xl text-zinc-500 font-medium">
+          CEO’s <span className="text-6xl  text-lime-600 font-semibold">Message</span>
           </h6>
           <div data-aos='fade-up'  data-aos-delay='100' className="h-32 w-32 max-w-[85%] rounded-[30px] overflow-hidden border-t-4 mt-5 border border-lime-600"><img className="h-full w-full object-cover" src="/image/pt muhammed photo-min.jpg" alt="" /></div>
         <p data-aos='fade-up' data-aos-delay='300' className="font-semibold text-lg mt-3 !leading-5">PT Muhammed <br />
         <span className="mt-5 font-normal text-base">
-        Founder, Sukoon Edu Foundation</span></p>
+        CEO, Sukoon Edu Foundation</span></p>
         </div>
         <div className="">
         <BiSolidQuoteLeft className="text-8xl text-lime-800/10 hidden md:block"/>
