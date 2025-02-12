@@ -1,12 +1,11 @@
-import React from "react";
+import React, { use} from "react";
 import UserLayout from "@/components/Layout/UserLayout";
-import Ripple from "@/components/ui/ripple";
-import { HiBadgeCheck, HiCheckCircle } from "react-icons/hi";
 import { CheckPaymentStatus } from "./func";
 import PaymentSuccessUI from "./paymentUi";
 
 async function page({params}:{params:any}) {
   const status = await CheckPaymentStatus(params.id);
+    
 
   return (
     <UserLayout>

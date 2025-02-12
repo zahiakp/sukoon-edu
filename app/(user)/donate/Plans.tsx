@@ -1,13 +1,14 @@
 'use client'
 import React, { useState } from "react";
 import { RiArrowRightLine } from "react-icons/ri";
-import GooglePayButton from "@google-pay/button-react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { gateway } from "@/components/common/PhonePyGt";
-import { ROOT_URL } from "@/components/data/func";
-import { initPayment } from "@/components/common/init";
+// import PaymentModal from "./PaymentModal";
+import dynamic from "next/dynamic";
+
+const PaymentModal = dynamic(() => import("./PaymentModal"), { ssr: false });
 
 function Plans() {
+  const [view, setView] = useState<any>('');
   const [cusAmount,setCusAmount] = useState<any>()
   const [sqFeet,setSqFeet] =useState<any>(1)
   const [sqFeetAmd,setSqFeetAmd] =useState<any>(1500)
@@ -43,27 +44,6 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
     setCountAmd(amount * newCount);
   }
 };
-const handlePayment = async (amount:any) => {
-  try {
-    // const merchantTransactionId = "SEF" + Date.now()
-    const resp = await initPayment(amount)
-// console.log(resp.data.instrumentResponse.redirectInfo.url);
-
-    // Check for specific success codes or messages
-    if (resp.success) {
-      console.log('Payment initiated successfully:', resp);
-      // Redirect the user to the payment gateway's page
-      window.location.href = resp.data.instrumentResponse.redirectInfo.url; 
-    } else {
-      console.error('Payment initiation failed:', resp);
-      // Handle the specific error (e.g., display an error message to the user)
-    }
-
-  } catch (error) {
-    console.error('Payment failed:', error);
-    // Handle the error (e.g., display an error message to the user)
-  }
-};
 
 console.log(cusAmount);
 
@@ -87,7 +67,7 @@ console.log(cusAmount);
           <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-5xl font-semibold text-lime-600">
           <span className="text-4xl font-normal mr-2">₹</span>{item.amount}
           </p>
-          <button onClick={()=>handlePayment(item.amount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
+          <button onClick={()=>setView(item.amount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
             <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
           </button>
           </div>
@@ -103,7 +83,7 @@ console.log(cusAmount);
           <p className="Grotesque-font flex items-center gap-2 text-3xl md:text-4xl font-medium text-lime-600">₹<input onChange={(e) => setCusAmount(e.target.value)} placeholder="Enter Here" className="w-full border-none outline-none text-3xl md:text-5xl font-semibold"/></p>
           
             {/* 456564 */}
-          <button onClick={()=>handlePayment(cusAmount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
+          <button onClick={()=>setView(cusAmount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
             <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
           </button>
           </div>
@@ -148,6 +128,7 @@ console.log(cusAmount);
         console.log('load payment data', paymentRequest);
       }}
       /></div> */}
+      <PaymentModal amount={view} visible={view} setVisible={setView} />
     </div>
   );
 }

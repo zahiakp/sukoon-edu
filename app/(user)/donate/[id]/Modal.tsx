@@ -1,7 +1,7 @@
+'use client'
 import React from 'react'
 import { Dialog } from 'primereact/dialog';
 import { HiCheckCircle } from 'react-icons/hi';
-import { motion } from "framer-motion";
 
 function Modal({visible,setVisible,paymentData}:{visible: any, setVisible: any,paymentData:any}) {
     const transactionId = paymentData?.data?.data?.transactionId || 'N/A';
