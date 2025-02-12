@@ -1,16 +1,82 @@
 'use client';
-import React from "react";
-import { HiBadgeCheck, HiCheckCircle } from "react-icons/hi";
-import { motion } from "framer-motion";
-import { RiCloseCircleFill } from "react-icons/ri";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
-import Modal from "./Modal";
-import FlickeringGrid from "@/components/ui/flickering-grid";
+import React from 'react';
+import { HiBadgeCheck } from 'react-icons/hi';
+import { motion } from 'framer-motion';
+import { RiCloseCircleFill } from 'react-icons/ri';
+import { useRouter } from 'next/navigation';
+import Modal from './Modal';
+import { fillPdfTemplate } from './ReciptGenrator';
 
-const PaymentSuccessUI = ({ paymentData }:{paymentData:any}) => {
-  // Add defensive checks to ensure paymentData and its nested properties are defined
-  
+const PaymentSuccessUI = ({ paymentData }: { paymentData: any }) => {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const router = useRouter();
+
+  const handleFillPdf = async () => {
+    setIsLoading(true);
+
+    // Initialize data object with default values
+    let data = {
+        name: 'N/A',
+        email: 'N/A',
+        phone: 'N/A',
+        pancard: 'N/A',
+        receiptNo: generateUniqueReceiptNo(),
+        amount: 1000,
+        transactionId: 'N/A',
+        merchantId: 'N/A',
+        modeOfPayment: 'N/A',
+        date: new Date().toLocaleDateString(),
+        paymentStatus: 'N/A',
+        currency: 'INR'
+    };
+
+    // Retrieve and parse donor details from localStorage
+    const donorDetails = localStorage.getItem('donardetails');
+    if (donorDetails) {
+        try {
+            const parsedDetails = JSON.parse(donorDetails);
+            data = {
+                ...data,
+                name: parsedDetails.name || 'N/A',
+                email: parsedDetails.email || 'N/A',
+                phone: parsedDetails.phone || 'N/A',
+                pancard: parsedDetails.pancard || 'N/A'
+            };
+        } catch (error) {
+            console.error('Error parsing donor details from localStorage:', error);
+        }
+    }
+
+    // Update data with payment details if available
+    if (paymentData?.data?.data) {
+        const payment = paymentData.data.data;
+        data = {
+            ...data,
+            transactionId: payment.transactionId || 'N/A',
+            merchantId: payment.merchantId || 'N/A',
+            modeOfPayment: payment.paymentInstrument ? 
+                `${payment.paymentInstrument.type} (${payment.paymentInstrument.accountType})` : 'N/A',
+            paymentStatus: payment.state || 'N/A',
+            currency: payment.currency || 'INR'
+        };
+    }
+
+    console.log('data', data);
+
+    // Fill the PDF template with the collected data
+    try {
+        await fillPdfTemplate(data);
+    } catch (error) {
+        console.error('Error filling PDF:', error);
+    } finally {
+        setIsLoading(false);
+    }
+};
+
+// Function to generate a unique receipt number
+const generateUniqueReceiptNo = () => {
+    return 'REC' + Date.now() + Math.floor(Math.random() * 1000);
+};
 
   const success = paymentData.success;
   const [visible, setVisible] = React.useState<any>(false);
@@ -82,7 +148,7 @@ const PaymentSuccessUI = ({ paymentData }:{paymentData:any}) => {
           className=""
         >
           <button
-            // onClick={() => window.location.href = "/donate"}
+            onClick={handleFillPdf}
             className="px-5 py-2 flex gap-1 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-300"
           >
             <span className="hidden md:block">Download</span>  Reciept
@@ -95,10 +161,10 @@ const PaymentSuccessUI = ({ paymentData }:{paymentData:any}) => {
           className=""
         >
           <button
-            onClick={() => window.location.href = "/donate"}
+            onClick={() => router.push('/donate')}
             className="px-5 py-2 flex gap-1 bg-zinc-100  font-semibold rounded-lg hover:bg-zinc-200 transition duration-300"
           >
-            Back <span className="hidden md:block">to Home</span>
+            Go Back
           </button>
         </motion.div>
         
@@ -185,7 +251,7 @@ const PaymentSuccessUI = ({ paymentData }:{paymentData:any}) => {
           className="mt-8"
         >
           <button
-            onClick={() => window.location.href = "/donate"}
+            onClick={() => router.push('/donate')}
             className="px-6 py-3 bg-red-500 text-white font-semibold rounded-3xl hover:bg-red-600 transition duration-300"
           >
             Try again
