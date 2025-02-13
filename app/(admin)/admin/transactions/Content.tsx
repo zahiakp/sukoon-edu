@@ -6,33 +6,26 @@ import Image from "next/image";
 import { TbEdit, TbPhotoUp } from "react-icons/tb";
 import { IoSearchOutline } from "react-icons/io5";
 import { RiAddCircleFill } from "react-icons/ri";
-import { MdEditDocument } from "react-icons/md";
 import { encodeId } from "@/components/common/decode";
 import { ROOT_URL } from "@/components/data/func";
-import { getArticle } from "./Add/func";
 import Spinner from "@/components/common/Spinner";
 import Empty from "@/components/common/Empty";
 import { getRelativeTime } from "@/components/common/DateConvert";
-import DeleteItem from "./Add/Delete";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { PaginatorPageChangeEvent } from "primereact/paginator";
+import { getTransactions } from "./func";
+import DeleteItem from "./Delete";
+import { LuSquareArrowOutUpRight } from "react-icons/lu";
+import { SideBar } from "./SideBar";
+import AddModal from "./AddModal";
+// import { SideBar } from "./SideBar";
 
 // Lazy load Paginator to reduce initial bundle size
 const Paginator = dynamic(() => import("primereact/paginator").then((mod) => mod.Paginator), {
   ssr: false,
 });
-
-const Categories = [
-  { label: "General", value: "General" },
-  { label: "Education", value: "Education" },
-  { label: "Health", value: "Health" },
-  { label: "Culture", value: "Culture" },
-  { label: "Commerce", value: "Commerce" },
-  { label: "Agriculture", value: "Agriculture" },
-  { label: "Living", value: "Living" },
-];
 
 function Content() {
   const [imageView, setImageView] = useState<string | false>(false);
@@ -42,6 +35,9 @@ function Content() {
   const [rows, setRows] = useState<number>(10);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [visibleRight,setVisibleRight] = useState<any>(false)
+const [showAddModal,setShowAddModal] = useState(false)
+
 
   // Debounce search input
   const debouncedFetchNews = useMemo(() => {
@@ -62,7 +58,7 @@ function Content() {
         category: selectedCategory,
       }).toString();
 
-      const data = await getArticle(query);
+      const data = await getTransactions(query);
       if (data.success) {
         setNews(data.data);
         setTotalRecords(data.total);
@@ -103,11 +99,11 @@ function Content() {
                 <li>
                   <Link href="/admin">Dashboard</Link>
                 </li>
-                <li>Diaries</li>
+                <li>Transactions</li>
               </ul>
             </div>
             <h1 className="text-3xl font-[200] flex items-center gap-2">
-              Diaries{" "}
+            Transactions{" "}
               {totalRecords !== 0 && (
                 <span className="text-base ml-2 text-zinc-700 p-[6px] px-5 rounded-3xl bg-zinc-200/80">
                   {`${totalRecords} Items`}
@@ -130,12 +126,13 @@ function Content() {
             />
             <IoSearchOutline className="text-xl" />
           </div>
-          <Link
-            href="/admin/diaries/Add"
-            className="gap-2 cursor-pointer font-semibold p-[8px] px-4 bg-blue-600 hover:shadow-lg hover:-translate-y-1 duration-200 rounded-xl text-white w-fit shadow-lg flex items-center"          >
+          <button
+          onClick={()=>setShowAddModal(true)}
+            className="gap-2 cursor-pointer font-semibold p-[8px] px-4 bg-blue-600 hover:shadow-lg hover:-translate-y-1 duration-200 rounded-xl text-white w-fit shadow-lg flex items-center"
+          >
             <RiAddCircleFill />
-            Create New
-          </Link>
+            Add New
+          </button>
         </div>
       </main>
       <div className="flex flex-col gap-2 mt-10">
@@ -143,38 +140,41 @@ function Content() {
           <Spinner />
         ) : news.length !== 0 ? (
           <>
-            <div className="grid grid-cols-9 pl-1 uppercase font-semibold text-zinc-600 text-sm text-center">
+            <div className="grid grid-cols-12 pl-1 uppercase font-semibold text-zinc-600 text-sm text-center">
               <p>No</p>
-              <p className="col-span-4">Title</p>
+              <p className="col-span-3">Donor Name</p>
+              <p className="col-span-2">Transaction Id</p>
+              <p className="col-span-2">Amount</p>
               <p className="col-span-2">Date</p>
               <p className="col-span-2">Actions</p>
             </div>
             {news.map((item: any, index: number) => (
               <div
                 key={item.id}
-                className="p-5 border border-zinc-100 bg-white shadow-sm duration-200 rounded-xl grid grid-cols-9 gap-5 items-center"
+                className="p-5 border border-zinc-100 bg-white shadow-sm duration-200 rounded-xl grid grid-cols-12 gap-5 items-center"
               >
                 <p className="pl-5 font-bold">{item.id}</p>
-                <p className="col-span-4 line-clamp-2">{item.title}</p>
+                <p className="col-span-3 line-clamp-1">{item.name}</p>
+                <p className="col-span-2 line-clamp-1">{item.transactionId}</p>
+                <p className="pl-5 col-span-2 bg-green-500 mx-auto w-fit px-4 py-1 rounded-3xl text-white font-bold">₹ {item.amount}</p>
                 <p className="col-span-2 text-center">{getRelativeTime(item.date)}</p>
                 <div className="col-span-2 flex items-center gap-2 justify-center">
-                  {item.image && (
-                    <button
-                      aria-label="View Image"
-                      onClick={() => setImageView(item.image)}
-                      className="tooltip h-10 w-10 rounded-lg bg-zinc-100 flex items-center justify-center cursor-pointer"
-                    >
-                      <TbPhotoUp className="text-xl text-zinc-600" />
-                    </button>
-                  )}
-                  <Link
+                  
+                  
+                  {/* <Link
                     aria-label="Edit"
                     href={`/admin/diaries/Edit/${encodeId(item.id)}`}
                     className="tooltip h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center cursor-pointer"
                   >
                     <TbEdit className="text-xl text-blue-600" />
-                  </Link>
-                  <DeleteItem id={item.id} fetch={fetchNews} />
+                  </Link> */}
+                  <button aria-label="View Details"
+                                        onClick={() => setVisibleRight(item)}
+                                        className="tooltip h-10 w-10 rounded-lg bg-zinc-100 flex items-center justify-center cursor-pointer"
+                                      >
+                                        <LuSquareArrowOutUpRight className="text-xl text-zinc-600" />
+                                      </button>
+                  {/* <DeleteItem id={item.id} fetch={fetchNews} /> */}
                 </div>
               </div>
             ))}
@@ -196,27 +196,10 @@ function Content() {
           </div>
         )}
       </div>
-      {imageView && (
-        <dialog open className="modal">
-          <div className="modal-box w-fit p-0 relative">
-            <button
-              aria-label="Close"
-              onClick={() => setImageView(false)}
-              className="btn btn-sm btn-circle btn-ghost absolute right-4 top-4 text-white bg-black/30 hover:bg-black/50"
-            >
-              ✕
-            </button>
-            <Image
-              src={`${ROOT_URL}uploads/diaries/${imageView}`}
-              alt="Diary Image"
-              width={1500}
-              height={1000}
-              className="w-full h-auto"
-            />
-          </div>
-        </dialog>
-      )}
+      <AddModal setVisible={setShowAddModal} visible={showAddModal} fetch={fetchNews}/>
+      <SideBar setVisibleRight={setVisibleRight} visibleRight={visibleRight} trans={visibleRight}/>
     </>
+    
   );
 }
 

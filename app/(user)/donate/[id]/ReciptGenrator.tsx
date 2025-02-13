@@ -208,7 +208,7 @@ const paymentStatusLabelWidth = regularFont.widthOfTextAtSize('Payment Status: '
             color: rgb(0, 0, 0),
         });
 
-        firstPage.drawText(`${(data.amount / 100).toFixed(2)}`, {
+        firstPage.drawText(`${data.amount}`, {
             x: 86 + amountLabelWidth,
             y: 379,
             size: 15.13,
@@ -224,7 +224,7 @@ const paymentStatusLabelWidth = regularFont.widthOfTextAtSize('Payment Status: '
             color: rgb(0, 0, 0),
         });
 
-        firstPage.drawText(`${data.currency}`, {
+        firstPage.drawText(`${data.currency || 'INR'}`, {
             x: 86 + currencyLabelWidth,
             y: 360,
             size: 15.13,

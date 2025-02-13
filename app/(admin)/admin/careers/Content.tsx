@@ -122,8 +122,7 @@ function Content() {
           </div>{" "}
           <Link
             href={"/admin/careers/Add"}
-            className="gap-2 cursor-pointer p-[8px] px-4 bg-zinc-800 hover:shadow-lg hover:-translate-y-1 duration-200 rounded-md text-white w-fit shadow-lg flex items-center"
-          >
+            className="gap-2 cursor-pointer font-semibold p-[8px] px-4 bg-blue-600 hover:shadow-lg hover:-translate-y-1 duration-200 rounded-xl text-white w-fit shadow-lg flex items-center"          >
             <RiAddCircleFill />
             Create New
           </Link>
