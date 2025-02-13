@@ -4,10 +4,11 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import PageLoader from "@/components/common/Loader";
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import 'primereact/resources/themes/saga-blue/theme.css';
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
-const outfit = Plus_Jakarta_Sans({ subsets: ["latin"] });
+const outfit = Plus_Jakarta_Sans({ subsets: ["latin"],variable:"--font-Plus-Jakarta" });
 
 export const metadata: Metadata = {
   title: "Sukoon Edu Village",

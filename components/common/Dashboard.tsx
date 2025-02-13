@@ -2,13 +2,15 @@
 import React, { ReactNode } from "react";
 import Logout from "@/app/(admin)/admin/Logout";
 import { usePathname } from "next/navigation";
-import { TbLayoutDashboard, TbListDetails, TbSubtask, TbUserSquareRounded } from "react-icons/tb";
+import { TbCoinRupeeFilled, TbLayoutDashboard, TbListDetails, TbSubtask, TbTransactionRupee, TbUserSquareRounded } from "react-icons/tb";
 import {PiAddressBookTabs, PiNewspaperClippingBold, PiUsersThreeBold } from "react-icons/pi";
 import { HiOutlineBookmarkAlt, HiOutlineCog } from "react-icons/hi";
 import StyledButton from "./StyledButton";
 import { MdOutlineAutoStories } from "react-icons/md";
 import Link from "next/link";
 import Image from "next/image";
+import { FiCodesandbox } from "react-icons/fi";
+import { HiDocumentCurrencyRupee } from "react-icons/hi2";
 
 function Dashboard() {
   const pathname = usePathname();
@@ -32,7 +34,12 @@ function Dashboard() {
     {
       title: "Careers",
       url: "/admin/careers",
-      icon: <TbSubtask  className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
+      icon: <FiCodesandbox  className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
+    },
+    {
+      title: "Transactions",
+      url: "/admin/transactions",
+      icon: <TbTransactionRupee  className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
     },
     // {
     //   title: "Applications",
