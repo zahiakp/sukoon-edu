@@ -9,17 +9,17 @@ const FormInput = ({
   placeholder,
   name,
   label,
-  type,
+  type,optional
 }: {
   formik: any;
   placeholder: string;
   name: string;
   label: string;
-  type?: string;
+  type?: string;optional?:boolean
 }) => {
   return (
     <div className="py-2">
-      <div className="text-sm text-primary-600 my-1">{label}</div>
+      <div className="text-sm text-primary-600 my-1">{label}{" "}{optional? <span className="text-lime-600 font-semibold">(optional)</span>:""}</div>
       <input
         type={type ?? "text"}
         className="w-full p-3 px-5 border border-lime-300 rounded-[10px] outline-lime-500"
@@ -116,42 +116,66 @@ export function FormCkeditor({
     </div>
   );
 }
-export function FormSelect({
-  formik,
-  placeholder,
-  name,
+export const FormSelect = ({
   label,
-  items,
+  formik,
+  name,
+  placeHolder,
+  options,
+  reload,
 }: {
-  formik: any;
-  placeholder: string;
-  name: string;
   label: string;
-  items: any[];
-}) {
+  formik: any;
+  name: string;
+  placeHolder: string;
+  options: any;
+  reload?: boolean; // Optional reload prop to display the reload button
+}) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
-    <div className="py-2">
-      <div className="text-sm text-primary-600 my-1">{label}</div>
-
+    <div className="mb-2 relative">
+      <label className="w-label">{label}</label>
       <Select
-        options={items}
-        className="w-full"
+        bordered={false}
+        className={`w-full my-2 border focus-visible:border-2 rounded-lg  ${
+          isFocused
+            ? 'border-lime-500'
+            : formik.touched[name] && formik.errors[name]
+            ? 'border-red-500'
+            : 'border-gray-300'
+        } cursor-pointer h-20`}
+        // showSearch
+        placeholder={placeHolder}
         size="large"
-        placeholder={placeholder}
-        value={formik.values[name]}
-        onChange={(value:any) => formik.setFieldValue(name, value)}
-      ></Select>
-
-      <div>
-        {formik.errors[name] && formik.touched[name] && (
-          <p className="text-red-600 text-sm my-1 ml-1">
-            {formik.errors[name]}
-          </p>
-        )}
-      </div>
+        filterOption={(input:any, option:any) => {
+          const opt = option as { label: string; value: string };
+          return opt.label.toLowerCase().includes(input.toLowerCase());
+        }}
+        value={ options?.find((option:any) => option.value === formik.values[name]) || formik.values[name] }
+        onChange={(value:any) => formik.setFieldValue(name, value)} // Set Formik's value
+        options={options} // Pass in options for the select
+        onFocus={() => setIsFocused(true)} // Set focus state on focus
+        onBlur={() => setIsFocused(false)} // Reset focus state on blur
+      />
+      {formik.touched[name] && formik.errors[name] && (
+        <div className="text-red-600 text-xs mt-2">
+          {formik.errors[name]} {/* Show validation error */}
+        </div>
+      )}
+      {/* Conditionally render reload button */}
+      {/* {reload && (
+        <button tabIndex={-1}
+          type="button"
+          onClick={() => formik.setFieldValue(name, '')} // Reset the specific field value
+          className="absolute right-8 top-10 bg-emerald-600 w-6 h-6 rounded-full flex items-center justify-center text-white"
+        >
+          <TbReload className="text-lg" />
+        </button>
+      )} */}
     </div>
   );
-}
+};
 
 export function FormUpload({
   add_url,

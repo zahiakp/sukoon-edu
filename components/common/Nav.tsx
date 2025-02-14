@@ -34,7 +34,9 @@ const NAV_ITEMS = [
       { label: "Milan", path: "/projects#Sukoon-Milan" },
     ],
   },
-  { label: "Life at Sukoon", path: "/life-sukoon" },
+  { label: "Life at Sukoon", path: "/life-sukoon" ,items: [
+    { label: "Admission", path: "/admissions" },
+  ],},
   { label: "Join us", path: "/join" },
   { label: "Connect us", path: "/contact" },
 ];
