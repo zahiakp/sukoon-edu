@@ -44,15 +44,17 @@ const formik = useFormik({
      console.log('amount',amount);
      
   return (
-    <Dialog header="Donor Details" draggable={false} visible={visible} className='p-5 w-[90%] max-w-[500px] rounded-3xl bg-white' onHide={() => {if (!visible) return; setVisible(false); }}>
-     
+    <Dialog header="Donor Details"  draggable={false} visible={visible} className='Plus-Jakarta p-5 w-[90%] max-w-[500px] rounded-3xl bg-white' onHide={() => {if (!visible) return; setVisible(false); }}>
+     <p className=''>
+     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="inline-block mr-2 text-lime-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path></svg>
+     Please provide the details below to receive your payment receipt.</p>
          <form onSubmit={formik.handleSubmit}
           className=""
         >
           <FormInput formik={formik} label='Name' name='name' placeholder='Name' />
           <FormInput formik={formik} label='Phone No' type='number' name='phone' placeholder='Phone No' />
-          <FormInput formik={formik} label='Email (Optional)' type='email' name='email' placeholder='Email' />
-          <FormInput formik={formik} label='Pan Card No (Optional)' name='pancard' placeholder='Pan Card No' />
+          <FormInput formik={formik} label='Email' optional type='email' name='email' placeholder='Email' />
+          <FormInput formik={formik} label='Pan Card No'  optional name='pancard' placeholder='Pan Card No' />
           <button type='submit' className='py-3 px-5 rounded-lg mt-5 w-full text-center bg-lime-600 text-white '>Pay <span className='font-semibold'>₹{amount}</span></button>
         </form>
 </Dialog>
