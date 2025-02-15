@@ -33,11 +33,13 @@ import { HiArrowLeft } from 'react-icons/hi';
 import { HiArrowRight } from 'react-icons/hi2';
 import { uploadAdmissionForm, uploadFile } from './func';
 import { error } from 'console';
+import { IoMdAddCircleOutline } from 'react-icons/io';
 
 function AdmissionModal({visible,setVisible,setGreatingModal}:{visible:any,setVisible:any,setGreatingModal:any}) {
     const router = useRouter();
     const stepperRef:any = useRef(null);
     const [checked,setChecked] = useState(false)
+    const [loading,setLoading] = useState(false)
     const generateUniqueReceiptNo = () => {
       return "REC" + Date.now() + Math.floor(Math.random() * 1000);
     };
@@ -57,91 +59,91 @@ function AdmissionModal({visible,setVisible,setGreatingModal}:{visible:any,setVi
   
     
 
-const formik = useFormik({
-    initialValues: {
-       name: "",
-       dob: "",
-       guardianName: "",
-       phone: "",
-       gender: "",
-       email: "",
-       address: "",
-       recentshcool: "",
-       schooladdress: "",
-       passingyear: "",
-       examcenter: "",
-       photo:"",
-       photoFile:null,
-       marksheet:"",
-       marksheetFile:null,
-       certificate:"",
-       certificateFile:null,
-    },
-    validationSchema: Yup.object({
-       name: Yup.string().required("Name is required"),
-       dob: Yup.string().required("Date of Birth is required"),
-       email: Yup.string().email("Invalid email address"),
-       phone: Yup.string().required("Phone No is required"),
-       gender: Yup.string().required("Gender is required"),
-       guardianName: Yup.string().required("Guardian Name of Payment is required"),
-       address: Yup.string().required("Residential Address is required"),
-       recentshcool: Yup.string().required("Last Attended School is required"),
-       schooladdress: Yup.string().required("School Address is required"),
-       passingyear: Yup.string().required("Class 6 Passing Year is required"),
-       examcenter: Yup.string().required("Exam Center is required"),
-       photoFile: Yup.string().required("Photo is required"),
-       marksheetFile: Yup.string().required("Marksheet/Certificate is required"),
-       certificateFile: Yup.string().required("Aadhaar/Birth Certificate is required"),
-    }),
-    
-    onSubmit: async (values) => {
-      try {
-        console.log(values);
+    const formik = useFormik({
+      initialValues: {
+         name: "",
+         dob: "",
+         guardianName: "",
+         phone: "",
+         gender: "",
+         email: "",
+         address: "",
+         recentshcool: "",
+         schooladdress: "",
+         passingyear: "",
+         examcenter: "",
+         photo:"",
+         photoFile:null,
+         marksheet:"",
+         marksheetFile:null,
+         certificate:"",
+         certificateFile:null,
+      },
+      validationSchema: Yup.object({
+         name: Yup.string().required("Name is required"),
+         dob: Yup.string().required("Date of Birth is required"),
+         email: Yup.string().email("Invalid email address"),
+         phone: Yup.string().required("Phone No is required"),
+         gender: Yup.string().required("Gender is required"),
+         guardianName: Yup.string().required("Guardian Name of Payment is required"),
+         address: Yup.string().required("Residential Address is required"),
+         recentshcool: Yup.string().required("Last Attended School is required"),
+         schooladdress: Yup.string().required("School Address is required"),
+         passingyear: Yup.string().required("Class 6 Passing Year is required"),
+         examcenter: Yup.string().required("Exam Center is required"),
+         photoFile: Yup.string().required("Photo is required"),
+         certificateFile: Yup.string().required("Aadhaar/Birth Certificate is required"),
+      }),
+      
+      onSubmit: async (values) => {
+        try {
+          console.log(values);
+          
+            await handleFileUpload(values.photoFile, 'photo');
+            await handleFileUpload(values.certificateFile, 'certificate');
+            await handleFileUpload(values.marksheetFile, 'marksheet');
         
-          await handleFileUpload(values.photoFile, 'photo');
-          await handleFileUpload(values.certificateFile, 'certificate');
-          await handleFileUpload(values.marksheetFile, 'marksheet');
-      
-          const dataResp = await uploadAdmissionForm(values);
-      
-          if (dataResp.success) {
-            console.log('Application Submitted successfully:', dataResp);
-            showMessage('Application Submitted successfully', 'success');
-            // reset formik values 
-            formik.resetForm();
-            setGreatingModal(true)
-            setVisible(false);
-          } else {
-            console.error('Application submission failed:', dataResp);
-            showMessage('Application submission failed', 'error');
+            const dataResp = await uploadAdmissionForm(values);
+        
+            if (dataResp.success) {
+              console.log('Application Submitted successfully:', dataResp);
+              showMessage('Application Submitted successfully', 'success');
+              setActiveStep(0)
+              formik.resetForm();
+              setGreatingModal(true)
+              setVisible(false);
+            } else {
+              console.error('Application submission failed:', dataResp);
+              showMessage('Application submission failed', 'error');
+            }
+          } catch (error) {
+            console.error('Adding failed:', error);
+            showMessage('Adding failed', 'error');
           }
-        } catch (error) {
-          console.error('Adding failed:', error);
-          showMessage('Adding failed', 'error');
+      },
+    });
+       
+    const handleFileUpload = async (file: File | null, fieldName: string) => {
+      if (!file) return;
+    
+      try {
+        const response = await uploadFile(file,fieldName);
+        if (response.success && response.filename) {
+          console.log(fieldName+":",response.filename);
+          formik.setFieldValue(fieldName, response.filename);
+          showMessage(`${fieldName} successfully uploaded`,'success')
+          console.log(`${fieldName} successfully uploaded`);
+        } else {
+          showMessage(`Error while uploading ${fieldName}`,'error')
+          console.error(`Error while uploading ${fieldName}:`);
+          throw new Error(`Error while uploading ${fieldName}`);
         }
-    },
-  });
-     
-  const handleFileUpload = async (file: File | null, fieldName: string) => {
-    if (!file) return;
-  
-    try {
-      const response = await uploadFile(file,fieldName);
-      if (response.success && response.filename) {
-        console.log(fieldName+":",response.filename);
-        formik.setFieldValue(fieldName, response.filename);
-        showMessage(`${fieldName} successfully uploaded`,'success')
-        console.log(`${fieldName} successfully uploaded`);
-      } else {
-        showMessage(`Error while uploading ${fieldName}`,'error')
-        console.error(`Error while uploading ${fieldName}:`);
-        throw new Error(`Error while uploading ${fieldName}`);
+      } catch (error) {
+        console.error(`Error uploading ${fieldName}:`, error);
+        throw error;
       }
-    } catch (error) {
-      console.error(`Error uploading ${fieldName}:`, error);
-      throw error;
-    }
-  };
+    };
+  
 
 
 // ----------------------------
@@ -156,8 +158,13 @@ const steps = [
             <div className="py-2">
               <div className="text-sm text-primary-600 my-1">Gender</div>
                 <Dropdown value={formik.values.gender} onChange={(e) => formik.setFieldValue('gender', e.value)} options={Gender} optionLabel="label" 
-                  placeholder="Select a option" className="w-full border border-lime-500 !hover:border-lime-500 rounded-lg md:w-14rem" />
-              </div>
+                  placeholder="Select a option" className={`${formik.errors.gender && formik.touched.gender ? "border-red-500" : "border-lime-500"} w-full border  rounded-lg md:w-14rem`} />
+{formik.errors.gender && formik.touched.gender && (
+          <p className="text-red-600 text-sm my-1 ml-1">
+            {formik.errors.gender}
+          </p>
+        )}
+</div>
             <FormInput formik={formik} label='Parent/Guardian Name' name='guardianName' placeholder='Parent/Guardian Name' />
             <FormInput formik={formik} label='Contact Number' type='number' name='phone' placeholder='Contact Number' />
             <FormInput formik={formik} label='Email ID (if available)' name='email' type='email' placeholder='Email ID' />
@@ -175,46 +182,52 @@ const steps = [
   {
     label: 'Entrance Exam Preference',
     description: <>
+    <div className="py-2">
     <div className="text-sm text-primary-600 my-1">Select an Exam Centre nearby, where you wish to attend Exam</div>
       <Dropdown value={formik.values.examcenter} onChange={(e) => formik.setFieldValue('examcenter', e.value)} options={Exam_Center} optionLabel="label" 
-        placeholder="Select a option" className="w-full border border-lime-500 !hover:border-lime-500 rounded-lg md:w-14rem" />
-    </>,
+        placeholder="Select a option" className={`${formik.errors.gender && formik.touched.gender ? "border-red-500" : "border-lime-500"} w-full border  rounded-lg md:w-14rem`} />
+    {formik.errors.examcenter && formik.touched.examcenter && (
+          <p className="text-red-600 text-sm my-1 ml-1">
+            {formik.errors.examcenter}
+          </p>
+        )}
+    </div></>,
   },
   {
     label: 'Upload Documents',
     description: <>
 <div className='pb-3 border-b'>
 <div className="text-sm text-primary-600 my-2 font-semibold">Recent Passport-size Photo</div>
-          <div className="file-upload border border-zinc-700 rounded-xl overflow-hidden">
-          <input onChange={(e) => formik.setFieldValue('photoFile', e.target.files ? e.target.files[0] : null)} className="file-input rounded-xl w-full" id="fileInput" type="file" />
+<div className={`file-upload border rounded-xl overflow-hidden ${formik.errors.photoFile && formik.touched.photoFile ? "border-red-500":"border-zinc-700"}`}>
+<input accept='image/*' onChange={(e) => formik.setFieldValue('photoFile', e.target.files ? e.target.files[0] : null)} className="file-input rounded-xl w-full" id="fileInput" type="file" />
             </div>
             <div>
-        {formik.errors.photo && formik.touched.photo && (
+        {formik.errors.photoFile && formik.touched.photoFile && (
           <p className="text-red-600 text-sm my-1 ml-1">
-            {formik.errors.photo}
+            {formik.errors.photoFile}
           </p>
        )}
       </div>
             </div>
             <div className='pb-3 border-b'>
-          <div className="text-sm text-primary-600 my-2 font-semibold">Class 6 Marksheet/Certificate</div>
-          <div className="file-upload border border-zinc-700 rounded-xl overflow-hidden">
-          <input onChange={(e) => formik.setFieldValue('marksheetFile', e.target.files ? e.target.files[0] : null)} className="file-input rounded-xl w-full" id="fileInput" type="file" />
+          <div className="text-sm text-primary-600 my-2 font-semibold">Class 6 Marksheet/Certificate (if available)</div>
+          <div className={`file-upload border rounded-xl overflow-hidden ${formik.errors.marksheetFile && formik.touched.marksheetFile ? "border-red-500":"border-zinc-700"}`}>
+          <input accept='image/*,.pdf' onChange={(e) => formik.setFieldValue('marksheetFile', e.target.files ? e.target.files[0] : null)} className="file-input rounded-xl w-full" id="fileInput" type="file" />
             </div>
-            {formik.errors.marksheet && formik.touched.marksheet && (
+            {formik.errors.marksheetFile && formik.touched.marksheetFile && (
           <p className="text-red-600 text-sm my-1 ml-1">
-            {formik.errors.marksheet}
+            {formik.errors.marksheetFile}
           </p>
        )}
             </div>
             <div className='pb-3 border-b'>
           <div className="text-sm text-primary-600 my-2 font-semibold">ID Proof (Aadhaar/Birth Certificate)</div>
-          <div className="file-upload border border-zinc-700 rounded-xl overflow-hidden">
-          <input onChange={(e) => formik.setFieldValue('certificateFile', e.target.files ? e.target.files[0] : null)} className="file-input rounded-xl w-full" id="fileInput" type="file" />
+          <div className={`file-upload border rounded-xl overflow-hidden ${formik.errors.certificateFile && formik.touched.certificateFile ? "border-red-500":"border-zinc-700"}`}>
+          <input accept='image/*,.pdf' onChange={(e) => formik.setFieldValue('certificateFile', e.target.files ? e.target.files[0] : null)} className="file-input rounded-xl w-full" id="fileInput" type="file" />
             </div>
-            {formik.errors.certificate && formik.touched.certificate && (
+            {formik.errors.certificateFile && formik.touched.certificateFile && (
           <p className="text-red-600 text-sm my-1 ml-1">
-            {formik.errors.certificate}
+            {formik.errors.certificateFile}
           </p>
        )}
             </div>
@@ -245,7 +258,7 @@ const steps = [
     setActiveStep(0);
   };
   const isStepFailed = (step: number) => {
-    return step === 1;
+    return step === 0;
   };
 
   return (
@@ -377,7 +390,35 @@ const steps = [
                   onClick={handleBack}><HiArrowLeft className='text-lg'/>Back</button>
              {index !== steps.length - 1 && <button type='button' className='bg-green-500 flex gap-2 items-center justify-center py-2 px-5 rounded-lg font-semibold text-white'
                   onClick={handleNext}>Continue<HiArrowRight className='text-lg'/></button>}
-            {index === steps.length - 1 && <button type='submit' disabled={!checked} className='bg-green-500 disabled:bg-zinc-300 py-2 px-5 flex-1 font-semibold rounded-lg text-white' >Submit Admission</button>}
+            {index === steps.length - 1 && <button type='submit' disabled={!checked} className='bg-green-500 disabled:bg-zinc-300 py-2 px-5 flex-1 font-semibold flex items-center justify-center rounded-lg text-white' >{loading ? (
+                            <>
+                              <svg
+                                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <circle
+                                  className="opacity-25"
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeWidth="4"
+                                ></circle>
+                                <path
+                                  className="opacity-75"
+                                  fill="currentColor"
+                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                ></path>
+                              </svg>
+                              <p>Submiting...</p>
+                            </>
+                          ) : (
+                            <>
+                              <p>Submit Application</p>
+                            </>
+                          )}</button>}
             </div>
               </Box>
             </StepContent>
