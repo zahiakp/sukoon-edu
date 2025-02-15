@@ -2,7 +2,7 @@
 import React, { ReactNode } from "react";
 import Logout from "@/app/(admin)/admin/Logout";
 import { usePathname } from "next/navigation";
-import { TbCoinRupeeFilled, TbLayoutDashboard, TbListDetails, TbSubtask, TbTransactionRupee, TbUserSquareRounded } from "react-icons/tb";
+import { TbClipboardList, TbCoinRupeeFilled, TbLayoutDashboard, TbListDetails, TbSubtask, TbTransactionRupee, TbUserSquareRounded } from "react-icons/tb";
 import {PiAddressBookTabs, PiNewspaperClippingBold, PiUsersThreeBold } from "react-icons/pi";
 import { HiOutlineBookmarkAlt, HiOutlineCog } from "react-icons/hi";
 import StyledButton from "./StyledButton";
@@ -34,12 +34,17 @@ function Dashboard() {
     {
       title: "Careers",
       url: "/admin/careers",
-      icon: <FiCodesandbox  className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
+      icon: <FiCodesandbox className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
     },
     {
       title: "Transactions",
       url: "/admin/transactions",
-      icon: <TbTransactionRupee  className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
+      icon: <TbTransactionRupee className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
+    },
+    {
+      title: "Admission",
+      url: "/admin/admission",
+      icon: <TbClipboardList className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
     },
     // {
     //   title: "Applications",

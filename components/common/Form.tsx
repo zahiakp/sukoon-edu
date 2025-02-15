@@ -22,7 +22,7 @@ const FormInput = ({
       <div className="text-sm text-primary-600 my-1">{label}{" "}{optional? <span className="text-lime-600 font-semibold">(optional)</span>:""}</div>
       <input
         type={type ?? "text"}
-        className="w-full p-3 px-5 border border-lime-300 rounded-[10px] outline-lime-500"
+        className={`w-full p-3 px-5 border ${formik.errors[name] && formik.touched[name]?"border-red-500 outline-red-500":"border-lime-300 outline-lime-500"}  rounded-[10px] `}
         name={name}
         onChange={formik.handleChange}
         value={formik.values[name]}
@@ -60,7 +60,7 @@ export function FormTextArea({
     <div className="py-2">
       <div className="text-sm text-primary-600 my-1">{label}</div>
       <textarea
-        className="w-full p-3 px-5 border border-lime-300 rounded-[10px] outline-lime-500"
+        className={`w-full p-3 px-5 border ${formik.errors[name] && formik.touched[name]?"border-red-500 outline-red-500":"border-lime-300 outline-lime-500"}  rounded-[10px] `}
         name={name}
         onChange={formik.handleChange}
         value={formik.values[name]}
