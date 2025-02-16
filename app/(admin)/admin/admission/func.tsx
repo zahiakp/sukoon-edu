@@ -83,7 +83,7 @@ export async function updateArticle(
 
 
 
-export async function getAsmission(
+export async function getAdmission(
     quary:any
 ) {
   const URL: string = `${ROOT_URL}admission/actions.php?api=${API_KEY}&${quary}`;

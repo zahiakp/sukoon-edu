@@ -15,7 +15,7 @@ import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { PaginatorPageChangeEvent } from "primereact/paginator";
-import { getAsmission } from "./func";
+import { getAdmission } from "./func";
 import DeleteItem from "./Delete";
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import { SideBar } from "./SideBar";
@@ -59,7 +59,7 @@ const [showAddModal,setShowAddModal] = useState(false)
         category: selectedCategory,
       }).toString();
 
-      const data = await getAsmission(query);
+      const data = await getAdmission(query);
       if (data.success) {
         setNews(data.data);
         setTotalRecords(data.total);
@@ -122,6 +122,8 @@ console.log(fData);
     }
 }
 
+console.log(news);
+
 
   return (
     <>
@@ -178,22 +180,22 @@ console.log(fData);
           <Spinner />
         ) : news.length !== 0 ? (
           <>
-            <div className="grid grid-cols-11 pl-1 uppercase font-semibold text-zinc-600 text-sm text-center">
-              <p>No</p>
+            <div className="grid grid-cols-10 pl-1 uppercase font-semibold text-zinc-600 text-sm text-center">
+              <p>Ad. No</p>
               <p className="col-span-3">Name</p>
-              <p className="col-span-3">Guardian Name</p>
               <p className="col-span-2">phone</p>
+              <p className="col-span-2">Date</p>
               <p className="col-span-2">Actions</p>
             </div>
             {news.map((item: any, index: number) => (
               <div
                 key={item.id}
-                className="p-5 border border-zinc-100 bg-white shadow-sm duration-200 rounded-xl grid grid-cols-11 gap-5 items-center"
+                className="p-5 border border-zinc-100 bg-white shadow-sm duration-200 rounded-xl grid grid-cols-10 gap-5 items-center"
               >
                 <p className="pl-5 font-bold">{item.id}</p>
                 <p className="col-span-3 line-clamp-1">{item.name}</p>
-                <p className="col-span-3 line-clamp-1">{item.guardianName}</p>
-                <p className="pl-5 col-span-2 font-bold">{item.phone}</p>
+                <p className="pl-5 col-span-2 text-center font-bold">{item.phone}</p>
+                <p className="pl-5 col-span-2 text-center">{getRelativeTime(item.craetedAt)}</p>
                 <div className="col-span-2 flex items-center gap-2 justify-center">
                   
                   
