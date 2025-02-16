@@ -5,12 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { TbEdit, TbPhotoUp } from "react-icons/tb";
 import { IoSearchOutline } from "react-icons/io5";
-import { RiAddCircleFill } from "react-icons/ri";
+import { RiAddCircleFill, RiFileExcel2Fill } from "react-icons/ri";
 import { encodeId } from "@/components/common/decode";
 import { ROOT_URL } from "@/components/data/func";
 import Spinner from "@/components/common/Spinner";
 import Empty from "@/components/common/Empty";
-import { getRelativeTime } from "@/components/common/DateConvert";
+import { formatDate, getRelativeTime } from "@/components/common/DateConvert";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -20,6 +20,7 @@ import DeleteItem from "./Delete";
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import { SideBar } from "./SideBar";
 import AddModal from "./AddModal";
+import * as XLSX from "xlsx";
 // import { SideBar } from "./SideBar";
 
 // Lazy load Paginator to reduce initial bundle size
@@ -89,6 +90,39 @@ const [showAddModal,setShowAddModal] = useState(false)
     setFirst(0); // Reset pagination when changing category
   }, []);
 
+  function exportToExcel(data:any, fileName:string = 'data.xlsx') {
+    try {
+    const fData = data.map((item:any) => ({
+      ...item,
+      photo: `${ROOT_URL}uploads/photo/${item.photo}`,
+      certificate: `${ROOT_URL}uploads/certificate/${item.certificate}`,
+      marksheet: item.marksheet !== "" ? `${ROOT_URL}uploads/marksheet/${item.marksheet}` : ""
+    }));
+console.log(fData);
+        if (!Array.isArray(fData)) {
+            throw new Error('Data must be an array of objects.');
+        }
+        // Check if XLSX is available
+        if (typeof XLSX === 'undefined') {
+            throw new Error('XLSX library is not loaded.');
+        }
+        // Create a new workbook
+        const workbook = XLSX.utils.book_new();
+
+        // Convert the data to a worksheet
+        const worksheet = XLSX.utils.json_to_sheet(fData);
+
+        // Add the worksheet to the workbook
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+        // Generate the Excel file and trigger a download
+        XLSX.writeFile(workbook, fileName);
+    } catch (error) {
+        console.error('Error exporting to Excel:', error);
+    }
+}
+
+
   return (
     <>
       <main className="w-full flex justify-between">
@@ -113,6 +147,10 @@ const [showAddModal,setShowAddModal] = useState(false)
           </div>
         </div>
         <div className="flex gap-3 items-center justify-end">
+            <button onClick={() => exportToExcel(news, `Admission_Entries(${formatDate(new Date().toString())}).xlsx`)} className="py-2 px-5 bg-green-500 rounded-lg text-white flex items-center gap-2 hover:bg-green-600 duration-300 font-semibold">
+            <RiFileExcel2Fill />
+            Export as Excel
+            </button>
           <div className="p-[8px] px-4 bg-white shadow-md rounded-lg flex items-center gap-3">
             <input
               id="search-input"

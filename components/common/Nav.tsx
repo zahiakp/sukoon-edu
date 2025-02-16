@@ -31,11 +31,11 @@ const NAV_ITEMS = [
       { label: "Residential Campus", path: "/projects#Residential-Campus" },
       { label: "Village School", path: "/projects#Village-School" },
       { label: "Learning Centers", path: "/projects#Learning-Centres" },
-      { label: "Milan", path: "/projects#Sukoon-Milan" },
+      { label: "Sukoon Milan", path: "/projects#Sukoon-Milan" },
     ],
   },
   { label: "Life at Sukoon" ,items: [
-    { label: "Our Campus", path: "/admissions" },
+    { label: "Our Campus", path: "/life-sukoon" },
     { label: "Get Admission", path: "/admissions" },
   ],},
   { label: "Join us", path: "/join" },
