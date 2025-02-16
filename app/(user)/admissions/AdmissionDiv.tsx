@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { HiCheckCircle } from "react-icons/hi";
 import { FiArrowRight, FiArrowRightCircle } from "react-icons/fi";
@@ -12,13 +12,25 @@ const AdmissionModal = dynamic(() => import("./AdmissionModal"), {
 const AdmissionDiv: React.FC = () => {
   const [admissionModal, setAdmissionModal] = useState(false);
   const [greatingModal, setGreatingModal] = useState(false);
+const [screenRatio, setScreenRatio] = useState('web');
 
+useEffect(() => {
+  const updateScreenRatio = () => {
+    setScreenRatio(window.innerWidth <= 640 ? 'phone' : 'web');
+  };
+
+  updateScreenRatio();
+  window.addEventListener('resize', updateScreenRatio);
+
+  return () => {
+    window.removeEventListener('resize', updateScreenRatio);
+      }});
   return (
     <>
       <section className="bg-green-500 py-9">
         <main className="w-[85%] max-w-[1200px] mx-auto text-white ">
           <h6 className="Grotesque-font text-center text-5xl font-semibold">
-            <TextAnimate animation="blurInUp" by="character">
+            <TextAnimate animation="blurInUp" by={screenRatio=='phone'?"word":"character"}>
               Sukoon – Online Application Form
             </TextAnimate>
           </h6>
