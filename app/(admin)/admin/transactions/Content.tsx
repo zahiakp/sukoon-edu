@@ -157,7 +157,7 @@ const [showAddModal,setShowAddModal] = useState(false)
                 <p className="col-span-3 line-clamp-1">{item.name}</p>
                 <p className="col-span-2 line-clamp-1">{item.transactionId}</p>
                 <p className="pl-5 col-span-2 bg-green-500 mx-auto w-fit px-4 py-1 rounded-3xl text-white font-bold">₹ {item.amount}</p>
-                <p className="col-span-2 text-center">{getRelativeTime(item.date)}</p>
+                <p className="col-span-2 text-center">{getRelativeTime(item.created_at)}</p>
                 <div className="col-span-2 flex items-center gap-2 justify-center">
                   
                   
