@@ -40,6 +40,7 @@ function AdmissionModal({visible,setVisible,setGreatingModal}:{visible:any,setVi
     const stepperRef:any = useRef(null);
     const [checked,setChecked] = useState(false)
     const [loading,setLoading] = useState(false)
+    const [centerState,setCenterState] = useState<any>([])
     const generateUniqueReceiptNo = () => {
       return "REC" + Date.now() + Math.floor(Math.random() * 1000);
     };
@@ -51,98 +52,144 @@ function AdmissionModal({visible,setVisible,setGreatingModal}:{visible:any,setVi
     ]
 
     const Exam_Center = [
-      {label:"Uttar Pradesh",value:"Uttar Pradesh"},
-      {label:"Delhi",value:"Delhi"},
-      {label:"Haryana",value:"Haryana"},
-      {label:"Rajasthan",value:"Rajasthan"},
-    ]
+      {label:"Uttar Pradesh",value:"Uttar Pradesh",centers:[
+        {label:"Loni",value:"Loni"},
+        {label:"Bareilly",value:"Bareilly"},
+        {label:"Vahanpur",value:"Vahanpur"},
+        {label:"Rampur",value:"Rampur"},
+        {label:"Meerganj",value:"Meerganj"},
+        {label:"Neoriya",value:"Neoriya"},
+        {label:"Lakinpur",value:"Lakinpur"},
+        {label:"Pilibhit",value:"Pilibhit"},
+        {label:"Mathura",value:"Mathura"},
+      ]},
+      {label:"Delhi",value:"Delhi",centers:[
+        {label:"Mustafabad",value:"Mustafabad"},
+        {label:"Nizamuddin",value:"Nizamuddin"},
+      ]},
+      {label:"Haryana",value:"Haryana",centers:[
+        {label:"Sudaka",value:"Sudaka"},
+        {label:"Nuh",value:"Nuh"},
+        {label:"Hathin",value:"Hathin"},
+        {label:"Sohna",value:"Sohna"},
+        {label:"Dhana",value:"Dhana"},
+      ]},
+      {label:"Rajasthan",value:"Rajasthan",centers:[
+        {label:"Alwar",value:"Alwar"},
+        {label:"Chimrawali",value:"Chimrawali"},
+        {label:"Bheelamka",value:"Bheelamka"},
+      ]},
+      {label:"Uttarakhand",value:"Uttarakhand",centers:[
+        {label:"Rudrapur",value:"Rudrapur"},
+      ]},
+    ];
+    const Classes = [
+      {label:"Class 5",value:"5"},
+      {label:"Class 6",value:"6"},
+    ];
   
+
+    const Center = Exam_Center.find((item) => item.value === centerState)?.centers || [];
     
 
     const formik = useFormik({
       initialValues: {
-         name: "",
-         dob: "",
-         guardianName: "",
-         phone: "",
-         gender: "",
-         email: "",
-         address: "",
-         recentshcool: "",
-         schooladdress: "",
-         passingyear: "",
-         examcenter: "",
-         photo:"",
-         photoFile:null,
-         marksheet:"",
-         marksheetFile:null,
-         certificate:"",
-         certificateFile:null,
+        name: "",
+        dob: "",
+        guardianName: "",
+        phone: "",
+        gender: "",
+        email: "",
+        address: "",
+        recentshcool: "",
+        schooladdress: "",
+        lastClass: "",
+        passingyear: "",
+        centerState: "",
+        examcenter: "",
+        photo: "",
+        photoFile: null,
+        marksheet: "",
+        marksheetFile: null,
+        certificate: "",
+        certificateFile: null,
       },
       validationSchema: Yup.object({
-         name: Yup.string().required("Name is required"),
-         dob: Yup.string().required("Date of Birth is required"),
-         email: Yup.string().email("Invalid email address"),
-         phone: Yup.string().required("Phone No is required"),
-         gender: Yup.string().required("Gender is required"),
-         guardianName: Yup.string().required("Guardian Name of Payment is required"),
-         address: Yup.string().required("Residential Address is required"),
-         recentshcool: Yup.string().required("Last Attended School is required"),
-         schooladdress: Yup.string().required("School Address is required"),
-         passingyear: Yup.string().required("Class 6 Passing Year is required"),
-         examcenter: Yup.string().required("Exam Center is required"),
-         photoFile: Yup.string().required("Photo is required"),
-         certificateFile: Yup.string().required("Aadhaar/Birth Certificate is required"),
+        name: Yup.string().required("Name is required"),
+        dob: Yup.string().required("Date of Birth is required"),
+        email: Yup.string().email("Invalid email address"),
+        phone: Yup.string().required("Phone No is required"),
+        gender: Yup.string().required("Gender is required"),
+        guardianName: Yup.string().required("Guardian Name of Payment is required"),
+        address: Yup.string().required("Residential Address is required"),
+        recentshcool: Yup.string().required("Last Attended School is required"),
+        lastClass: Yup.string().required("Last Passed Class is required"),
+        schooladdress: Yup.string().required("School Address is required"),
+        passingyear: Yup.string().required("Class 6 Passing Year is required"),
+        centerState: Yup.string().required("Exam Center State is required"),
+        examcenter: Yup.string().required("Exam Center is required"),
+        photoFile: Yup.string().required("Photo is required"),
+        certificateFile: Yup.string().required("Aadhaar/Birth Certificate is required"),
       }),
-      
+    
       onSubmit: async (values) => {
+        setLoading(true);
         try {
-          console.log(values);
-          
-            await handleFileUpload(values.photoFile, 'photo');
-            await handleFileUpload(values.certificateFile, 'certificate');
-            await handleFileUpload(values.marksheetFile, 'marksheet');
-        
-            const dataResp = await uploadAdmissionForm(values);
-        
-            if (dataResp.success) {
-              console.log('Application Submitted successfully:', dataResp);
-              showMessage('Application Submitted successfully', 'success');
-              setActiveStep(0)
-              formik.resetForm();
-              setGreatingModal(true)
-              setVisible(false);
-            } else {
-              console.error('Application submission failed:', dataResp);
-              showMessage('Application submission failed', 'error');
-            }
-          } catch (error) {
-            console.error('Adding failed:', error);
-            showMessage('Adding failed', 'error');
+          const updatedValues = { ...values };
+    
+          // Upload files and update the values object
+          updatedValues.photo = await handleFileUpload(values.photoFile, 'photo');
+          updatedValues.marksheet = await handleFileUpload(values.marksheetFile, 'marksheet');
+          updatedValues.certificate = await handleFileUpload(values.certificateFile, 'certificate');
+    
+          // Update the formik state with the new values
+          formik.setValues(updatedValues);
+    
+          console.log(updatedValues);
+          const dataResp = await uploadAdmissionForm(updatedValues);
+    
+          if (dataResp.success) {
+            console.log('Application Submitted successfully:', dataResp);
+            showMessage('Application Submitted successfully', 'success');
+            setActiveStep(0)
+            formik.resetForm();
+            setGreatingModal(true)
+            setVisible(false);
+          } else {
+            console.error('Application submission failed:', dataResp);
+            showMessage('Application submission failed', 'error');
           }
+        } catch (error) {
+          console.error('Adding failed:', error);
+          showMessage('Adding failed', 'error');
+        } finally {
+          setLoading(false);
+        }
       },
     });
-       
+    
     const handleFileUpload = async (file: File | null, fieldName: string) => {
-      if (!file) return;
+      if (!file) return null;
     
       try {
-        const response = await uploadFile(file,fieldName);
+        const response = await uploadFile(file, fieldName);
+    
         if (response.success && response.filename) {
-          console.log(fieldName+":",response.filename);
-          formik.setFieldValue(fieldName, response.filename);
-          showMessage(`${fieldName} successfully uploaded`,'success')
+          console.log(`${fieldName}: ${response.filename}`);
           console.log(`${fieldName} successfully uploaded`);
+          return response.filename;
         } else {
-          showMessage(`Error while uploading ${fieldName}`,'error')
-          console.error(`Error while uploading ${fieldName}:`);
-          throw new Error(`Error while uploading ${fieldName}`);
+          showMessage(`Error while uploading ${fieldName}`, 'error');
+          console.error(`Error while uploading ${fieldName}`);
+          return null;
         }
       } catch (error) {
         console.error(`Error uploading ${fieldName}:`, error);
-        throw error;
+        showMessage(`Error uploading ${fieldName}`, 'error');
+        return null;
       }
     };
+    
   
 
 
@@ -176,15 +223,38 @@ const steps = [
       <>
       <FormInput formik={formik} label='Name of Last Attended School' name='recentshcool' placeholder='Name of Last Attended School' />
            <FormInput formik={formik} label='School Address' name='schooladdress' placeholder='School Address' />
-           <FormInput formik={formik} label='Class 6 Passing Year' name='passingyear' type='number' placeholder='Class 6 Passing Year' />
+           <div className="py-2">
+              <div className="text-sm text-primary-600 my-1">Last Class Passed</div>
+                <Dropdown value={formik.values.lastClass} onChange={(e) => formik.setFieldValue('lastClass', e.value)} options={Classes} optionLabel="label" 
+                  placeholder="Select a option" className={`${formik.errors.lastClass && formik.touched.lastClass ? "border-red-500" : "border-lime-500"} w-full border  rounded-lg md:w-14rem`} />
+{formik.errors.lastClass && formik.touched.lastClass && (
+          <p className="text-red-600 text-sm my-1 ml-1">
+            {formik.errors.lastClass}
+          </p>
+        )}
+</div>
+           {formik.values.lastClass!="" && <FormInput formik={formik} label={`Class ${formik.values.lastClass} Passing Year`} name='passingyear' type='number' placeholder={`Class ${formik.values.lastClass} Passing Year`} />}
       </>,
   },
   {
     label: 'Entrance Exam Preference',
     description: <>
+    <p className='text-sm pb-3 pt-1 '>
+     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="inline-block mr-2 text-blue-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path></svg>
+     Select an Exam Centre nearby, where you wish to attend Exam
+</p>
     <div className="py-2">
-    <div className="text-sm text-primary-600 my-1">Select an Exam Centre nearby, where you wish to attend Exam</div>
-      <Dropdown value={formik.values.examcenter} onChange={(e) => formik.setFieldValue('examcenter', e.value)} options={Exam_Center} optionLabel="label" 
+    <div className="text-sm text-primary-600 my-1">Select State</div>
+      <Dropdown value={formik.values.centerState} onChange={(e) => {formik.setFieldValue('centerState', e.value); setCenterState(e.value);}} options={Exam_Center} optionLabel="label" 
+        placeholder="Select a option" className={`${formik.errors.gender && formik.touched.gender ? "border-red-500" : "border-lime-500"} w-full border  rounded-lg md:w-14rem`} />
+    {formik.errors.centerState && formik.touched.centerState && (
+          <p className="text-red-600 text-sm my-1 ml-1">
+            {formik.errors.centerState}
+          </p>
+        )}
+    </div><div className="py-2">
+    <div className="text-sm text-primary-600 my-1">Select Center</div>
+      <Dropdown value={formik.values.examcenter} onChange={(e) => formik.setFieldValue('examcenter', e.value)} options={Center} optionLabel="label" 
         placeholder="Select a option" className={`${formik.errors.gender && formik.touched.gender ? "border-red-500" : "border-lime-500"} w-full border  rounded-lg md:w-14rem`} />
     {formik.errors.examcenter && formik.touched.examcenter && (
           <p className="text-red-600 text-sm my-1 ml-1">
@@ -199,7 +269,7 @@ const steps = [
 <div className='pb-3 border-b'>
 <div className="text-sm text-primary-600 my-2 font-semibold">Recent Passport-size Photo</div>
 <div className={`file-upload border rounded-xl overflow-hidden ${formik.errors.photoFile && formik.touched.photoFile ? "border-red-500":"border-zinc-700"}`}>
-<input accept='image/*' onChange={(e) => formik.setFieldValue('photoFile', e.target.files ? e.target.files[0] : null)} className="file-input rounded-xl w-full" id="fileInput" type="file" />
+<input accept='image/*'  onChange={(e) => formik.setFieldValue('photoFile', e.target.files ? e.target.files[0] : null)} className="file-input rounded-xl w-full" id="fileInput" type="file" />
             </div>
             <div>
         {formik.errors.photoFile && formik.touched.photoFile && (
@@ -210,7 +280,7 @@ const steps = [
       </div>
             </div>
             <div className='pb-3 border-b'>
-          <div className="text-sm text-primary-600 my-2 font-semibold">Class 6 Marksheet/Certificate (if available)</div>
+          <div className="text-sm text-primary-600 my-2 font-semibold">Class 5/6 Marksheet or Certificate (if available)</div>
           <div className={`file-upload border rounded-xl overflow-hidden ${formik.errors.marksheetFile && formik.touched.marksheetFile ? "border-red-500":"border-zinc-700"}`}>
           <input accept='image/*,.pdf' onChange={(e) => formik.setFieldValue('marksheetFile', e.target.files ? e.target.files[0] : null)} className="file-input rounded-xl w-full" id="fileInput" type="file" />
             </div>
@@ -233,7 +303,7 @@ const steps = [
             </div>
             <p className='text-sm pt-3'>
             <input type="checkbox" checked={checked} onChange={(e)=>setChecked(e.target.checked)} className="mr-2 checkbox checkbox-success checkbox-sm [--chkfg:white]" />
-     I hereby declare that the information provided is true and correct to the best of my knowledge. I understand that admission will be based on merit and selection criteria.
+            I hereby declare that the information provided is true and correct to the best of my knowledge. I understand that admission will be based on merit and selection criteria.
 </p>
 <p className='text-sm pb-3 pt-1 text-red-500'>
      <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="inline-block mr-2 " height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path></svg>

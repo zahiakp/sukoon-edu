@@ -34,6 +34,7 @@ export async function uploadAdmissionForm(
         schooladdress: values.schooladdress,
         passingyear: values.passingyear,
         examcenter: values.examcenter,
+        centerState: values.centerState,
         photo: values.photo,
         marksheet: values.marksheet,
         certificate: values.certificate,

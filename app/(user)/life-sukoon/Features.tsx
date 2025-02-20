@@ -86,7 +86,7 @@ function Features() {
         <div className="w-full max-w-[1200px] mx-auto p-7 md:p-10 flex flex-col  items-center">
           <h6 className="Grotesque-font text-center  text-5xl md:text-7xl text-white font-semibold">
             {/* <StyledButton text="What our campus Offers" /> */}
-            <TextAnimate animation="blurInUp" by="character">
+            <TextAnimate animation="blurInUp" by="word">
             What our campus Offers
     </TextAnimate>
           </h6>
