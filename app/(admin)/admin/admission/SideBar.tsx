@@ -96,7 +96,7 @@ export function SideBar({visibleRight,setVisibleRight,trans}:{visibleRight:any,s
                   <SingleCell label={'Recent School'} data={trans?.recentSchool}/>
                   <SingleCell label={'School Address'} data={trans?.schoolAddress}/>
                   <SingleCell label={'Passing Year'} data={trans?.passingYear}/>
-                  <SingleCell label={'Exam Center'} data={trans?.examCenter}/>
+                  <SingleCell label={'Exam Center'} data={trans?.examCenter+","+trans?.centerState}/>
                    
                   </div>
                 </div>
