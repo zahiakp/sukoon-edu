@@ -34,12 +34,12 @@ const NAV_ITEMS = [
       { label: "Sukoon Milan", path: "/projects#Sukoon-Milan" },
     ],
   },
-  { label: "Life at Sukoon" ,items: [
-    { label: "Our Campus", path: "/life-sukoon" },
-    { label: "Get Admission", path: "/admissions" },
+  { label: "Life at Sukoon" ,path:"/life-sukoon"},
+  { label: "Get Admission", path: "/admissions" },
+  { label: "Join us",items: [
+    { label: "Career", path: "/join" },
+    { label: "Contact", path: "/contact" },
   ],},
-  { label: "Join us", path: "/join" },
-  { label: "Connect us", path: "/contact" },
 ];
 
 interface NavProps {

@@ -55,7 +55,7 @@ useEffect(() => {
                 <div className="flex items-center">
                   <HiCheckCircle className="text-green-500 text-lg mr-2" />
                   <span className=" flex-1">
-                 <span className='font-semibold'> Academic Requirement: </span>Must have completed Grade 6 from a recognized school.
+                 <span className='font-semibold'> Academic Requirement: </span>Must have completed 5th and 6th Grade from a recognized school.
                   </span>
                 </div>
                 <p className="flex items-center">
