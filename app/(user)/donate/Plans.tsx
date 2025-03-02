@@ -51,7 +51,7 @@ console.log(cusAmount);
   return (
     <div className=" py-8 relative overflow-hidden group bg-lime-50">
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
-      <div className="mt-10 w-full grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="mt-10 w-full grid grid-cols-2 md:grid-cols-3 gap-4">
         {ITEMS.map((item: any, i: number) => (
         <div data-aos="fade-up" data-aos-delay={i*100}
           key={i}
@@ -77,7 +77,7 @@ console.log(cusAmount);
           className="relative border z-[1] border-b-lime-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
         >
           {" "}
-          <p className="text-lg p-3 px-5 flex items-center justify-between">Other</p>
+          <p className="text-lg p-3 px-5 flex items-center justify-between">Other Amount</p>
           <div className="w-full h-1 relative after:h-1 after:bg-lime-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
           <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-lime-400  flex flex-col h-32">
           <p className="Grotesque-font flex items-center gap-2 text-3xl md:text-4xl font-medium text-lime-600">₹<input onChange={(e) => setCusAmount(e.target.value)} placeholder="Enter Here" className="w-full border-none outline-none text-3xl md:text-5xl font-semibold"/></p>
