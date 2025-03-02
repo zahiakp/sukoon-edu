@@ -45,7 +45,7 @@ const NewsCard = React.memo(({ inv,i }: { inv: NewsItem,i:number }) => {
                   </p> */}
                   <article
                       className="line-clamp-2 mb-3"
-                      dangerouslySetInnerHTML={{ __html: inv.body.substring(0, 50)}}
+                      dangerouslySetInnerHTML={{ __html: inv.body.substring(0, 150)}}
                     ></article>
                   <div>
                     <Link

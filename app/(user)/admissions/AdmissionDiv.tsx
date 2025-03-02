@@ -43,7 +43,7 @@ useEffect(() => {
         <main className="w-[85%] max-w-[1200px] mx-auto flex justify-center flex-col">
           <p className="text-center mt-3">
             Welcome to Sukoon's admission portal! Students who have completed
-            Grade 6 are invited to apply for our program, designed to nurture
+            Grade 5 or Grade 6 are invited to apply for our program, designed to nurture
             bright minds from underprivileged backgrounds
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
