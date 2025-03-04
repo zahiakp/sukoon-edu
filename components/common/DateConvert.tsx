@@ -26,3 +26,5 @@ export function formatDate(dateString: string): string {
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 }
+
+

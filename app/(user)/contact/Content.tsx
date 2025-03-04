@@ -2,32 +2,27 @@
 import Link from "next/link";
 import React from "react";
 import { LuYoutube } from "react-icons/lu";
-import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoMdCall } from "react-icons/io";
 import { FiGlobe } from "react-icons/fi";
 import dynamic from "next/dynamic";
+import { AiFillInstagram } from "react-icons/ai";
+import { RiWhatsappFill } from "react-icons/ri";
+import { TiSocialFacebook } from "react-icons/ti";
 
 function Content() {
   const ContactForm = dynamic(() => import('./Form'), { ssr: false });
   const SOCIAL_LINKS: any[] = [
-    {
-      icon: <FaFacebookF />,
-      link: "https://www.facebook.com/delhithaibaheritage",
-    },
-    {
-      icon: <FaInstagram />,
-      link: "https://www.instagram.com/delhithaibaheritage/",
-    },
-    {
-      icon: <LuYoutube />,
-      link: "https://www.youtube.com/delhithaibaheritage",
-    },
-    // {
-    //     icon: <RiTwitterXLine  />,
-    // link:"",
-    // },
-  ];
+                  {
+                    icon: <AiFillInstagram />,
+                    link: "https://www.instagram.com/mysukoon.in?igsh=ejhubHRlMGJ6dmZo",
+                  },
+                  { icon: <RiWhatsappFill />, link: "https://wa.me/+919645900096?text=Hello%20Sukoon%20Edu%20Village" },
+                  { icon: <TiSocialFacebook />, link: "https://www.facebook.com/share/12LAMTKXN79/?mibextid=wwXIfr" },
+                  // { icon: <FaXTwitter />, link: "" },
+                  { icon: <FaYoutube />, link: "https://youtu.be/qvimT91m6V0" },
+                ]
   return (
     <div className="w-full bg-lime-50">
       <div className="w-[80%] max-w-[1000px] mx-auto flex flex-col md:flex-row justify-center gap-14 py-20">

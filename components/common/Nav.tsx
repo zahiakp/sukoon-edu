@@ -187,13 +187,13 @@ const Nav = React.memo(({ active }: NavProps) => {
           <div className="py-3 mt-3 border-t flex gap-2 border-lime-500 mx-10">
             {[
               {
-                icon: <AiFillInstagram />,
-                link: "https://www.instagram.com/mysukoon.in?igsh=ejhubHRlMGJ6dmZo",
-              },
-              { icon: <RiWhatsappFill />, link: "" },
-              { icon: <TiSocialFacebook />, link: "" },
-              { icon: <FaXTwitter />, link: "" },
-              { icon: <FaYoutube />, link: "" },
+                                icon: <AiFillInstagram />,
+                                link: "https://www.instagram.com/mysukoon.in?igsh=ejhubHRlMGJ6dmZo",
+                              },
+                              { icon: <RiWhatsappFill />, link: "https://wa.me/+919645900096?text=Hello%20Sukoon%20Edu%20Village" },
+                              { icon: <TiSocialFacebook />, link: "https://www.facebook.com/share/12LAMTKXN79/?mibextid=wwXIfr" },
+                              // { icon: <FaXTwitter />, link: "" },
+                              { icon: <FaYoutube />, link: "https://youtu.be/qvimT91m6V0" },
             ].map((icon, i) => (
               <Link
                 target="_blank"

@@ -130,7 +130,7 @@ function Content() {
       </main>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-10">
         {news === "loading" ? (
-          <Spinner />
+          <div className="col-span-3"><Spinner /></div>
         ) : news.length !== 0 ? (
           <>
             
@@ -152,8 +152,8 @@ function Content() {
                {inv.description.substring(0, 50)}...
              </p> */}
              <article
-                 className="line-clamp-2 mb-3"
-                 dangerouslySetInnerHTML={{ __html: item.body.substring(0, 50) }}
+                 className="line-clamp-1 mb-3"
+                 dangerouslySetInnerHTML={{ __html: item.body.substring(0, 100) }}
                ></article>
              <div>
               <div className="flex items-center gap-[6px] mt-2">
