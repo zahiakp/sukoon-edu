@@ -7,7 +7,7 @@ function Details() {
      <section className="w-[80%] max-w-[1000px] mx-auto py-20 bg-white relative overflow-hidden">
         <div className="commonWidth flex flex-col md:flex-row items-center justify-between">
           <section data-aos="fade-up" data-aos-delay="100" className="flex flex-col justify-center items-center ">
-            <img src="/image/pay-apps.png" className="h-16" alt="" />
+            <img src="/image/Google-Pay-logo.png" className="h-14" alt="" />
             <p className='text-4xl my-4 font-bold py-4 flex flex-col items-center text-gray-700 rounded-2xl px-7 bg-gray-100'>9645900096 <br />
             9645900097</p>
             <Link href="upi://pay?pa=ukoonedu55575@fbl&cu=INR" className="text-lg gap-2 flex items-center justify-center">

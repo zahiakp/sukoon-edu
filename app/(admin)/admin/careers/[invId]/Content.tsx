@@ -10,6 +10,7 @@ import { decodeId, encodeId } from "@/components/common/decode";
 import { CgArrowsExpandUpRight } from "react-icons/cg";
 import { getApplicationsbyInvid } from "./func";
 import Empty from "@/components/common/Empty";
+import { SideBar } from "./SideBar";
 
 interface Application {
   id: string;
@@ -22,6 +23,7 @@ function Content({ invId }: { invId: any }) {
   const [applications, setApplications] = useState<Application[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+const [visibleRight,setVisibleRight] = useState<any>(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -85,20 +87,19 @@ function Content({ invId }: { invId: any }) {
               <p className="font-bold">{item.contact}</p>
               <div>
                 <div className="flex items-center gap-[6px] mt-2">
-                  <Link href={'#'}
+                  <button onClick={()=>setVisibleRight(item)}
                     // href={`/admin/careers/${encodeId(item.id)}`}
                     className="bg-green-500 hover:bg-primary-600 flex items-center gap-2 text-white px-3 pr-4 py-1 rounded-lg"
                   >
-                    {/* <CgArrowsExpandUpRight /> */}
+                    <CgArrowsExpandUpRight />
                     View
-                  </Link>
-                  <Link href={'#'}
+                  </button>
+                  {/* <Link href={'#'}
                     // href={`/admin/careers/${encodeId(item.id)}`}
                     className="bg-blue-500 hover:bg-primary-600 flex items-center gap-2 text-white px-3 pr-4 py-1 rounded-lg"
                   >
-                    {/* <CgArrowsExpandUpRight /> */}
                     Download
-                  </Link>
+                  </Link> */}
                   {/* <Link
                     data-tip="Edit"
                     href={`/admin/careers/Edit/${encodeId(item.id)}`}
@@ -113,7 +114,9 @@ function Content({ invId }: { invId: any }) {
         ))}
       </div>: <div className="mt-10">
       <Empty error={"Application not found"}/></div> }
+      <SideBar setVisibleRight={setVisibleRight} visibleRight={visibleRight} trans={visibleRight}/>
     </>
+    
   );
 }
 

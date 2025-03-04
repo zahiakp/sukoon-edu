@@ -15,10 +15,10 @@ function Footer() {
                   icon: <AiFillInstagram />,
                   link: "https://www.instagram.com/mysukoon.in?igsh=ejhubHRlMGJ6dmZo",
                 },
-                { icon: <RiWhatsappFill />, link: "" },
-                { icon: <TiSocialFacebook />, link: "" },
+                { icon: <RiWhatsappFill />, link: "https://wa.me/+919645900096?text=Hello%20Sukoon%20Edu%20Village" },
+                { icon: <TiSocialFacebook />, link: "https://www.facebook.com/share/12LAMTKXN79/?mibextid=wwXIfr" },
                 // { icon: <FaXTwitter />, link: "" },
-                { icon: <FaYoutube />, link: "" },
+                { icon: <FaYoutube />, link: "https://youtu.be/qvimT91m6V0" },
               ]
   return (
     <section className="py-10 bg-gray-50 sm:pt-16 lg:pt-24">
@@ -48,7 +48,7 @@ function Footer() {
               ].map(
                 (item: any, index: number) => (
                   <li key={index}>
-                    <a
+                    <a target="_blank"
                       href={item.path}
                       title=""
                       className="flex text-base group items-center hover:translate-x-0 -translate-x-2 gap-2 text-black transition-all duration-200  hover:font-semibold focus:text-primary"
