@@ -109,6 +109,7 @@ console.log(values);
         "modeOfPayment": values?.modeOfPayment,
         "curreny": values?.curreny || 'INR',
         "type": values?.type,
+        "date": new Date().toISOString(),
   });
   
   let config = {

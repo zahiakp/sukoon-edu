@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { useRouter } from 'next/navigation';
 import { uploadTransaction } from '@/app/(user)/donate/[id]/func';
 import { showMessage } from '@/components/common/CusToast';
+import { getRelativeTime } from '@/components/common/DateConvert';
 
 function AddModal({visible,setVisible,fetch}:{visible:any,setVisible:any,fetch:any}) {
     const router = useRouter();
@@ -14,51 +15,54 @@ function AddModal({visible,setVisible,fetch}:{visible:any,setVisible:any,fetch:a
       return "REC" + Date.now() + Math.floor(Math.random() * 1000);
     };
 const formik = useFormik({
-    initialValues: {
-       name: "",
-       email: "",
-       phone: "",
-       pancard: "",
-       receiptNo: generateUniqueReceiptNo(),
-       amount: "",
-       transactionId: "",
-       merchantId: "",
-       modeOfPayment: "",
-       paymentStatus: "",
-       currency: "",
-       type:"manual",
-    },
-    validationSchema: Yup.object({
-       name: Yup.string().required("Name is required"),
-       phone: Yup.string().required("Phone number is required"),
-       email: Yup.string().email("Invalid email address"),
-       amount: Yup.string().required("Amount is required"),
-       transactionId: Yup.string().required("Transaction Id is required"),
-       modeOfPayment: Yup.string().required("Mode of Payment is required"),
-       paymentStatus: Yup.string().required("Payment Status is required"),
-       currency: Yup.string().required("Currency Id is required"),
-    }),
+  initialValues: {
+     name: "",
+     email: "",
+     phone: "",
+     pancard: "",
+     receiptNo: generateUniqueReceiptNo(),
+     amount: "",
+     transactionId: "",
+     merchantId: "",
+     modeOfPayment: "",
+     paymentStatus: "",
+     currency: "",
+     type:"manual",
+     date: "",
+  },
+  validationSchema: Yup.object({
+     name: Yup.string().required("Name is required"),
+     phone: Yup.string().required("Phone number is required"),
+     email: Yup.string().email("Invalid email address"),
+     amount: Yup.string().required("Amount is required"),
+     transactionId: Yup.string().required("Transaction Id is required"),
+     modeOfPayment: Yup.string().required("Mode of Payment is required"),
+     paymentStatus: Yup.string().required("Payment Status is required"),
+     currency: Yup.string().required("Currency Id is required"),
+  }),
+  
+  onSubmit: async (values) => {
     
-    onSubmit: async (values) => {
-      try {
-          const resp = await uploadTransaction(values);
-      
-          if (resp.success) {
-            console.log('Transaction Added successfully:', resp);
-            showMessage('Transaction Added successfully', 'success');
-            setVisible(false)
-            fetch()
-          } else {
-            console.error('Transaction adding failed:', resp);
-            showMessage('Transaction adding failed', 'error');
-          }
-      
-        } catch (error) {
-          console.error('adding failed:', error);
-          showMessage('adding failed', 'error');
+    try {
+        const resp = await uploadTransaction(values);
+    
+        if (resp.success) {
+          console.log('Transaction Added successfully:', resp);
+          showMessage('Transaction Added successfully', 'success');
+          setVisible(false)
+          fetch()
+        } else {
+          console.error('Transaction adding failed:', resp);
+          showMessage('Transaction adding failed', 'error');
         }
-    },
+    
+      } catch (error) {
+        console.error('adding failed:', error);
+        showMessage('adding failed', 'error');
+      }
+  },
   });
+     
      
   return (
     <Dialog header="Recipt Details" draggable={false} visible={visible} className='p-5 w-[90%] max-w-[500px] rounded-3xl bg-white' onHide={() => {if (!visible) return; setVisible(false); }}>
@@ -70,7 +74,7 @@ const formik = useFormik({
           <FormInput formik={formik} label='Phone No' type='number' name='phone' placeholder='Phone No' />
           <FormInput formik={formik} label='Email (Optional)' type='email' name='email' placeholder='Email' />
           <FormInput formik={formik} label='Pan Card No (Optional)' name='pancard' placeholder='Pan Card No' />
-          <FormInput formik={formik} label='Amount' type='number' name='amount' placeholder='Amount' />
+          <FormInput formik={formik} label='Amount'  name='amount' placeholder='Amount' />
           <FormInput formik={formik} label='Transaction Id' name='transactionId' placeholder='Transaction Id' />
           <FormInput formik={formik} label='Merchant Id (Optional)' name='merchantId' placeholder='Merchant Id' />
           <FormInput formik={formik} label='Mode of Payment' name='modeOfPayment' placeholder='Mode of Payment' />
