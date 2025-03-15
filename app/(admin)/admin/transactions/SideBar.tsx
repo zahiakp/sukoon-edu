@@ -22,7 +22,7 @@ export function SideBar({visibleRight,setVisibleRight,trans}:{visibleRight:any,s
     const handleFillPdf = async () => {
         setIsLoading(true);
         try {
-          await fillPdfTemplate(trans={...trans,date:formatDate(trans?.created_at)});
+          await fillPdfTemplate(trans={...trans,date:formatDate(trans?.date)});
         } catch (error) {
           console.error("Error filling PDF:", error);
         } finally {
@@ -57,7 +57,7 @@ export function SideBar({visibleRight,setVisibleRight,trans}:{visibleRight:any,s
                   <SingleCell label={'Phone No'} data={trans?.phone}/>
                   {trans?.email && <SingleCell label={'Email'} data={trans?.email}/>}
                   {trans?.pancard && <SingleCell label={'Pan Card'} data={trans?.pancard}/>}
-                  <SingleCell label={'Date'} data={formatDate(trans?.created_at)}/>
+                  <SingleCell label={'Date'} data={formatDate(trans?.date)}/>
                   </div>
                   </div>
                   <div
