@@ -7,6 +7,7 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import 'primereact/resources/themes/saga-blue/theme.css';
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const outfit = Plus_Jakarta_Sans({ subsets: ["latin"],variable:"--font-Plus-Jakarta" });
 
@@ -31,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}><PageLoader/><PrimeReactProvider>{children}</PrimeReactProvider>
+      <body className={outfit.className}><GoogleAnalytics gaId="G-KJNE124PN1" /><PageLoader/><PrimeReactProvider>{children}</PrimeReactProvider>
         
       </body>
     </html>
