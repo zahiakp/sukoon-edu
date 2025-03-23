@@ -226,3 +226,49 @@ export async function deleteArticle(
     return null;
   }
 }
+
+
+export async function getFiltedData(
+  period:any
+) {
+const URL: string = `${ROOT_URL}transactions/actions.php?api=${API_KEY}&action=getFilteredData&period=${period}`;
+
+try {
+  const response = await axios.get(URL);
+
+  if (response.status === 200) {
+    return response.data;
+  } else {
+    console.error("Failed to get News:", response.statusText);
+    return null; 
+  }
+} catch (error) {
+  console.error("Error:", error);
+  return null;
+}
+}
+
+
+export async function getPeroidBasedData(
+  period:any
+) {
+const URL: string = `${ROOT_URL}transactions/actions.php?api=${API_KEY}&action=getPeriodBasedData&period=${period}`;
+
+try {
+  const response = await axios.get(URL);
+
+  if (response.status === 200) {
+    return response.data;
+  } else {
+    console.error("Failed to get News:", response.statusText);
+    return null; 
+  }
+} catch (error) {
+  console.error("Error:", error);
+  return null;
+}
+}
+
+export const formatIndianNumber = (num: number): string => {
+  return num.toLocaleString('en-IN');
+};

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { TbEdit, TbPhotoUp } from "react-icons/tb";
 import { IoSearchOutline } from "react-icons/io5";
-import { RiAddCircleFill } from "react-icons/ri";
+import { RiAddCircleFill, RiFileExcel2Fill } from "react-icons/ri";
 import { encodeId } from "@/components/common/decode";
 import { ROOT_URL } from "@/components/data/func";
 import Spinner from "@/components/common/Spinner";
@@ -15,10 +15,11 @@ import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { PaginatorPageChangeEvent } from "primereact/paginator";
-import { getTransactions } from "./func";
+import { formatIndianNumber, getFiltedData, getPeroidBasedData, getTransactions } from "./func";
 import DeleteItem from "./Delete";
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import { SideBar } from "./SideBar";
+import * as XLSX from "xlsx";
 import AddModal from "./AddModal";
 // import { SideBar } from "./SideBar";
 
@@ -30,14 +31,17 @@ const Paginator = dynamic(() => import("primereact/paginator").then((mod) => mod
 function Content() {
   const [imageView, setImageView] = useState<string | false>(false);
   const [news, setNews] = useState<any[] | "loading">("loading");
+  const [data, setData] = useState<any[] | "loading">("loading");
+  const [periodData, setPeriodData] = useState<any[] | "loading">("loading");
+
   const [totalRecords, setTotalRecords] = useState<number>(0);
   const [first, setFirst] = useState<number>(0);
   const [rows, setRows] = useState<number>(10);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("last Week");
   const [visibleRight,setVisibleRight] = useState<any>(false)
 const [showAddModal,setShowAddModal] = useState(false)
-
+const [exporting, setExporting] = useState(false)
 
   // Debounce search input
   const debouncedFetchNews = useMemo(() => {
@@ -69,9 +73,38 @@ const [showAddModal,setShowAddModal] = useState(false)
     }
   }, [first, rows, searchQuery, selectedCategory]);
 
+  const fetchFilterdData = useCallback(async () => {
+    try {
+
+      const data = await getFiltedData(selectedCategory);
+      if (data.success) {
+        setData(data.data);
+      }
+    } catch (error) {
+      console.error("Failed to fetch news:", error);
+      setData([]);
+    }
+  }, [selectedCategory]);
+
+  const fetchPeroidBasedData = useCallback(async () => {
+    try {
+
+      const data = await getPeroidBasedData(selectedCategory);
+      if (data.success) {
+        setPeriodData(data.data);
+      }
+    } catch (error) {
+      console.error("Failed to fetch news:", error);
+      setPeriodData([]);
+    }
+  }, [selectedCategory]);
+
+
+
   useEffect(() => {
     fetchNews();
-  }, [fetchNews]);
+    fetchFilterdData();
+  }, [fetchNews,fetchFilterdData]);
 
   const onPageChange = useCallback((e: PaginatorPageChangeEvent) => {
     setFirst(e.first);
@@ -89,8 +122,88 @@ const [showAddModal,setShowAddModal] = useState(false)
     setFirst(0); // Reset pagination when changing category
   }, []);
 
+
+function exportToExcel(data:any, fileName:string = 'data.xlsx') {
+  setExporting(true);
+    try {
+      fetchPeroidBasedData();
+        if (!Array.isArray(data)) {
+            throw new Error('Data must be an array of objects.');
+        }
+        // Check if XLSX is available
+        if (typeof XLSX === 'undefined') {
+            throw new Error('XLSX library is not loaded.');
+        }
+        // Create a new workbook
+        const workbook = XLSX.utils.book_new();
+
+        // Convert the data to a worksheet
+        const worksheet = XLSX.utils.json_to_sheet(data);
+
+        // Add the worksheet to the workbook
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+        // Generate the Excel file and trigger a download
+        XLSX.writeFile(workbook, fileName);
+        setExporting(false);
+    } catch (error) {
+        console.error('Error exporting to Excel:', error);
+        setExporting(false);
+    }
+}
+console.log("periodData",periodData);
+
+
   return (
     <>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" >
+    <div className="flex gap-3 flex-col" >
+    <div className="bg-white rounded-xl p-4 shadow-md flex flex-col gap-3"> <p>Time Period</p>
+                                    <select
+                                      onChange={handleCategoryChange}
+                                      value={selectedCategory}
+                                      className="select select-bordered select-sm w-full max-w-xs"
+                                    >
+                                      <option value="">All Categories</option>
+                                      {["Today", "last Week", "last Month", "last 6 Month", "last Year"].map((item: any, index: number) => (
+                                        <option key={index} value={item}>{item}</option>
+                                      ))}
+                                    </select>
+                                </div>
+                                <button onClick={() => exportToExcel(news, `Transactions(${new Date().toISOString().split('T')[0]}).xlsx`)} className="py-2 px-5 bg-green-500 rounded-lg text-white flex justify-center items-center gap-2 hover:bg-green-600 duration-300 font-semibold">
+                                            <RiFileExcel2Fill />
+                                            Export {selectedCategory} data
+                                            </button>
+                </div>
+                <div className="bg-white rounded-xl p-6 shadow-md" >
+                    <div className="flex items-center justify-between mb-4" >
+                        <h3 className="text-zinc-400" >Total Donation</h3>
+                        <span className="text-emerald-600 bg-emerald-500/10 px-2 py-1 rounded text-sm" ><span className="font-semibold">{data !== "loading" && data.reduce((acc, item) => acc + item.count, 0)}</span> items</span>
+                    </div>
+                    <p className="text-3xl font-bold text-zinc-700" >₹{data !== "loading"  && formatIndianNumber(data.reduce((acc, item) => acc + item.total_amount, 0))}</p>
+                    <p className="text-sm text-zinc-400 mt-2" >got {selectedCategory}</p>
+                </div>
+
+                <div className="bg-white rounded-xl p-6 shadow-md" >
+                    <div className="flex items-center justify-between mb-4" >
+                        <h3 className="text-zinc-400" >Autopay Donation</h3>
+                        <span className="text-emerald-600 bg-emerald-500/10 px-2 py-1 rounded text-sm" ><span className="font-semibold">{data !== "loading" && data.find((item) => item.type === "auto")?.count}</span> items</span>
+                    </div>
+                    <p className="text-3xl font-bold text-zinc-700" >₹{data !== "loading" && formatIndianNumber(data.find((item) => item.type === "auto")?.total_amount||0)}</p>
+                    <p className="text-sm text-zinc-400 mt-2" >got {selectedCategory}</p>
+                </div>
+
+                <div className="bg-white rounded-xl p-6 shadow-md" >
+                    <div className="flex items-center justify-between mb-4" >
+                        <h3 className="text-zinc-400" >Manual Donation</h3>
+                        <span className="text-emerald-600 bg-emerald-500/10 px-2 py-1 rounded text-sm" ><span className="font-semibold">{data !== "loading" && data.find((item) => item.type === "manual")?.count}</span> items</span>
+                    </div>
+                    <p className="text-3xl font-bold text-zinc-700" >₹{data !== "loading" && formatIndianNumber(data.find((item) => item.type === "manual")?.total_amount||0)}</p>
+                    <p className="text-sm text-zinc-400 mt-2" >got {selectedCategory}</p>
+                </div>
+
+                
+            </div>
       <main className="w-full flex justify-between">
         <div className="flex items-center justify-between">
           <div>
