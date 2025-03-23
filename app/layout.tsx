@@ -12,13 +12,13 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 const outfit = Plus_Jakarta_Sans({ subsets: ["latin"],variable:"--font-Plus-Jakarta" });
 
 export const metadata: Metadata = {
-  title: "Sukoon Edu Village",
-  description: "Sukoon Edu Village is a sanctuary of harmony and learning, we nurture young minds through education and the universal language of love.",
-  keywords: ['Sukoon', 'Edu', 'Village', 'foundation', 'hariyana', 'ngo'],
+  title: "Sukoon Edu Foundation",
+  description: "Sukoon Edu Foundation is a sanctuary of harmony and learning, we nurture young minds through education and the universal language of love.",
+  keywords: ['Sukoon', 'Edu', 'Foundation', 'foundation', 'hariyana', 'ngo'],
   metadataBase: new URL('https://mysukoon.in/'),
   openGraph: {
     url: "https://mysukoon.in/",
-    description: "Sukoon Edu Village is a sanctuary of harmony and learning, we nurture young minds through education and the universal language of love.",
+    description: "Sukoon Edu Foundation is a sanctuary of harmony and learning, we nurture young minds through education and the universal language of love.",
     images:["https://mysukoon.in/image/sukoonlogo.png"]
   },
   
