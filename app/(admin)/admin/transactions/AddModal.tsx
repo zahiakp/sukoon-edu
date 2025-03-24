@@ -34,7 +34,7 @@ const formik = useFormik({
      name: Yup.string().required("Name is required"),
      phone: Yup.string().required("Phone number is required"),
      email: Yup.string().email("Invalid email address"),
-     amount: Yup.string().required("Amount is required"),
+     amount: Yup.string().required("Amount is required").matches(/^\d+(\.\d+)?$/, "Amount must be a number"),
      transactionId: Yup.string().required("Transaction Id is required"),
      modeOfPayment: Yup.string().required("Mode of Payment is required"),
      paymentStatus: Yup.string().required("Payment Status is required"),
@@ -61,7 +61,7 @@ const formik = useFormik({
         showMessage('adding failed', 'error');
       }
   },
-  });
+})
      
      
   return (
