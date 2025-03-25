@@ -21,10 +21,10 @@ function Plans2() {
   const [fivehundredSqFeet,setFivehundredSqFeet] =useState<any>(500)
   const [fivehundredSqFeetAmd,setFivehundredSqFeetAmd] =useState<any>(40000)
   const ITEMS = [
-    { icon: "",id:"1",count:tenSqFeet,min:10,max:990,addvalue:10,setCount:setTenSqFeet,setCountAmd:setTenSqFeetAmd,amd:80, size: `${tenSqFeet} Sq feet`,amount:tenSqFeetAmd,label:`${tenSqFeet}%20Sq%20feet`, plan: tenSqFeetAmd ,link:""},
-    { icon: "",id:"2",count:fiftySqFeet,min:50,max:9900,addvalue:50,setCount:setFiftySqFeet,setCountAmd:setFiftySqFeetAmd,amd:80, size: `${fiftySqFeet} Sq feet`,amount:fiftySqFeetAmd,label:`${fiftySqFeet}%20Sq%20feet`, plan: fiftySqFeetAmd,link:"" },
-    { icon: "",id:"3",count:hundredSqFeet,min:100,max:9900,addvalue:100,setCount:setHundredSqFeet,setCountAmd:setHundredSqFeetAmd,amd:80, size: `${hundredSqFeet} Sq feet`,amount:hundredSqFeetAmd,label:`${hundredSqFeet}%20Sq%20feet`, plan: hundredSqFeetAmd,link:"" },
-    { icon: "",id:"4",count:fivehundredSqFeet,min:500,max:99000,addvalue:100,setCount:setFivehundredSqFeet,setCountAmd:setFivehundredSqFeetAmd,amd:80, size: `${fivehundredSqFeet} Sq feet`,amount:fivehundredSqFeetAmd,label:`${fivehundredSqFeet}%20Sq%20feet`, plan: fivehundredSqFeetAmd,link:"" },
+    { icon: "",id:"1",count:tenSqFeet,min:10,max:990,addvalue:10,setCount:setTenSqFeet,setCountAmd:setTenSqFeetAmd,amd:80, size: `${tenSqFeet} Bricks`,amount:tenSqFeetAmd,label:`${tenSqFeet}%20Sq%20feet`, plan: tenSqFeetAmd ,link:""},
+    { icon: "",id:"2",count:fiftySqFeet,min:50,max:9900,addvalue:50,setCount:setFiftySqFeet,setCountAmd:setFiftySqFeetAmd,amd:80, size: `${fiftySqFeet} Bricks`,amount:fiftySqFeetAmd,label:`${fiftySqFeet}%20Sq%20feet`, plan: fiftySqFeetAmd,link:"" },
+    { icon: "",id:"3",count:hundredSqFeet,min:100,max:9900,addvalue:100,setCount:setHundredSqFeet,setCountAmd:setHundredSqFeetAmd,amd:80, size: `${hundredSqFeet} Bricks`,amount:hundredSqFeetAmd,label:`${hundredSqFeet}%20Sq%20feet`, plan: hundredSqFeetAmd,link:"" },
+    { icon: "",id:"4",count:fivehundredSqFeet,min:500,max:99000,addvalue:100,setCount:setFivehundredSqFeet,setCountAmd:setFivehundredSqFeetAmd,amd:80, size: `${fivehundredSqFeet} Bricks`,amount:fivehundredSqFeetAmd,label:`${fivehundredSqFeet}%20Sq%20feet`, plan: fivehundredSqFeetAmd,link:"" },
   ];
 
 const handleIncrement = (count: number, amount: number, setCount: any, setCountAmd: any, max: number, addvalue: number) => {
