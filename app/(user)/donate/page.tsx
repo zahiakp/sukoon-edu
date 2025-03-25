@@ -5,6 +5,7 @@ import React from 'react'
 import Details from './Details';
 import Hero from './Hero';
 import Plans from './Plans';
+import Plans2 from './Plans2';
 
 export const metadata: Metadata = {
   title: "Donate - Sukoon Edu Village",
@@ -17,6 +18,7 @@ function page() {
     <UserLayout>
       <Hero/>
       <Plans/>
+      <Plans2/>
       <Details/>
     </UserLayout>
   )
