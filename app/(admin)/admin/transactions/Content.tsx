@@ -21,6 +21,7 @@ import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import { SideBar } from "./SideBar";
 import * as XLSX from "xlsx";
 import AddModal from "./AddModal";
+import { showMessage } from "@/components/common/CusToast";
 // import { SideBar } from "./SideBar";
 
 // Lazy load Paginator to reduce initial bundle size
@@ -86,18 +87,18 @@ const [exporting, setExporting] = useState(false)
     }
   }, [selectedCategory]);
 
-  const fetchPeroidBasedData = useCallback(async () => {
+  async function fetchPeriodBasedData() {
     try {
-
-      const data = await getPeroidBasedData(selectedCategory);
-      if (data.success) {
-        setPeriodData(data.data);
-      }
+        const data = await getPeroidBasedData(selectedCategory);
+        if (data.success) {
+            return data.data; // Return the data instead of setting it
+        }
+        return []; // Return empty array if no success
     } catch (error) {
-      console.error("Failed to fetch news:", error);
-      setPeriodData([]);
+        console.error("Failed to fetch period-based data:", error);
+        return [];
     }
-  }, [selectedCategory]);
+}
 
 
 
@@ -119,39 +120,46 @@ const [exporting, setExporting] = useState(false)
 
   const handleCategoryChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(e.target.value);
+    setPeriodData("loading"); // Reset period data when changing category
+    fetchPeriodBasedData(); // Fetch new period data
     setFirst(0); // Reset pagination when changing category
   }, []);
 
 
-function exportToExcel(data:any, fileName:string = 'data.xlsx') {
-  setExporting(true);
+  
+  
+  async function exportToExcel(fileName = 'data.xlsx') {
+    setExporting(true);
     try {
-      fetchPeroidBasedData();
-        if (!Array.isArray(data)) {
-            throw new Error('Data must be an array of objects.');
+        // Fetch period-based data first and get the result
+        const periodData = await fetchPeriodBasedData();
+  
+        // Verify if the data is fetched correctly
+        if (!Array.isArray(periodData) || periodData.length === 0) {
+          showMessage("No valid data available for export.", "error")
+            throw new Error('No valid data available for export.');
         }
+  
         // Check if XLSX is available
         if (typeof XLSX === 'undefined') {
             throw new Error('XLSX library is not loaded.');
         }
-        // Create a new workbook
+  
+        // Create a new workbook and convert the data to a worksheet
         const workbook = XLSX.utils.book_new();
-
-        // Convert the data to a worksheet
-        const worksheet = XLSX.utils.json_to_sheet(data);
-
-        // Add the worksheet to the workbook
+        const worksheet = XLSX.utils.json_to_sheet(periodData);
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-
+  
         // Generate the Excel file and trigger a download
         XLSX.writeFile(workbook, fileName);
-        setExporting(false);
     } catch (error) {
         console.error('Error exporting to Excel:', error);
+    } finally {
         setExporting(false);
     }
 }
-console.log("periodData",periodData);
+  
+
 
 
   return (
@@ -164,13 +172,13 @@ console.log("periodData",periodData);
                                       value={selectedCategory}
                                       className="select select-bordered select-sm w-full max-w-xs"
                                     >
-                                      <option value="">All Categories</option>
+                                      {/* <option value="">All Categories</option> */}
                                       {["Today", "last Week", "last Month", "last 6 Month", "last Year"].map((item: any, index: number) => (
                                         <option key={index} value={item}>{item}</option>
                                       ))}
                                     </select>
                                 </div>
-                                <button onClick={() => exportToExcel(news, `Transactions(${new Date().toISOString().split('T')[0]}).xlsx`)} className="py-2 px-5 bg-green-500 rounded-lg text-white flex justify-center items-center gap-2 hover:bg-green-600 duration-300 font-semibold">
+                                <button onClick={() => exportToExcel(`Transactions.${selectedCategory}(${new Date().toISOString().split('T')[0]}).xlsx`)} className="py-2 px-5 bg-green-500 rounded-lg text-white flex justify-center items-center gap-2 hover:bg-green-600 duration-300 font-semibold">
                                             <RiFileExcel2Fill />
                                             Export {selectedCategory} data
                                             </button>
