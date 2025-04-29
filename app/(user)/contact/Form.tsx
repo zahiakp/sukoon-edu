@@ -5,6 +5,8 @@ import * as Yup from "yup";
 import { MdDone } from "react-icons/md";
 import { LuSendHorizontal } from "react-icons/lu";
 import FormInput, { FormTextArea } from "@/components/common/Form";
+import { showMessage } from "@/components/common/CusToast";
+import { sendEmail } from "./func";
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
@@ -25,19 +27,20 @@ const ContactForm = () => {
     }),
     onSubmit: async (values) => {
       setLoading(true);
-      // await sendEmail(
-      //   values.name,
-      //   values.contact,
-      //   values.email,
-      //   values.message
-      // ).then((res:any) => {
-      //   if (res.success) {
-      //   //   toast.success("Message sent successfully");
-      //     setSend(true);
-      //   } else {
-      //   //   toast.error("Failed to send message!");
-      //   }
-      // });
+      await sendEmail(
+        values.name,
+        values.contact,
+        values.email,
+        values.message
+      ).then((res:any) => {
+        if (res) {
+          showMessage("Message sent successfully","success");
+          setSend(true);
+        } else {
+          showMessage("Failed to send message!","error");
+          setLoading(false);
+        }
+      });
       setLoading(false);
     },
   });
