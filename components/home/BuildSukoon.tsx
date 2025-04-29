@@ -44,7 +44,7 @@ export const SukoonSection = () => {
 
   return (
     <section className="py-20 bg-gradient-to-t from-lime-50 to-white relative overflow-hidden pb-72 md:pb-[350px]">
-      <div className="max-w-6xl mx-auto px-7">
+      <div className="max-w-6xl mx-auto px-7 relative z-[1]">
         <div className="text-center mb-12">
           <h6 className="Grotesque-font text-5xl md:text-6xl text-lime-700 font-semibold">
             {/* <StyledButton text=""/>  */}
@@ -87,7 +87,7 @@ export const SukoonSection = () => {
           ))}
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="700" className="text-center py-14 mt-10 flex flex-col items-center justify-center rounded-xl ">
+        <div data-aos="fade-up" data-aos-delay="700" className=" text-center py-14 mt-10 flex flex-col items-center justify-center rounded-xl ">
           <p className="text-4xl font-semibold  text-lime-600 font-cascadia md:w-[900px]">
           <TextAnimate animation="blurInUp" by="word">
             "Education is the most powerful weapon which you can use to change the world."
@@ -100,7 +100,7 @@ export const SukoonSection = () => {
 
             {/* <p className="text-lg text-zinc-700 font-medium"> */}
             {/* Start Making a Difference Today */}
-            <Link href="/donate">
+            <Link href="/donate" className="relative">
               <p className="inline-flex items-center bg-lime-500 ml-5 hover:bg-lime-600 text-white px-6 py-3 text-lg rounded-xl shadow-lg duration-300 hover:scale-[1.02]">
               <FaHandHoldingHeart className="mr-2 text-yellow-200" /> Donate Now
               </p>
@@ -112,7 +112,7 @@ export const SukoonSection = () => {
         data-aos="fade-up"
         data-aos-delay={`800`}
         src="/image/Sukoon Front View Without Sky.png"
-        className="h-[500px] md:w-full w-auto object-cover md:object-bottom absolute bottom-0"
+        className="h-[500px] -z-[0] md:w-full w-auto object-cover  md:object-bottom absolute bottom-0"
         alt=""
       />
     </section>
