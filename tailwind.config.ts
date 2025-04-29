@@ -12,6 +12,9 @@ export default {
   		animation: {
   			ripple: 'ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite'
   		},
+		  fontFamily: {
+			Rouge: ['var(--font-rouge-script)'],
+		  },
   		keyframes: {
   			ripple: {
   				'0%, 100%': {

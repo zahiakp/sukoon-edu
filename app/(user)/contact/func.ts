@@ -1,25 +1,31 @@
-// "use server";
+import { API_KEY, ROOT_URL } from "@/components/data/func";
+import axios from "axios";
 
-// import { API_KEY, ROOT_URL } from "../../components/data/const";
-
-
-// export async function sendEmail(
-//   name: string,
-//   contact: any,
-//   email: string,
-//   message: string
-// ) {
-//   const URL: string = `${ROOT_URL}guest/contact/sendmail.php`;
-//   const formData = new FormData();
-//   formData.append("api", API_KEY);
-//   formData.append("name", name);
-//   formData.append("contact", contact);
-//   formData.append("email", email);
-//   formData.append("message", message);
-//   const resp = await fetch(URL, {
-//     method: "POST",
-//     body: formData,
-//   });
-//   const data = await resp.json();
-//   return data;
-// }
+export async function sendEmail(
+    name: string,
+    contact: any,
+    email: string,
+    message: string
+  ) {
+    const URL: string = `${ROOT_URL}email.php?api=${API_KEY}`;
+    try{
+        const response = await axios.post(
+            URL,
+            JSON.stringify({
+              name,contact,email,message,to:"connect@mysukoon.in",from:"no-replay-connect@mysukoon.in"
+            })
+          );
+          if (response.status === 201) {
+            const data = response.data;
+            console.log("Mail Sended");
+            return true;
+          } else {
+            const data = response.data;
+            console.log("Failed to send mail:",data);
+            return false;
+          }
+    } catch (error: any) {
+        console.log(error.message);
+        return false;
+      }
+  }

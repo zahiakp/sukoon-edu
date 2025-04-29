@@ -24,7 +24,7 @@ function Plans() {
   ];
 
   return (
-    <div className=" py-8 relative overflow-hidden group bg-blue-50 pb-72 md:pb-[350px]">
+    <div className=" py-8 relative overflow-hidden pb-72 md:pb-[350px] group bg-blue-50 ">
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
         <h6 className="Grotesque-font text-5xl md:text-6xl text-sky-800 font-semibold">
           {/* <StyledButton text=""/>  */}

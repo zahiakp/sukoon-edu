@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,6 +21,10 @@ html { scroll-behavior: smooth; }
 }
 .swiper-pagination-bullet-active {
   @apply !bg-lime-500 !w-[50px] !rounded-xl
+}
+
+.font-cascadia{
+  font-family: "Cascadia Mono", sans-serif;
 }
 
 .swiper-button-prev {
