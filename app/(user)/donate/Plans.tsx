@@ -57,7 +57,7 @@ console.log(cusAmount);
 const validCounts = [sqFeet, sq5Feet, tenSqFeet]
 
   return (
-    <div className=" py-8 relative overflow-hidden group bg-lime-50">
+    <div id="building" className=" py-8 relative overflow-hidden group bg-lime-50">
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
         <h6 className="text-4xl md:text-5xl text-center Grotesque-font text-lime-600 font-bold">
                           {/* <TextAnimate animation="blurInUp" by="word"> */}
