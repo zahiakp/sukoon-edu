@@ -41,7 +41,7 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
 // const validCounts = [tenSqFeet]
 
   return (
-    <div className=" py-8 relative overflow-hidden group bg-white">
+    <div id="students" className=" py-8 relative overflow-hidden group bg-white">
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
         <h6 className="text-4xl md:text-5xl text-center Grotesque-font text-neutral-600 font-bold">
                           {/* <TextAnimate animation="blurInUp" by="word"> */}

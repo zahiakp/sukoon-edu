@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { FaBuilding, FaHandHoldingHeart } from "react-icons/fa";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import { GiHotMeal } from "react-icons/gi";
-import { IoLibrary } from "react-icons/io5";
+import { IoArrowForwardSharp, IoLibrary } from "react-icons/io5";
 import { FaChildDress, FaComputer } from "react-icons/fa6";
 import { TextAnimate } from "../ui/text-animate";
 import Link from "next/link";
@@ -14,31 +14,37 @@ export const SukoonSection = () => {
       title: "Building Construction",
       description: "Help us build safe learning spaces",
       icon: <FaBuilding />,
+      link:'/donate#building',
     },
     {
       title: "Sponsor a Student",
       description: "Change a child's life through education",
       icon: <HiMiniUserGroup />,
+      link:'/donate#students',
     },
     {
       title: "Students' Meals",
       description: "Provide nutritious meals for better learning",
       icon: <GiHotMeal />,
+      link:'/donate#meals',
     },
     {
       title: "Class Room & Library",
       description: "Fuel young minds with knowledge",
       icon: <IoLibrary />,
+      link:'/donate#library',
     },
     {
       title: "IT Lab",
       description: "Bridge the digital divide",
       icon: <FaComputer />,
+      link:'/donate#itlab',
     },
     {
       title: "Uniform",
       description: "Give the gift of dignity and belonging",
       icon: <FaChildDress />,
+      link:'/donate#uniform',
     },
   ];
 
@@ -72,9 +78,9 @@ export const SukoonSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {waysToSupport.map((way, index) => (
-            <div data-aos="fade-up" data-aos-delay={`${(index+2) * 100}`}
+            <Link href={way.link || ""} data-aos="fade-up" data-aos-delay={`${(index+2) * 100}`}
               key={index}
-              className="flex gap-5 duration-300 bg-lime-100/60 rounded-2xl p-5"
+              className="flex gap-5 duration-300 bg-lime-100/60 rounded-2xl p-5 overflow-hidden relative group/icon after:h-[5px] after:w-0 cursor-pointer after:bg-lime-600 after:absolute  after:rounded-b-2xl after:-ml-5 after:bottom-0 hover:after:w-full after:duration-300"
             >
               <div>
                 <div className="text-4xl text-lime-600 p-4 w-fit rounded-2xl bg-lime-200/70">{way.icon}</div>
@@ -83,7 +89,8 @@ export const SukoonSection = () => {
                 <h6 className="text-lime-700 text-xl font-semibold">{way.title}</h6>
                 <p className="text-gray-600 text-sm">{way.description}</p>
               </div>
-            </div>
+              <div  className="absolute bottom-4 right-4 text-2xl group-hover/icon:text-3xl text-lime-600 opacity-30 group-hover/icon:opacity-100"><IoArrowForwardSharp className="rotate-45 duration-200 group-hover/icon:rotate-0"/></div>
+            </Link>
           ))}
         </div>
 
