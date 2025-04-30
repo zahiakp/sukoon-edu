@@ -61,7 +61,7 @@ const validCounts = [sqFeet, sq5Feet, tenSqFeet]
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
         <h6 className="text-4xl md:text-5xl text-center Grotesque-font text-lime-600 font-bold">
                           {/* <TextAnimate animation="blurInUp" by="word"> */}
-                            Donate for Building
+                          Building Construction
                           {/* </TextAnimate> */}
                         </h6>
       <div className="mt-10 w-full hidden md:grid grid-cols-2 md:grid-cols-3 gap-4">

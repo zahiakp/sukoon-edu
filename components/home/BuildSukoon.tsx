@@ -87,8 +87,8 @@ export const SukoonSection = () => {
           ))}
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="700" className=" text-center py-14 mt-10 flex flex-col items-center justify-center rounded-xl ">
-          <p className="text-4xl font-semibold  text-lime-600 font-cascadia md:w-[900px]">
+        <div data-aos="fade-up" data-aos-delay="700" className=" text-center pb-20 flex flex-col items-center justify-center rounded-xl ">
+          {/* <p className="text-4xl font-semibold  text-lime-600 font-cascadia md:w-[900px]">
           <TextAnimate animation="blurInUp" by="word">
             "Education is the most powerful weapon which you can use to change the world."
             </TextAnimate>
@@ -96,7 +96,7 @@ export const SukoonSection = () => {
           </p>
           <p className="mb-7 p-2 text-zinc-600 italic">
               — Nelson Mandela
-            </p>
+            </p> */}
 
             {/* <p className="text-lg text-zinc-700 font-medium"> */}
             {/* Start Making a Difference Today */}
