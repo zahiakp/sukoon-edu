@@ -26,10 +26,10 @@ const NewsCard = React.memo(({ inv,i }: { inv: NewsItem,i:number }) => {
   const truncatedDescription = description.substring(0, 50); // Safely call substring
 
   return (
-    <Link href={href}>
+    <Link href={href} className='p-5 border rounded-lg hover:border-lime-500 duration-300 cursor-pointer hover:scale-[1.01]'>
       <div
                   key={inv.id}
-                  className="p-5 border rounded-lg hover:border-lime-500 duration-300 cursor-pointer hover:scale-[1.01]"
+                  className=""
                 >
                   <div
                     className="text-xs px-2 py-1 bg-lime-100

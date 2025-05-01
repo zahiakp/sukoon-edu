@@ -99,9 +99,9 @@ const Nav = React.memo(({ active }: NavProps) => {
                 >
                   {item?.items?.map((it: any, ii: number) => (
                     <Link
-                    href={it.path || "#"}
+                      href={it.path || "#"}
                       key={ii}
-                      className="p-3 px-5 w-full text-center hover:bg-zinc-100 duration-300"
+                      className="p-3 px-5 w-full text-center border-b border-zinc-200 hover:bg-zinc-100 duration-300 whitespace-nowrap"
                     >
                       {it.label}
                     </Link>
@@ -140,7 +140,7 @@ const Nav = React.memo(({ active }: NavProps) => {
                 >
                   <Link
                     href={item.path || "#"}
-                    className="text-xl text-lime-700 flex items-center gap-4"
+                    className="text-xl text-lime-700  flex items-center gap-4"
                   >
                     <span className="text-lg text-zinc-600">
                       <IoMdArrowForward />

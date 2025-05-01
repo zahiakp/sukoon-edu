@@ -117,3 +117,9 @@ html { scroll-behavior: smooth; }
   @apply w-[500px] p-5
 }
 
+#itlab {
+  scroll-margin-top: 150px; /* Modern solution */
+  /* or */
+  /* padding-top: 80px; */
+  /* margin-top: -80px; */
+}
