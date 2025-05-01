@@ -1,15 +1,31 @@
 'use client'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RiArrowRightLine } from "react-icons/ri";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 // import PaymentModal from "./PaymentModal";
 import dynamic from "next/dynamic";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { useRouter } from "next/navigation";
 
 const PaymentModal = dynamic(() => import("./PaymentModal"), { ssr: false });
 
 function ITLabsPlans() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        const yOffset = -80; // height of your navbar
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+  }, []);
   const [view, setView] = useState<any>('');
   const [cusAmount,setCusAmount] = useState<any>()
   const [tenSqFeet,setTenSqFeet] =useState<any>(1)
