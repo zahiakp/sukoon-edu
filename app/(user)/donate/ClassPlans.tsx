@@ -6,6 +6,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import dynamic from "next/dynamic";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { SiGoogleclassroom } from "react-icons/si";
 
 const PaymentModal = dynamic(() => import("./PaymentModal"), { ssr: false });
 
@@ -43,11 +44,16 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
   return (
     <div id="library" className=" py-8 relative overflow-hidden group bg-lime-50">
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
-        <h6 className="text-4xl md:text-5xl text-center Grotesque-font text-lime-600 font-bold">
-                          {/* <TextAnimate animation="blurInUp" by="word"> */}
-                            Classroom
-                          {/* </TextAnimate> */}
-                        </h6>
+        
+                        <h6 className="text-4xl md:text-5xl text-center Grotesque-font text-lime-600 font-bold flex gap-4 items-center">
+                                                        
+                                                                <span className="text-2xl text-lime-600 p-4 w-fit rounded-2xl bg-lime-200/70"><SiGoogleclassroom /></span>
+                                                                  {/* <TextAnimate animation="blurInUp" by="word"> */}
+                                                                  Classroom
+                                                                          {/* </TextAnimate> */}
+                                                                        </h6>
+                                                        <p className="text-zinc-500 text-center text-[16px] my-5">
+                                                          Your contribution will help us provide better classrooms and libraries for underprivileged children in North India. Together, we can create an environment where they can learn, grow, and achieve their dreams. </p>
       <div className="mt-10 w-full hidden md:grid grid-cols-2 md:grid-cols-2 gap-4">
         {ITEMS.map((item: any, i: number) => (
         <div data-aos="fade-up" data-aos-delay={i*100}
