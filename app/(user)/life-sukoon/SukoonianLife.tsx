@@ -4,7 +4,7 @@ import React from "react";
 
 function SukoonianLife() {
   return (
-    <div className="bg-lime-50 relative w-full  overflow-hidden">
+    <div className="bg-lime-50 relative w-full overflow-hidden">
       <FlickeringGrid 
         className="z-0 absolute overflow-x-hidden inset-0 size-full"
         squareSize={14}
