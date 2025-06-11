@@ -1,11 +1,8 @@
-import React from "react";
 import { AiFillInstagram } from "react-icons/ai";
-import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaYoutube } from "react-icons/fa";
 import { FiGlobe } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import { IoMdArrowForward, IoMdCall } from "react-icons/io";
-import { LuYoutube } from "react-icons/lu";
 import { RiWhatsappFill } from "react-icons/ri";
 import { TiSocialFacebook } from "react-icons/ti";
 

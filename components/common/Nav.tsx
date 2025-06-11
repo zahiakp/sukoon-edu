@@ -20,8 +20,8 @@ const NAV_ITEMS = [
     label: "Feel Sukoon",
     items: [
       { label: "About us", path: "/about" },
-      { label: "Stories", path: "" },
       { label: "Diaries", path: "/diary" },
+      { label: "Stories", path: "https://www.ptmuhammed.com/stories" },
     ],
   },
   {

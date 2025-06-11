@@ -9,7 +9,7 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { GoogleAnalytics } from '@next/third-parties/google';
 
-const outfit = Plus_Jakarta_Sans({ subsets: ["latin"],variable:"--font-Plus-Jakarta" });
+const outfit = Plus_Jakarta_Sans({subsets: ["latin"],variable:"--font-Plus-Jakarta" });
 const RougeScript = Rouge_Script({weight: '400',subsets: ['latin'],variable: '--font-rouge-script'});
 
 export const metadata: Metadata = {
