@@ -11,6 +11,7 @@ import StudentsMeal from './StudentMeal';
 import ClassPlans from './ClassPlans';
 import ITLabsPlans from './ITLabPlans';
 import UniformPlans from './UniformPlans';
+import General from './General';
 
 export const metadata: Metadata = {
   title: "Donate - Sukoon Edu Village",
@@ -22,13 +23,14 @@ function page() {
   return (
     <UserLayout>
       <Hero/>
-      <Plans/>
-      <Plans2/>
+      <General/>
       <StudentsPlans/>
       <StudentsMeal/>
+      <UniformPlans/>
+      <Plans/>
       <ClassPlans/>
       <ITLabsPlans/>
-      <UniformPlans/>
+      {/* <Plans2/> */}
       <Details/>
     </UserLayout>
   )
