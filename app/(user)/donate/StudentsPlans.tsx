@@ -16,10 +16,10 @@ function StudentsPlans() {
   const [tenSqFeet,setTenSqFeet] =useState<any>(1)
   const [tenSqFeetAmd,setTenSqFeetAmd] =useState<any>(2500)
   const [fiftySqFeet,setFiftySqFeet] =useState<any>(1)
-  const [fiftySqFeetAmd,setFiftySqFeetAmd] =useState<any>(25000)
+  const [fiftySqFeetAmd,setFiftySqFeetAmd] =useState<any>(30000)
   const ITEMS = [
     { icon: "",id:"1",count:tenSqFeet,min:1,max:9999,addvalue:1,setCount:setTenSqFeet,setCountAmd:setTenSqFeetAmd,amd:2500, size: `${tenSqFeet} Student per Month`,amount:tenSqFeetAmd,label:`${tenSqFeet}%20Sq%20feet`, plan: tenSqFeetAmd ,link:""},
-    { icon: "",id:"2",count:fiftySqFeet,min:1,max:9999,addvalue:1,setCount:setFiftySqFeet,setCountAmd:setFiftySqFeetAmd,amd:25000, size: `${fiftySqFeet} Student per Year`,amount:fiftySqFeetAmd,label:`${fiftySqFeet}%20Sq%20feet`, plan: fiftySqFeetAmd,link:"" },
+    { icon: "",id:"2",count:fiftySqFeet,min:1,max:9999,addvalue:1,setCount:setFiftySqFeet,setCountAmd:setFiftySqFeetAmd,amd:30000, size: `${fiftySqFeet} Student per Year`,amount:fiftySqFeetAmd,label:`${fiftySqFeet}%20Sq%20feet`, plan: fiftySqFeetAmd,link:"" },
   ];
 
 const handleIncrement = (count: number, amount: number, setCount: any, setCountAmd: any, max: number, addvalue: number) => {
