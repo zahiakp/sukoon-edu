@@ -58,7 +58,7 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
                                                                                                                         </h6>
                                                                                                         <p className="text-zinc-500 text-center text-[16px] my-5">
 Your contribution will support underprivileged students, helping provide the resources and opportunities they need to excel in their education and build a brighter future.                                                                                                        </p>
-      <div className="mt-10 w-full grid grid-cols-2 md:grid-cols-2 gap-4">
+      <div className="mt-10 w-full hidden md:grid grid-cols-2 md:grid-cols-2 gap-4">
         {ITEMS.map((item: any, i: number) => (
         <div data-aos="fade-up" data-aos-delay={i*100}
           key={i}
