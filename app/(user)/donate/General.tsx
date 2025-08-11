@@ -135,6 +135,7 @@ Your contribution will support underprivileged students, helping provide the res
               >
                 {" "}
                 <p className=" p-3 px-5 flex items-center justify-between">Custom Amount</p>
+
                 <div className="w-full h-1 relative after:h-1 after:bg-sky-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
                 <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-sky-400  flex flex-col h-32">
                 <p className="Grotesque-font flex items-center gap-2 text-3xl md:text-4xl font-medium text-sky-600">₹<input onChange={(e) => setCusAmount(e.target.value)} placeholder="Enter Here" className="w-full border-none outline-none text-3xl md:text-5xl font-semibold"/></p>
@@ -143,6 +144,7 @@ Your contribution will support underprivileged students, helping provide the res
                   <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
                 </button>
                 </div>
+
               </div>
             </div>
       </div>
