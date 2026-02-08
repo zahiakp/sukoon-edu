@@ -20,9 +20,12 @@ import "primeicons/primeicons.css";
 import { PaginatorPageChangeEvent } from "primereact/paginator";
 
 // Lazy load Paginator to reduce initial bundle size
-const Paginator = dynamic(() => import("primereact/paginator").then((mod) => mod.Paginator), {
-  ssr: false,
-});
+const Paginator = dynamic(
+  () => import("primereact/paginator").then((mod) => mod.Paginator),
+  {
+    ssr: false,
+  },
+);
 
 const Categories = [
   { label: "General", value: "General" },
@@ -82,16 +85,22 @@ function Content() {
     setRows(e.rows);
   }, []);
 
-  const handleSearchKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      fetchNews();
-    }
-  }, [fetchNews]);
+  const handleSearchKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        fetchNews();
+      }
+    },
+    [fetchNews],
+  );
 
-  const handleCategoryChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCategory(e.target.value);
-    setFirst(0); // Reset pagination when changing category
-  }, []);
+  const handleCategoryChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectedCategory(e.target.value);
+      setFirst(0); // Reset pagination when changing category
+    },
+    [],
+  );
 
   return (
     <>
@@ -132,7 +141,8 @@ function Content() {
           </div>
           <Link
             href="/admin/diaries/Add"
-            className="gap-2 cursor-pointer font-semibold p-[8px] px-4 bg-blue-600 hover:shadow-lg hover:-translate-y-1 duration-200 rounded-xl text-white w-fit shadow-lg flex items-center"          >
+            className="gap-2 cursor-pointer font-semibold p-[8px] px-4 bg-blue-600 hover:shadow-lg hover:-translate-y-1 duration-200 rounded-xl text-white w-fit shadow-lg flex items-center"
+          >
             <RiAddCircleFill />
             Create New
           </Link>
@@ -156,21 +166,25 @@ function Content() {
               >
                 <p className="pl-5 font-bold">{item.id}</p>
                 <p className="col-span-4 line-clamp-2">{item.title}</p>
-                <p className="col-span-2 text-center">{getRelativeTime(item.date)}</p>
+                <p className="col-span-2 text-center">
+                  {getRelativeTime(item.date)}
+                </p>
                 <div className="col-span-2 flex items-center gap-2 justify-center">
                   {item.image && (
                     <button
                       aria-label="View Image"
+                      data-tip="View Image"
                       onClick={() => setImageView(item.image)}
-                      className="tooltip h-10 w-10 rounded-lg bg-zinc-100 flex items-center justify-center cursor-pointer"
+                      className="tooltip tooltip-top h-10 w-10 rounded-lg bg-zinc-100 flex items-center justify-center cursor-pointer"
                     >
                       <TbPhotoUp className="text-xl text-zinc-600" />
                     </button>
                   )}
                   <Link
                     aria-label="Edit"
+                    data-tip="Edit"
                     href={`/admin/diaries/Edit/${encodeId(item.id)}`}
-                    className="tooltip h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center cursor-pointer"
+                    className="tooltip tooltip-top h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center cursor-pointer"
                   >
                     <TbEdit className="text-xl text-blue-600" />
                   </Link>

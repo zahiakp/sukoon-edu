@@ -286,7 +286,7 @@ const paymentStatusLabelWidth = regularFont.widthOfTextAtSize('Payment Status: '
         // Create a link element to download the PDF
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = 'payment_receipt.pdf';
+        link.download = `paymentReceipt_${data.name}.pdf`;
         link.click();
 
         console.log('PDF filled and downloaded successfully!');
