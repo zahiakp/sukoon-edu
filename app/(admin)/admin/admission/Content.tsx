@@ -24,9 +24,12 @@ import * as XLSX from "xlsx";
 // import { SideBar } from "./SideBar";
 
 // Lazy load Paginator to reduce initial bundle size
-const Paginator = dynamic(() => import("primereact/paginator").then((mod) => mod.Paginator), {
-  ssr: false,
-});
+const Paginator = dynamic(
+  () => import("primereact/paginator").then((mod) => mod.Paginator),
+  {
+    ssr: false,
+  },
+);
 
 function Content() {
   const [imageView, setImageView] = useState<string | false>(false);
@@ -36,9 +39,8 @@ function Content() {
   const [rows, setRows] = useState<number>(10);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [visibleRight,setVisibleRight] = useState<any>(false)
-const [showAddModal,setShowAddModal] = useState(false)
-
+  const [visibleRight, setVisibleRight] = useState<any>(false);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   // Debounce search input
   const debouncedFetchNews = useMemo(() => {
@@ -79,51 +81,59 @@ const [showAddModal,setShowAddModal] = useState(false)
     setRows(e.rows);
   }, []);
 
-  const handleSearchKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      fetchNews();
-    }
-  }, [fetchNews]);
+  const handleSearchKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        fetchNews();
+      }
+    },
+    [fetchNews],
+  );
 
-  const handleCategoryChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCategory(e.target.value);
-    setFirst(0); // Reset pagination when changing category
-  }, []);
+  const handleCategoryChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectedCategory(e.target.value);
+      setFirst(0); // Reset pagination when changing category
+    },
+    [],
+  );
 
-  function exportToExcel(data:any, fileName:string = 'data.xlsx') {
+  function exportToExcel(data: any, fileName: string = "data.xlsx") {
     try {
-    const fData = data.map((item:any) => ({
-      ...item,
-      photo: `${ROOT_URL}uploads/photo/${item.photo}`,
-      certificate: `${ROOT_URL}uploads/certificate/${item.certificate}`,
-      marksheet: item.marksheet !== "" ? `${ROOT_URL}uploads/marksheet/${item.marksheet}` : ""
-    }));
-console.log(fData);
-        if (!Array.isArray(fData)) {
-            throw new Error('Data must be an array of objects.');
-        }
-        // Check if XLSX is available
-        if (typeof XLSX === 'undefined') {
-            throw new Error('XLSX library is not loaded.');
-        }
-        // Create a new workbook
-        const workbook = XLSX.utils.book_new();
+      const fData = data.map((item: any) => ({
+        ...item,
+        photo: `${ROOT_URL}uploads/photo/${item.photo}`,
+        certificate: `${ROOT_URL}uploads/certificate/${item.certificate}`,
+        marksheet:
+          item.marksheet !== ""
+            ? `${ROOT_URL}uploads/marksheet/${item.marksheet}`
+            : "",
+      }));
+      console.log(fData);
+      if (!Array.isArray(fData)) {
+        throw new Error("Data must be an array of objects.");
+      }
+      // Check if XLSX is available
+      if (typeof XLSX === "undefined") {
+        throw new Error("XLSX library is not loaded.");
+      }
+      // Create a new workbook
+      const workbook = XLSX.utils.book_new();
 
-        // Convert the data to a worksheet
-        const worksheet = XLSX.utils.json_to_sheet(fData);
+      // Convert the data to a worksheet
+      const worksheet = XLSX.utils.json_to_sheet(fData);
 
-        // Add the worksheet to the workbook
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+      // Add the worksheet to the workbook
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
-        // Generate the Excel file and trigger a download
-        XLSX.writeFile(workbook, fileName);
+      // Generate the Excel file and trigger a download
+      XLSX.writeFile(workbook, fileName);
     } catch (error) {
-        console.error('Error exporting to Excel:', error);
+      console.error("Error exporting to Excel:", error);
     }
-}
+  }
 
-console.log(news);
-
+  console.log(news);
 
   return (
     <>
@@ -139,7 +149,7 @@ console.log(news);
               </ul>
             </div>
             <h1 className="text-3xl font-[200] flex items-center gap-2">
-            Admission{" "}
+              Admission{" "}
               {totalRecords !== 0 && (
                 <span className="text-base ml-2 text-zinc-700 p-[6px] px-5 rounded-3xl bg-zinc-200/80">
                   {`${totalRecords} Items`}
@@ -149,10 +159,18 @@ console.log(news);
           </div>
         </div>
         <div className="flex gap-3 items-center justify-end">
-            <button onClick={() => exportToExcel(news, `Admission_Entries(${formatDate(new Date().toString())}).xlsx`)} className="py-2 px-5 bg-green-500 rounded-lg text-white flex items-center gap-2 hover:bg-green-600 duration-300 font-semibold">
+          <button
+            onClick={() =>
+              exportToExcel(
+                news,
+                `Admission_Entries(${formatDate(new Date().toString())}).xlsx`,
+              )
+            }
+            className="py-2 px-5 bg-green-500 rounded-lg text-white flex items-center gap-2 hover:bg-green-600 duration-300 font-semibold"
+          >
             <RiFileExcel2Fill />
             Export as Excel
-            </button>
+          </button>
           <div className="p-[8px] px-4 bg-white shadow-md rounded-lg flex items-center gap-3">
             <input
               id="search-input"
@@ -194,11 +212,13 @@ console.log(news);
               >
                 <p className="pl-5 font-bold">{item.id}</p>
                 <p className="col-span-3 line-clamp-1">{item.name}</p>
-                <p className="pl-5 col-span-2 text-center font-bold">{item.phone}</p>
-                <p className="pl-5 col-span-2 text-center">{getRelativeTime(item.craetedAt)}</p>
+                <p className="pl-5 col-span-2 text-center font-bold">
+                  {item.phone}
+                </p>
+                <p className="pl-5 col-span-2 text-center">
+                  {getRelativeTime(item.craetedAt)}
+                </p>
                 <div className="col-span-2 flex items-center gap-2 justify-center">
-                  
-                  
                   {/* <Link
                     aria-label="Edit"
                     href={`/admin/diaries/Edit/${encodeId(item.id)}`}
@@ -206,12 +226,14 @@ console.log(news);
                   >
                     <TbEdit className="text-xl text-blue-600" />
                   </Link> */}
-                  <button aria-label="View Details"
-                                        onClick={() => setVisibleRight(item)}
-                                        className="tooltip h-10 w-10 rounded-lg bg-zinc-100 flex items-center justify-center cursor-pointer"
-                                      >
-                                        <LuSquareArrowOutUpRight className="text-xl text-zinc-600" />
-                                      </button>
+                  <button
+                    aria-label="View Details"
+                    data-tip="View Details"
+                    onClick={() => setVisibleRight(item)}
+                    className="tooltip tooltip-top h-10 w-10 rounded-lg bg-zinc-100 flex items-center justify-center cursor-pointer"
+                  >
+                    <LuSquareArrowOutUpRight className="text-xl text-zinc-600" />
+                  </button>
                   <DeleteItem id={item.id} fetch={fetchNews} />
                 </div>
               </div>
@@ -234,10 +256,17 @@ console.log(news);
           </div>
         )}
       </div>
-      <AddModal setVisible={setShowAddModal} visible={showAddModal} fetch={fetchNews}/>
-      <SideBar setVisibleRight={setVisibleRight} visibleRight={visibleRight} trans={visibleRight}/>
+      <AddModal
+        setVisible={setShowAddModal}
+        visible={showAddModal}
+        fetch={fetchNews}
+      />
+      <SideBar
+        setVisibleRight={setVisibleRight}
+        visibleRight={visibleRight}
+        trans={visibleRight}
+      />
     </>
-    
   );
 }
 

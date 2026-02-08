@@ -114,7 +114,7 @@ html { scroll-behavior: smooth; }
 }
 
 .p-sidebar{
-  @apply w-[500px] p-5
+  @apply w-[400px] p-5
 }
 
 #itlab {

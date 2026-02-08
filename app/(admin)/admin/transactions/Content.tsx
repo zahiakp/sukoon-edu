@@ -3,31 +3,47 @@ import React, { useEffect, useState, useMemo, useCallback } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
-import { TbEdit, TbPhotoUp } from "react-icons/tb";
+import { TbEdit, TbFileDownload, TbPhotoUp } from "react-icons/tb";
 import { IoSearchOutline } from "react-icons/io5";
-import { RiAddCircleFill, RiFileExcel2Fill } from "react-icons/ri";
+import {
+  RiAddCircleFill,
+  RiFileExcel2Fill,
+  RiMailDownloadLine,
+} from "react-icons/ri";
 import { encodeId } from "@/components/common/decode";
 import { ROOT_URL } from "@/components/data/func";
 import Spinner from "@/components/common/Spinner";
 import Empty from "@/components/common/Empty";
-import { getRelativeTime } from "@/components/common/DateConvert";
+import { formatDate, getRelativeTime } from "@/components/common/DateConvert";
+import { fillPdfTemplate } from "@/app/(user)/donate/[id]/ReciptGenrator";
+import { fillThanksNote } from "@/app/(user)/donate/[id]/ThanksNoteGenerator";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { PaginatorPageChangeEvent } from "primereact/paginator";
-import { formatIndianNumber, getFiltedData, getPeroidBasedData, getTransactions } from "./func";
+import {
+  formatIndianNumber,
+  getFiltedData,
+  getPeroidBasedData,
+  getTransactions,
+} from "./func";
 import DeleteItem from "./Delete";
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import { SideBar } from "./SideBar";
 import * as XLSX from "xlsx";
 import AddModal from "./AddModal";
 import { showMessage } from "@/components/common/CusToast";
+import { CgSpinner } from "react-icons/cg";
 // import { SideBar } from "./SideBar";
 
 // Lazy load Paginator to reduce initial bundle size
-const Paginator = dynamic(() => import("primereact/paginator").then((mod) => mod.Paginator), {
-  ssr: false,
-});
+const Paginator = dynamic(
+  () => import("primereact/paginator").then((mod) => mod.Paginator),
+  {
+    ssr: false,
+  },
+);
 
 function Content() {
   const [imageView, setImageView] = useState<string | false>(false);
@@ -40,9 +56,11 @@ function Content() {
   const [rows, setRows] = useState<number>(10);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("last Week");
-  const [visibleRight,setVisibleRight] = useState<any>(false)
-const [showAddModal,setShowAddModal] = useState(false)
-const [exporting, setExporting] = useState(false)
+  const [visibleRight, setVisibleRight] = useState<any>(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [exporting, setExporting] = useState(false);
+  const [receiptLoading, setReceiptLoading] = useState<number | null>(null);
+  const [thanksLoading, setThanksLoading] = useState<number | null>(null);
 
   // Debounce search input
   const debouncedFetchNews = useMemo(() => {
@@ -76,7 +94,6 @@ const [exporting, setExporting] = useState(false)
 
   const fetchFilterdData = useCallback(async () => {
     try {
-
       const data = await getFiltedData(selectedCategory);
       if (data.success) {
         setData(data.data);
@@ -89,129 +106,200 @@ const [exporting, setExporting] = useState(false)
 
   async function fetchPeriodBasedData() {
     try {
-        const data = await getPeroidBasedData(selectedCategory);
-        if (data.success) {
-            return data.data; // Return the data instead of setting it
-        }
-        return []; // Return empty array if no success
+      const data = await getPeroidBasedData(selectedCategory);
+      if (data.success) {
+        return data.data; // Return the data instead of setting it
+      }
+      return []; // Return empty array if no success
     } catch (error) {
-        console.error("Failed to fetch period-based data:", error);
-        return [];
+      console.error("Failed to fetch period-based data:", error);
+      return [];
     }
-}
-
-
+  }
 
   useEffect(() => {
     fetchNews();
     fetchFilterdData();
-  }, [fetchNews,fetchFilterdData]);
+  }, [fetchNews, fetchFilterdData]);
 
   const onPageChange = useCallback((e: PaginatorPageChangeEvent) => {
     setFirst(e.first);
     setRows(e.rows);
   }, []);
 
-  const handleSearchKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      fetchNews();
-    }
-  }, [fetchNews]);
+  const handleSearchKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        fetchNews();
+      }
+    },
+    [fetchNews],
+  );
 
-  const handleCategoryChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCategory(e.target.value);
-    setPeriodData("loading"); // Reset period data when changing category
-    fetchPeriodBasedData(); // Fetch new period data
-    setFirst(0); // Reset pagination when changing category
-  }, []);
+  const handleCategoryChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectedCategory(e.target.value);
+      setPeriodData("loading"); // Reset period data when changing category
+      fetchPeriodBasedData(); // Fetch new period data
+      setFirst(0); // Reset pagination when changing category
+    },
+    [],
+  );
 
-
-  
-  
-  async function exportToExcel(fileName = 'data.xlsx') {
+  async function exportToExcel(fileName = "data.xlsx") {
     setExporting(true);
     try {
-        // Fetch period-based data first and get the result
-        const periodData = await fetchPeriodBasedData();
-  
-        // Verify if the data is fetched correctly
-        if (!Array.isArray(periodData) || periodData.length === 0) {
-          showMessage("No valid data available for export.", "error")
-            throw new Error('No valid data available for export.');
-        }
-  
-        // Check if XLSX is available
-        if (typeof XLSX === 'undefined') {
-            throw new Error('XLSX library is not loaded.');
-        }
-  
-        // Create a new workbook and convert the data to a worksheet
-        const workbook = XLSX.utils.book_new();
-        const worksheet = XLSX.utils.json_to_sheet(periodData);
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-  
-        // Generate the Excel file and trigger a download
-        XLSX.writeFile(workbook, fileName);
+      // Fetch period-based data first and get the result
+      const periodData = await fetchPeriodBasedData();
+
+      // Verify if the data is fetched correctly
+      if (!Array.isArray(periodData) || periodData.length === 0) {
+        showMessage("No valid data available for export.", "error");
+        throw new Error("No valid data available for export.");
+      }
+
+      // Check if XLSX is available
+      if (typeof XLSX === "undefined") {
+        throw new Error("XLSX library is not loaded.");
+      }
+
+      // Create a new workbook and convert the data to a worksheet
+      const workbook = XLSX.utils.book_new();
+      const worksheet = XLSX.utils.json_to_sheet(periodData);
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+      // Generate the Excel file and trigger a download
+      XLSX.writeFile(workbook, fileName);
     } catch (error) {
-        console.error('Error exporting to Excel:', error);
+      console.error("Error exporting to Excel:", error);
     } finally {
-        setExporting(false);
+      setExporting(false);
     }
-}
-  
+  }
 
+  const handleDownloadReceipt = async (item: any) => {
+    setReceiptLoading(item.id);
+    try {
+      await fillPdfTemplate({ ...item, date: formatDate(item.date) });
+    } catch (error) {
+      console.error("Error generating receipt:", error);
+    } finally {
+      setReceiptLoading(null);
+    }
+  };
 
+  const handleDownloadThanks = async (item: any) => {
+    setThanksLoading(item.id);
+    try {
+      await fillThanksNote(item.name, item.amount);
+    } catch (error) {
+      console.error("Error generating thanks letter:", error);
+    } finally {
+      setThanksLoading(null);
+    }
+  };
 
   return (
     <>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" >
-    <div className="flex gap-3 flex-col" >
-    <div className="bg-white rounded-xl p-4 shadow-md flex flex-col gap-3"> <p>Time Period</p>
-                                    <select
-                                      onChange={handleCategoryChange}
-                                      value={selectedCategory}
-                                      className="select select-bordered select-sm w-full max-w-xs"
-                                    >
-                                      {/* <option value="">All Categories</option> */}
-                                      {["Today", "last Week", "last Month", "last 6 Month", "last Year"].map((item: any, index: number) => (
-                                        <option key={index} value={item}>{item}</option>
-                                      ))}
-                                    </select>
-                                </div>
-                                <button onClick={() => exportToExcel(`Transactions.${selectedCategory}(${new Date().toISOString().split('T')[0]}).xlsx`)} className="py-2 px-5 bg-green-500 rounded-lg text-white flex justify-center items-center gap-2 hover:bg-green-600 duration-300 font-semibold">
-                                            <RiFileExcel2Fill />
-                                            Export {selectedCategory} data
-                                            </button>
-                </div>
-                <div className="bg-white rounded-xl p-6 shadow-md" >
-                    <div className="flex items-center justify-between mb-4" >
-                        <h3 className="text-zinc-400" >Total Donation</h3>
-                        <span className="text-emerald-600 bg-emerald-500/10 px-2 py-1 rounded text-sm" ><span className="font-semibold">{data !== "loading" && data.reduce((acc, item) => acc + item.count, 0)}</span> items</span>
-                    </div>
-                    <p className="text-3xl font-bold text-zinc-700" >₹{data !== "loading"  && formatIndianNumber(data.reduce((acc, item) => acc + item.total_amount, 0))}</p>
-                    <p className="text-sm text-zinc-400 mt-2" >got {selectedCategory}</p>
-                </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="flex gap-3 flex-col">
+          <div className="bg-white rounded-xl p-4 shadow-md flex flex-col gap-3">
+            {" "}
+            <p>Time Period</p>
+            <select
+              onChange={handleCategoryChange}
+              value={selectedCategory}
+              className="select select-bordered select-sm w-full max-w-xs"
+            >
+              {/* <option value="">All Categories</option> */}
+              {[
+                "Today",
+                "last Week",
+                "last Month",
+                "last 6 Month",
+                "last Year",
+              ].map((item: any, index: number) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button
+            onClick={() =>
+              exportToExcel(
+                `Transactions.${selectedCategory}(${new Date().toISOString().split("T")[0]}).xlsx`,
+              )
+            }
+            className="py-2 px-5 bg-green-500 rounded-lg text-white flex justify-center items-center gap-2 hover:bg-green-600 duration-300 font-semibold"
+          >
+            <RiFileExcel2Fill />
+            Export {selectedCategory} data
+          </button>
+        </div>
+        <div className="bg-white rounded-xl p-6 shadow-md">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-zinc-400">Total Donation</h3>
+            <span className="text-emerald-600 bg-emerald-500/10 px-2 py-1 rounded text-sm">
+              <span className="font-semibold">
+                {data !== "loading" &&
+                  data.reduce((acc, item) => acc + item.count, 0)}
+              </span>{" "}
+              items
+            </span>
+          </div>
+          <p className="text-3xl font-bold text-zinc-700">
+            ₹
+            {data !== "loading" &&
+              formatIndianNumber(
+                data.reduce((acc, item) => acc + item.total_amount, 0),
+              )}
+          </p>
+          <p className="text-sm text-zinc-400 mt-2">got {selectedCategory}</p>
+        </div>
 
-                <div className="bg-white rounded-xl p-6 shadow-md" >
-                    <div className="flex items-center justify-between mb-4" >
-                        <h3 className="text-zinc-400" >Autopay Donation</h3>
-                        <span className="text-emerald-600 bg-emerald-500/10 px-2 py-1 rounded text-sm" ><span className="font-semibold">{data !== "loading" && data.find((item) => item.type === "auto")?.count}</span> items</span>
-                    </div>
-                    <p className="text-3xl font-bold text-zinc-700" >₹{data !== "loading" && formatIndianNumber(data.find((item) => item.type === "auto")?.total_amount||0)}</p>
-                    <p className="text-sm text-zinc-400 mt-2" >got {selectedCategory}</p>
-                </div>
+        <div className="bg-white rounded-xl p-6 shadow-md">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-zinc-400">Autopay Donation</h3>
+            <span className="text-emerald-600 bg-emerald-500/10 px-2 py-1 rounded text-sm">
+              <span className="font-semibold">
+                {data !== "loading" &&
+                  data.find((item) => item.type === "auto")?.count}
+              </span>{" "}
+              items
+            </span>
+          </div>
+          <p className="text-3xl font-bold text-zinc-700">
+            ₹
+            {data !== "loading" &&
+              formatIndianNumber(
+                data.find((item) => item.type === "auto")?.total_amount || 0,
+              )}
+          </p>
+          <p className="text-sm text-zinc-400 mt-2">got {selectedCategory}</p>
+        </div>
 
-                <div className="bg-white rounded-xl p-6 shadow-md" >
-                    <div className="flex items-center justify-between mb-4" >
-                        <h3 className="text-zinc-400" >Manual Donation</h3>
-                        <span className="text-emerald-600 bg-emerald-500/10 px-2 py-1 rounded text-sm" ><span className="font-semibold">{data !== "loading" && data.find((item) => item.type === "manual")?.count}</span> items</span>
-                    </div>
-                    <p className="text-3xl font-bold text-zinc-700" >₹{data !== "loading" && formatIndianNumber(data.find((item) => item.type === "manual")?.total_amount||0)}</p>
-                    <p className="text-sm text-zinc-400 mt-2" >got {selectedCategory}</p>
-                </div>
-
-                
-            </div>
+        <div className="bg-white rounded-xl p-6 shadow-md">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-zinc-400">Manual Donation</h3>
+            <span className="text-emerald-600 bg-emerald-500/10 px-2 py-1 rounded text-sm">
+              <span className="font-semibold">
+                {data !== "loading" &&
+                  data.find((item) => item.type === "manual")?.count}
+              </span>{" "}
+              items
+            </span>
+          </div>
+          <p className="text-3xl font-bold text-zinc-700">
+            ₹
+            {data !== "loading" &&
+              formatIndianNumber(
+                data.find((item) => item.type === "manual")?.total_amount || 0,
+              )}
+          </p>
+          <p className="text-sm text-zinc-400 mt-2">got {selectedCategory}</p>
+        </div>
+      </div>
       <main className="w-full flex justify-between">
         <div className="flex items-center justify-between">
           <div>
@@ -224,7 +312,7 @@ const [exporting, setExporting] = useState(false)
               </ul>
             </div>
             <h1 className="text-3xl font-[200] flex items-center gap-2">
-            Transactions{" "}
+              Transactions{" "}
               {totalRecords !== 0 && (
                 <span className="text-base ml-2 text-zinc-700 p-[6px] px-5 rounded-3xl bg-zinc-200/80">
                   {`${totalRecords} Items`}
@@ -248,7 +336,7 @@ const [exporting, setExporting] = useState(false)
             <IoSearchOutline className="text-xl" />
           </div>
           <button
-          onClick={()=>setShowAddModal(true)}
+            onClick={() => setShowAddModal(true)}
             className="gap-2 cursor-pointer font-semibold p-[8px] px-4 bg-blue-600 hover:shadow-lg hover:-translate-y-1 duration-200 rounded-xl text-white w-fit shadow-lg flex items-center"
           >
             <RiAddCircleFill />
@@ -277,11 +365,13 @@ const [exporting, setExporting] = useState(false)
                 <p className="pl-5 font-bold">{item.id}</p>
                 <p className="col-span-3 line-clamp-1">{item.name}</p>
                 <p className="col-span-2 line-clamp-1">{item.transactionId}</p>
-                <p className="pl-5 col-span-2 bg-green-500 mx-auto w-fit px-4 py-1 rounded-3xl text-white font-bold">₹ {item.amount}</p>
-                <p className="col-span-2 text-center">{getRelativeTime(item.date)}</p>
+                <p className="col-span-2 bg-green-500 mx-auto w-fit px-3 py-1 rounded-3xl text-white font-bold">
+                  ₹ {item.amount}
+                </p>
+                <p className="col-span-2 text-center">
+                  {getRelativeTime(item.date)}
+                </p>
                 <div className="col-span-2 flex items-center gap-2 justify-center">
-                  
-                  
                   {/* <Link
                     aria-label="Edit"
                     href={`/admin/diaries/Edit/${encodeId(item.id)}`}
@@ -289,12 +379,40 @@ const [exporting, setExporting] = useState(false)
                   >
                     <TbEdit className="text-xl text-blue-600" />
                   </Link> */}
-                  <button aria-label="View Details"
-                                        onClick={() => setVisibleRight(item)}
-                                        className="tooltip h-10 w-10 rounded-lg bg-zinc-100 flex items-center justify-center cursor-pointer"
-                                      >
-                                        <LuSquareArrowOutUpRight className="text-xl text-zinc-600" />
-                                      </button>
+                  <button
+                    aria-label="View Details"
+                    data-tip="View Details"
+                    onClick={() => setVisibleRight(item)}
+                    className="tooltip tooltip-top h-9 w-9 rounded-lg border border-zinc-200 flex items-center justify-center cursor-pointer"
+                  >
+                    <LuSquareArrowOutUpRight className="text-lg text-zinc-500" />
+                  </button>
+                  <button
+                    aria-label="Download receipt"
+                    data-tip="Download receipt"
+                    onClick={() => handleDownloadReceipt(item)}
+                    disabled={receiptLoading === item.id}
+                    className="tooltip tooltip-top h-9 w-9 rounded-lg border border-zinc-200 flex items-center justify-center cursor-pointer disabled:cursor-not-allowed"
+                  >
+                    {receiptLoading === item.id ? (
+                      <CgSpinner className="text-xl animate-spin text-lime-600" />
+                    ) : (
+                      <TbFileDownload className="text-xl text-zinc-500" />
+                    )}
+                  </button>
+                  <button
+                    aria-label="Download thanks letter"
+                    data-tip="Download thanks letter"
+                    onClick={() => handleDownloadThanks(item)}
+                    disabled={thanksLoading === item.id}
+                    className="tooltip tooltip-top h-9 w-9 rounded-lg border border-zinc-200 flex items-center justify-center cursor-pointer disabled:cursor-not-allowed"
+                  >
+                    {thanksLoading === item.id ? (
+                      <CgSpinner className="text-xl animate-spin text-lime-600" />
+                    ) : (
+                      <RiMailDownloadLine className="text-xl text-zinc-500" />
+                    )}
+                  </button>
                   {/* <DeleteItem id={item.id} fetch={fetchNews} /> */}
                 </div>
               </div>
@@ -317,10 +435,17 @@ const [exporting, setExporting] = useState(false)
           </div>
         )}
       </div>
-      <AddModal setVisible={setShowAddModal} visible={showAddModal} fetch={fetchNews}/>
-      <SideBar setVisibleRight={setVisibleRight} visibleRight={visibleRight} trans={visibleRight}/>
+      <AddModal
+        setVisible={setShowAddModal}
+        visible={showAddModal}
+        fetch={fetchNews}
+      />
+      <SideBar
+        setVisibleRight={setVisibleRight}
+        visibleRight={visibleRight}
+        trans={visibleRight}
+      />
     </>
-    
   );
 }
 
