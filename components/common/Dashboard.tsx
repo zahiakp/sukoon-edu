@@ -80,13 +80,13 @@ function Dashboard() {
     //     <PiUsersThreeBold className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
     //   ),
     // },
-    {
-      title: "Settings",
-      url: "/admin/settings",
-      icon: (
-        <HiOutlineCog className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
-      ),
-    },
+    // {
+    //   title: "Settings",
+    //   url: "/admin/settings",
+    //   icon: (
+    //     <HiOutlineCog className="text-xl flex-shrink-0 w-5 h-5 mr-4"/>
+    //   ),
+    // },
   ];
 
   return (

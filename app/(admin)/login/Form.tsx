@@ -97,7 +97,7 @@ const server = ROOT_URL == 'http://localhost/sukoonedu-backend/'
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="px-4 py-3 rounded-xl border border-lime-600 outline-lime-600 my-1 w-full"
+            className="px-4 py-3 rounded-lg border border-lime-600 outline-lime-600 my-1 w-full"
             placeholder="Email"
             aria-label="Email"
             required
@@ -114,7 +114,7 @@ const server = ROOT_URL == 'http://localhost/sukoonedu-backend/'
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="px-4 py-3 rounded-xl border border-lime-600 outline-lime-600 w-full"
+            className="px-4 py-3 rounded-lg border border-lime-600 outline-lime-600 w-full"
             placeholder="Password"
             aria-label="Password"
             required
@@ -126,7 +126,7 @@ const server = ROOT_URL == 'http://localhost/sukoonedu-backend/'
 
         <button
           type="submit"
-          className={`py-3 px-7 w-full my-1 rounded-xl text-white text-lg 
+          className={`py-3 px-7 w-full my-1 rounded-lg text-white text-lg 
             ${loading ? "bg-lime-700 cursor-not-allowed" : "bg-lime-600 text-white hover:bg-lime-700 duration-300"}`}
           disabled={loading}
         >

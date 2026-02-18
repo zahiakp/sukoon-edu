@@ -62,15 +62,15 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
         >
           {" "}
           <p className="text-lg p-3 px-5 flex items-center justify-between">{item.size}{item.label!=="other"&&<span className="flex gap-1">
-            <button onClick={()=>handleDecrement(item.count,item.amd,item.setCount,item.setCountAmd,item.min,item.addvalue)} className="rounded-[8px] border border-neutral-300 text-neutral-800 p-2 bg-neutral-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiMinus /></button>
-            <button onClick={()=>{handleIncrement(item.count,item.amd,item.setCount,item.setCountAmd,item.max,item.addvalue)}} className="rounded-[8px] border border-neutral-300 text-neutral-800 p-2 bg-neutral-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiPlus /></button></span>}</p>
+            <button onClick={()=>handleDecrement(item.count,item.amd,item.setCount,item.setCountAmd,item.min,item.addvalue)} className="rounded-[12px] rounded-r-[6px] hover:scale-95 border border-neutral-300 text-neutral-800 p-2 bg-neutral-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiMinus /></button>
+            <button onClick={()=>{handleIncrement(item.count,item.amd,item.setCount,item.setCountAmd,item.max,item.addvalue)}} className="rounded-[12px] rounded-l-[6px] hover:scale-95 border border-neutral-300 text-neutral-800 p-2 bg-neutral-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiPlus /></button></span>}</p>
           <div className="w-full h-1 relative after:h-1 after:bg-neutral-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
-          <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-neutral-400  flex flex-col h-32">
-          <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-5xl font-semibold text-neutral-600">
+          <div className="rounded-b-2xl px-4 md:px-6 py-5 pt-2 bg-white border-t border-neutral-400  flex flex-col h-32">
+          <p className="Grotesque-font group-hover/box:scale-110 origin-left duration-300 text-5xl font-semibold text-neutral-600">
           <span className="text-4xl font-normal mr-2">₹</span>{item.amount}
           </p>
-          <button onClick={()=>setView(item.amount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-neutral-200 group-hover/box:bg-neutral-500 mt-4">
-            <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
+          <button onClick={()=>setView(item.amount)} className="flex items-center gap-1 text-sm justify-center absolute px-4 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-neutral-200 group-hover/box:bg-neutral-500 mt-4">
+           <span className="group-hover/box:text-md duration-300">Pay</span> <RiArrowRightLine className="group-hover/box:text-lg duration-300" />
           </button>
           </div>
         </div>
