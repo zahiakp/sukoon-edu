@@ -26,10 +26,10 @@ function page() {
       <General/>
       <StudentsPlans/>
       <StudentsMeal/>
-      <UniformPlans/>
+      {/* <UniformPlans/> */}
       <Plans/>
-      <ClassPlans/>
-      <ITLabsPlans/>
+      {/* <ClassPlans/> */}
+      {/* <ITLabsPlans/> */}
       {/* <Plans2/> */}
       <Details/>
     </UserLayout>

@@ -42,12 +42,12 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
 // const validCounts = [tenSqFeet]
 
   return (
-    <div id="meals" className=" py-8 relative overflow-hidden group bg-sky-50">
+    <div id="meals" className=" py-8 relative overflow-hidden group bg-lime-50">
       <div className="w-full max-w-[1000px] mx-auto p-7 md:p-10 flex flex-col items-center">
        
-                        <h6 className="text-4xl md:text-5xl text-center Grotesque-font text-sky-600 font-bold flex gap-4 items-center">
+                        <h6 className="text-4xl md:text-5xl text-center Grotesque-font text-lime-600 font-bold flex gap-4 items-center">
                                                                                                         
-                                                                                                                <span className="text-2xl text-sky-600 p-4 w-fit rounded-2xl bg-sky-200/70"><GiHotMeal /></span>
+                                                                                                                <span className="text-2xl text-lime-600 p-4 w-fit rounded-2xl bg-lime-200/70"><GiHotMeal /></span>
                                                                                                                   {/* <TextAnimate animation="blurInUp" by="word"> */}
                                                                                                                   Students’ Meals
                                                                                                                           {/* </TextAnimate> */}
@@ -59,34 +59,34 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
         {ITEMS.map((item: any, i: number) => (
         <div data-aos="fade-up" data-aos-delay={i*100}
           key={i}
-          className="relative border z-[1] border-b-sky-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
+          className="relative border z-[1] border-b-lime-500 group-hover/box:border-b-4 border-lime-300 bg-lime-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
         >
           {" "}
           <p className="text-lg p-3 px-5 flex items-center justify-between">{item.size}{item.label!=="other"&&<span className="flex gap-1">
-            <button onClick={()=>handleDecrement(item.count,item.amd,item.setCount,item.setCountAmd,item.min,item.addvalue)} className="rounded-[8px] border border-sky-300 text-sky-800 p-2 bg-sky-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiMinus /></button>
-            <button onClick={()=>{handleIncrement(item.count,item.amd,item.setCount,item.setCountAmd,item.max,item.addvalue)}} className="rounded-[8px] border border-sky-300 text-sky-800 p-2 bg-sky-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiPlus /></button></span>}</p>
-          <div className="w-full h-1 relative after:h-1 after:bg-sky-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
-          <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-sky-400  flex flex-col h-32">
-          <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-5xl font-semibold text-sky-600">
+            <button onClick={()=>handleDecrement(item.count,item.amd,item.setCount,item.setCountAmd,item.min,item.addvalue)} className="rounded-[12px] rounded-r-[6px] hover:scale-95 border border-lime-300 text-lime-800 p-2 bg-lime-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiMinus /></button>
+            <button onClick={()=>{handleIncrement(item.count,item.amd,item.setCount,item.setCountAmd,item.max,item.addvalue)}} className="rounded-[12px] rounded-l-[6px] hover:scale-95 border border-lime-300 text-lime-800 p-2 bg-lime-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiPlus /></button></span>}</p>
+          <div className="w-full h-1 relative after:h-1 after:bg-lime-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
+          <div className="rounded-b-2xl px-4 md:px-6 py-5 pt-2 bg-white border-t border-lime-400  flex flex-col h-32">
+          <p className="Grotesque-font group-hover/box:scale-110 origin-left duration-300 text-5xl font-semibold text-lime-600">
           <span className="text-4xl font-normal mr-2">₹</span>{item.amount}
           </p>
-          <button onClick={()=>setView(item.amount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-sky-200 group-hover/box:bg-sky-500 mt-4">
-            <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
+          <button onClick={()=>setView(item.amount)} className="flex items-center gap-1 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
+            <span className="group-hover/box:text-md duration-300">Pay</span> <RiArrowRightLine className="group-hover/box:text-md md:group-hover/box:text-lg duration-300" />
           </button>
           </div>
         </div>
         ))}
         {/* <div data-aos="fade-up" data-aos-delay={600}
-          className="relative border z-[1] border-b-sky-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
+          className="relative border z-[1] border-b-lime-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
         >
           {" "}
           <p className="text-lg p-3 px-5 flex items-center justify-between">Other Amount</p>
-          <div className="w-full h-1 relative after:h-1 after:bg-sky-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
-          <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-sky-400  flex flex-col h-32">
-          <p className="Grotesque-font flex items-center gap-2 text-3xl md:text-4xl font-medium text-sky-600">₹<input onChange={(e) => setCusAmount(e.target.value)} placeholder="Enter Here" className="w-full border-none outline-none text-3xl md:text-5xl font-semibold"/></p>
+          <div className="w-full h-1 relative after:h-1 after:bg-lime-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
+          <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-lime-400  flex flex-col h-32">
+          <p className="Grotesque-font flex items-center gap-2 text-3xl md:text-4xl font-medium text-lime-600">₹<input onChange={(e) => setCusAmount(e.target.value)} placeholder="Enter Here" className="w-full border-none outline-none text-3xl md:text-5xl font-semibold"/></p>
           
             
-          <button onClick={()=>setView(cusAmount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-sky-200 group-hover/box:bg-sky-500 mt-4">
+          <button onClick={()=>setView(cusAmount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
             <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
           </button>
           </div>
@@ -96,33 +96,33 @@ const handleDecrement = (count: number, amount: number, setCount: any, setCountA
               {ITEMS.map((item: any, i: number) => (
               <div data-aos="fade-up" data-aos-delay={i*100}
                 key={i}
-                className="relative border z-[1] border-b-sky-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
+                className="relative border z-[1] border-b-lime-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
               >
                 {" "}
                 <p className="p-2 px-3 flex flex-col items-start justify-between">{item.size}{item.label!=="other"&&<span className="flex w-full gap-1 justify-end">
-                  <button onClick={()=>handleDecrement(item.count,item.amd,item.setCount,item.setCountAmd,item.min,item.addvalue)} className="rounded-[8px] border border-sky-300 text-sky-800 p-2 bg-sky-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiMinus /></button>
-                  <button onClick={()=>{handleIncrement(item.count,item.amd,item.setCount,item.setCountAmd,item.max,item.addvalue)}} className="rounded-[8px] border border-sky-300 text-sky-800 p-2 bg-sky-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiPlus /></button></span>}</p>
-                <div className="w-full h-1 relative after:h-1 after:bg-sky-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
-                <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-sky-400  flex flex-col h-24">
-                <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-3xl font-semibold text-sky-600">
+                  <button onClick={()=>handleDecrement(item.count,item.amd,item.setCount,item.setCountAmd,item.min,item.addvalue)} className="rounded-[8px] border border-lime-300 text-lime-800 p-2 bg-lime-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiMinus /></button>
+                  <button onClick={()=>{handleIncrement(item.count,item.amd,item.setCount,item.setCountAmd,item.max,item.addvalue)}} className="rounded-[8px] border border-lime-300 text-lime-800 p-2 bg-lime-50 w-8 h-8 flex items-center justify-center cursor-pointer"><FiPlus /></button></span>}</p>
+                <div className="w-full h-1 relative after:h-1 after:bg-lime-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
+                <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-lime-400  flex flex-col h-24">
+                <p className="Grotesque-font group-hover/box:scale-110 duration-300 text-3xl font-semibold text-lime-600">
                 <span className="text-2xl font-normal mr-2">₹</span>{item.amount}
                 </p>
-                <button onClick={()=>setView(item.amount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-sky-200 group-hover/box:bg-sky-500 mt-4">
+                <button onClick={()=>setView(item.amount)} className="flex items-center gap-1 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
                   <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
                 </button>
                 </div>
               </div>
               ))}
               {/* <div data-aos="fade-up" data-aos-delay={400}
-                className="relative border z-[1] border-b-sky-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
+                className="relative border z-[1] border-b-lime-500 group-hover/box:border-b-4 border-zinc-300 bg-zinc-100 hover:shadow-lg hover:-translate-y-1 duration-300 group/box rounded-2xl"
               >
                 {" "}
                 <p className=" p-3 px-5 flex items-center justify-between">Other Amount</p>
-                <div className="w-full h-1 relative after:h-1 after:bg-sky-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
-                <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-sky-400  flex flex-col h-32">
-                <p className="Grotesque-font flex items-center gap-2 text-3xl md:text-4xl font-medium text-sky-600">₹<input onChange={(e) => setCusAmount(e.target.value)} placeholder="Enter Here" className="w-full border-none outline-none text-3xl md:text-5xl font-semibold"/></p>
+                <div className="w-full h-1 relative after:h-1 after:bg-lime-600 after:w-0 after:duration-300  group-hover/box:after:w-full after:left-0 after:absolute after:top-0"></div>
+                <div className="rounded-b-2xl px-4 md:px-10 py-5 pt-2 bg-white border-t border-lime-400  flex flex-col h-32">
+                <p className="Grotesque-font flex items-center gap-2 text-3xl md:text-4xl font-medium text-lime-600">₹<input onChange={(e) => setCusAmount(e.target.value)} placeholder="Enter Here" className="w-full border-none outline-none text-3xl md:text-5xl font-semibold"/></p>
                 
-                <button onClick={()=>setView(cusAmount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-sky-200 group-hover/box:bg-sky-500 mt-4">
+                <button onClick={()=>setView(cusAmount)} className="flex items-center gap-3 text-sm justify-center absolute px-5 bottom-4 right-5 text-white group-hover/box:shadow-lg duration-300 p-2 rounded-3xl bg-lime-200 group-hover/box:bg-lime-500 mt-4">
                   <RiArrowRightLine className="group-hover/box:text-lg md:group-hover/box:text-2xl duration-300" />
                 </button>
                 </div>
