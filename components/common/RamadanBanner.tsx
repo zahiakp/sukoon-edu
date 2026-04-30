@@ -1,32 +1,59 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { FaMosque } from "react-icons/fa";
 import Link from "next/link";
+import { BiSolidDonateHeart } from "react-icons/bi";
+
+const bgImages = [
+  "/image/sukoon-bnr-01.webp",
+  "/image/sukoon-bnr-02.webp",
+  "/image/sukoon-bnr-03.webp",
+  "/image/sukoon-bnr-04.webp",
+];
 
 const RamadanBanner = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentBg, setCurrentBg] = useState(bgImages[0]);
+
+  const shuffleBg = useCallback(() => {
+    const randomIndex = Math.floor(Math.random() * bgImages.length);
+    setCurrentBg(bgImages[randomIndex]);
+  }, []);
 
   useEffect(() => {
+    shuffleBg();
     const hasShownPopup = sessionStorage.getItem("ramadan_popup_shown");
 
     if (!hasShownPopup) {
       const timer = setTimeout(() => {
+        shuffleBg();
         setIsOpen(true);
         sessionStorage.setItem("ramadan_popup_shown", "true");
       }, 3000);
 
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [shuffleBg]);
 
-  // Symmetrical snappy transition for opening and closing
+  const handleOpen = () => {
+    if (!isOpen) {
+      shuffleBg();
+      setIsOpen(true);
+    }
+  };
+
+  const handleClose = (e?: React.MouseEvent | React.TouchEvent) => {
+    e?.stopPropagation();
+    setIsOpen(false);
+  };
+
+  // Smoother, more natural transition
   const springTransition = {
     type: "spring",
-    damping: 26,
-    stiffness: 320,
+    damping: 28,
+    stiffness: 220,
     mass: 1,
   };
 
@@ -44,57 +71,42 @@ const RamadanBanner = () => {
         )}
       </AnimatePresence>
 
-      {/* Dynamic Island Container */}
-      <div className="fixed bottom-6 left-0 right-0 md:left-auto md:right-[90px] z-[101] flex justify-center md:block pointer-events-none">
+      <div 
+        className={`fixed z-[101] flex transition-all duration-700 ease-in-out pointer-events-none
+          ${isOpen 
+            ? "inset-0 items-center justify-center p-4 md:p-8" 
+            : "bottom-6 left-0 right-0 md:left-auto md:right-[90px] justify-center md:block"
+          }`}
+      >
         <motion.div
           layout
           initial={false}
-          animate={{
-            width: isOpen
-              ? typeof window !== "undefined" && window.innerWidth < 640
-                ? "min(92vw, 800px)"
-                : "900px"
-              : "180px",
+          className="pointer-events-auto relative overflow-hidden bg-[#0d1a04] flex flex-col items-center justify-center shadow-2xl"
+          style={{
+            width: isOpen ? "min(92vw, 900px)" : "180px",
             height: isOpen ? "500px" : "48px",
-            borderRadius: isOpen ? "40px" : "24px",
-            // Center horizontally on desktop when open; mobile is already centered by container
-            x:
-              isOpen &&
-              typeof window !== "undefined" &&
-              window.innerWidth >= 768
-                ? "calc(-50vw + 450px + 90px)"
-                : 0,
-            y: isOpen
-              ? typeof window !== "undefined" && window.innerWidth < 640
-                ? "calc(-50vh + 250px + 1.5rem)"
-                : "calc(-50vh + 250px + 1.5rem)"
-              : 0,
+            borderRadius: isOpen ? "20px" : "24px",
+            cursor: isOpen ? "default" : "pointer",
           }}
+          onClick={handleOpen}
           transition={springTransition}
-          className={`pointer-events-auto relative overflow-hidden bg-[#0d1a04] border border-white/10 flex flex-col items-center justify-center`}
-          onClick={() => !isOpen && setIsOpen(true)}
         >
           {/* Background Image Layer */}
           <motion.div
-            layout
-            className="absolute inset-0 z-0 overflow-hidden"
+            className="absolute inset-0 z-0"
             style={{
-              background:
-                "url('/image/ramadan_banner.jpg') no-repeat center center/cover",
+              backgroundImage: `url('${currentBg}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
-            animate={{ opacity: isOpen ? 1 : 0, scale: isOpen ? 1 : 1.1 }}
+            animate={{ 
+              opacity: isOpen ? 1 : 0,
+              scale: isOpen ? 1 : 1.1
+            }}
             transition={springTransition}
-          >
-            {/* <img
-              src="/image/ramadan_banner.jpg"
-              className="w-full h-full object-cover"
-              alt="Ramadan"
-            /> */}
-            {/* Dark Overlay for Text Legibility */}
-            {/* <div className="absolute inset-0 bg-black/50 bg-gradient-to-t from-[#0d1a04] via-black/20 to-black/40" /> */}
-          </motion.div>
+          />
 
-          {/* Close Button - Absolute Positioned over everything */}
+          {/* Close Button */}
           <AnimatePresence>
             {isOpen && (
               <motion.button
@@ -102,102 +114,76 @@ const RamadanBanner = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.5 }}
                 transition={springTransition}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsOpen(false);
-                }}
-                className="absolute top-6 right-6 rounded-full p-2 text-neutral-500 hover:text-neutral-600 transition-all z-30"
+                onClick={handleClose}
+                className="absolute top-4 right-4 md:top-6 md:right-6 rounded-full p-2 text-neutral-500 hover:text-neutral-800 transition-colors z-30"
               >
-                <IoCloseCircleOutline size={28} />
+                <IoCloseCircleOutline size={30} />
               </motion.button>
             )}
           </AnimatePresence>
 
-          <motion.div
-            layout
-            className={`relative z-10 w-full h-full flex flex-col transition-all duration-300
-              ${
-                isOpen
-                  ? "justify-center items-center md:flex-row md:justify-end px-8 md:px-20"
-                  : "items-center justify-center px-0"
+          <div
+            className={`relative z-10 w-full h-full flex flex-col 
+              ${isOpen
+                ? "justify-center items-center md:flex-row md:justify-end px-6 md:px-16"
+                : "items-center justify-center"
               }`}
           >
-            <motion.div
-              layout
-              className={`flex flex-col justify-center ${
-                isOpen
-                  ? "items-center text-center md:items-start md:text-left md:w-[45%]"
-                  : "items-center text-center w-full h-full"
-              }`}
+            <div
+              className={`flex flex-col justify-center transition-all duration-300
+                ${isOpen
+                  ? "items-center text-center md:items-start md:text-left md:w-[48%]"
+                  : "items-center w-full h-full"
+                }`}
             >
-              {/* Morphing Header Section */}
-              <motion.div
-                layout
-                className={`flex gap-3 ${
-                  isOpen
-                    ? "mb-8 flex-col items-center md:items-start"
-                    : "flex-row items-center"
+              <div
+                className={`flex gap-3 transition-all duration-300 ${
+                  isOpen ? "mb-6 flex-col items-center md:items-start" : "flex-row items-center"
                 }`}
               >
-                {/* <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0, y: 10 }}
-                      animate={{ scale: 1, opacity: 1, y: 0 }}
-                      exit={{ scale: 0, opacity: 0, y: 10 }}
-                      transition={{ ...springTransition, damping: 30 }}
-                      className="text-amber-400 text-6xl mb-2"
-                    >
-                      <FaMosque />
-                    </motion.div>
-                  )}
-                </AnimatePresence> */}
-
-                <motion.h2
-                  layout
-                  className={`font-black whitespace-nowrap tracking-tight transition-all
-                  ${isOpen ? "text-4xl md:text-5xl text-lime-700" : "text-white cursor-pointer text-[15px] opacity-95"}`}
+                <h2
+                  className={`font-black whitespace-nowrap tracking-tight transition-all duration-300
+                  ${isOpen ? "text-4xl md:text-5xl text-lime-700 leading-tight" : "text-white text-[15px] opacity-95 flex items-center gap-2"}`}
                 >
-                  Ramadan {isOpen ? <br /> : " "} Mubarak
-                </motion.h2>
-              </motion.div>
+                  {!isOpen && <BiSolidDonateHeart />}
+                  <span className={isOpen ? "text-lime-800" : ""}>Gift</span>
+                  {isOpen ? <br /> : " "}
+                  Education
+                </h2>
+              </div>
 
-              {/* Content Body */}
               <AnimatePresence>
                 {isOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                    transition={{ ...springTransition, duration: 0.2 }}
-                    className="flex flex-col items-center md:items-start space-y-10"
+                    exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                    transition={{ ...springTransition, damping: 30 }}
+                    className="flex flex-col items-center md:items-start space-y-8"
                   >
-                    <p className="text-neutral-600 text-lg font-medium leading-relaxed max-w-[350px]">
-                      Wishing you a month of peace and spiritual growth. Support
-                      our noble mission this season.
+                    <p className="text-neutral-800 text-lg font-medium leading-relaxed max-w-[380px]">
+                      Help a child learn, grow, and dream beyond limits. Join our journey to bring education, care, and dignity to every child.
                     </p>
 
                     <Link
                       href="/donate"
-                      className="group relative px-6 py-3 bg-lime-600 rounded-[1rem]"
+                      className="group relative px-8 py-4 bg-lime-700 hover:bg-lime-800 text-white font-black text-lg rounded-xl transition-all shadow-lg hover:shadow-xl active:scale-95"
                     >
-                      <span className="relative z-10 text-white font-black text-lg">
-                        Donate Now
-                      </span>
-                      {/* <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" /> */}
+                      Donate Now
                     </Link>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Pulse Effect for closed state */}
           {!isOpen && (
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="absolute inset-0 bg-lime-500/50 animate-pulse pointer-events-none"
+              animate={{ opacity: [0, 0.4, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="absolute inset-0 bg-lime-500 pointer-events-none"
             />
           )}
         </motion.div>

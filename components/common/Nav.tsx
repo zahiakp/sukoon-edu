@@ -35,7 +35,7 @@ const NAV_ITEMS = [
     ],
   },
   { label: "Life at Sukoon" ,path:"/life-sukoon"},
-  { label: "Get Admission", path: "/admissions" },
+  { label: "Get Admission", path: "https://admission.mysukoon.in/register" },
   { label: "Join us",items: [
     { label: "Career", path: "/join" },
     { label: "Contact", path: "/contact" },
