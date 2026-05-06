@@ -5,7 +5,16 @@ const nextConfig: NextConfig = {
   experimental: {
     esmExternals: true, // Enable support for ES modules
   },
-  // Additional options can be added here if needed
+  
+  async redirects() {
+    return [
+      {
+        source: '/admissions/:path*',
+        destination: 'https://admission.mysukoon.in/register',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
